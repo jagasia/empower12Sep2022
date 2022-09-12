@@ -616,3 +616,57 @@ last DML statement in oracle is
 Task:
 	Identify the use of MERGE
 
+1) We already have CUSTOMER table with some records.
+2) We created a backup table called CUSTOMER1
+	using CREATE TABLE SELECT statement
+	so we have all the rows of CUSTOMER table now copied to CUSTOMER1
+3) everyday, there are some changes happening in CUSTOMER table (original table)
+	How, these changes can be updated in CUSTOMER1 table? (backup table)
+
+
+TCL
+	Transaction Control Language
+		COMMIT
+		ROLLBACK
+		SAVEPOINT
+
+Task:
+	What is the use of SAVEPOINT?
+
+	Every DML is a transaction itself. Implicit transaction.
+	
+
+	What is a transaction?
+		A set of dml statements that should complete together as a single unit.
+		
+product
+	1	pen	100
+	2	pencil	50
+
+sales
+	101	1	20
+
+		Atomicity			All othewise None
+		Consistency		
+		Isolation			LOCK		concurrency control to avoid concurrency issues
+		Durability			LOGs
+	
+
+
+DCL
+	Data Control Language
+
+Concurrency issues of transaction
+	Dirty read				read uncommitted mode
+	Panthom read			read committed		range lock
+	Repeatable read			
+
+Types of privileges
+	in oracle, every statement (INSERT, UPDATE, SELECT, CREATE, ALTER) an user executes, is decided by privileges.
+
+	GRANT
+	REVOKE
+	
+WITH ADMIN OPTION
+WITH GRANT OPTION
+
