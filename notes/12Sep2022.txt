@@ -1,3 +1,7 @@
+1 PM lunch break
+4:30 evening break
+
+
 Oracle database
 	8
 	8i
@@ -15,3 +19,146 @@ Task1:
 https://login.oracle.com/
 
 Start coding -> that will ask you to sign in (you can signup)
+
+sample schemas (databases)
+HR schema (for example)
+	EMPLOYEES
+	DEPARTMENTS
+
+Relation	(example: table)
+Relationship
+Tuple	record/row
+Column	
+NULL	empty, not a space, not a zero, not a hyphen, (null)
+	it means the data is missing
+CONSTRAINTS
+	PRIMARY
+	FOREIGN
+	SECONDARY
+	SUPERY
+	CANDIDATE
+	ALTERNATE KEY
+	COMPOSITE KEY
+	UNIQUE
+	NOT NULL
+	CHECK
+	DEFAULT
+
+PRIMARY KEY
+	there are severals rows (records) in a table. 
+	To identify a row uniquely from a table, 
+	i) Cannot accept duplicate values
+	ii) Cannot be NULL		we have to give a value for sure.
+
+	we ensure ENTITY Integrity
+
+
+
+
+CONSTRINTS
+	CONDITIONS THAT RESTRICT
+
+
+
+DATA INTEGRITY
+	i) Entity Integrity
+		ensures that every entity is identified unqiuely
+		PRIMARY KEY
+	ii) Domain Integrity
+		ensures that the data entered in a column follows the domain rules
+		PINCODE
+			6 digits
+		ZIPCODE
+			5 digits
+		implement it using
+			CHECK constraint
+	iii) Referential Integrity
+		Foreign key
+			can we store duplicate values in foreign key column		(Yes)
+			can we store null value in foreign key column			(Yes)
+	iv) User defined data integrity
+		we implement it using triggers
+
+
+CUSTOMER
+	Patient	hospital
+	Passenger	transportant
+	
+
+Normalization
+-----------------
+	reducing the redundancy
+
+1NF 
+	A table will be in first normal form only if every column or cell has precisely only 1 data.
+2NF
+	A table will be already in 1NF and then every column is funtionally dependent on whole key, not part of key
+3NF
+	A table will be already in 2NF and then every column is funtionally dependent on primary key, not part of key	
+
+---------------------------------------------------------
+SQL(DDL, DML, TCL, DRL, DCL) Commands, Joins
+-----------------------------------------------------------------------
+
+DDL
+DML
+TCL
+DCL
+DQL
+
+
+DDL
+	Data Definition Language
+
+Defining data includes
+	CREATE	
+	ALTER
+	DROP
+	TRUNCATE
+
+
+amazon
+flipkart
+
+entities
+	customer
+	product
+	order
+
+
+SQL
+	Structured Query Language
+		is a language to communicate with the database.
+		DDL
+		
+		
+PL/SQL
+	Procedural Language extension for SQL
+
+DDL
+	Data Definition Language
+
+
+Task:
+	create a table called CUSTOMER
+		
+
+CREATE TABLE JAG
+(
+    SNO INT PRIMARY KEY,
+    NAME VARCHAR2(50)
+);
+
+
+drop table jag;
+
+create table with more number of columns
+
+	ctrl+/ 		to comment (toggle)	again, means uncomment
+
+	ctrl+enter		to run the line
+
+
+
+
+
