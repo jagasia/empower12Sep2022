@@ -1,0 +1,17 @@
+Oracle database
+	8
+	8i
+	9i
+	10g
+	11g
+		express edition		free
+
+1 computer where we installed server part
+	database files are stored in server
+
+in 20 other computers, we installed the client
+
+Task1:
+https://login.oracle.com/
+
+Start coding -> that will ask you to sign in (you can signup)
