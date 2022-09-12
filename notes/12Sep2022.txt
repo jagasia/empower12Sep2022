@@ -519,4 +519,100 @@ Task:
 	SELECT query to confirm if the INSERT operation has worked corrected.
 
 
+to add date into a column, use 	dd-MMM-yy format
+Example:
+	-- select sysdate from dual;
+	-- create table t4
+	-- (
+	--  dt date
+	-- );
+
+	insert into t4 values('12-SEP-22');
+
+
+
+DML - UPDATE
+---------------------
+	to change the existing values in the table.
+	UPDATE should not be confused with ALTER
+
+	ALTER modifies the table structure/ schema
+	UPDATE modifies the data inside the table
+
+Exampe:
+	UPDATE CUSTOMER SET EMAIL='rajesh@kanna.com' WHERE ID=4;
+
+	UPDATE CUSTOMER SET FIRST_NAME='Ramesh', LAST_NAME='Kanna', EMAIL='ramesh@yahoo.com' WHERE ID=4;
+
+	UPDATE CUSTOMER SET NATIONALITY='Indian';
+
+
+Multi INSERT in oracle
+-----------------------------
+
+INSERT INTO TABLENAME 
+SELECT * FROM ANOTHERTABLENAME;
+
+
+select * from customer;
+
+INSERT ALL
+	INTO CUSTOMER VALUES(11,'A','B','C',DEFAULT)
+	INTO CUSTOMER VALUES(12,'A','B','C',DEFAULT)
+	INTO CUSTOMER VALUES(13,'A','B','C',DEFAULT)
+		SELECT * FROM DUAL;
+
+
+SELECT UPPER('abcd') FROM DUAL;
+
+--We can create a new backup table CUSTOMER1 from customer table (same structure of customer table and all records are added to CUSTOMER1)
+CREATE TABLE CUSTOMER1 AS
+SELECT * FROM CUSTOMER;
+
+select * from customer1;
+
+DELETE statement
+-------------------------
+DELETE statement is used to remove records from the table. NOT to remove partial values in a row. ENTIRE Row(s) is removed.
+WHERE condition is important. If there is no where condition? then all rows are removed. DANGER
+
+How DELETE is different from DROP table?
+
+DELETE removes records in the table. Table remains present in the database.
+DROP removes the TABLE itself, (of course, records also gone).
+
+
+basic syntax:
+DELETE FROM TABLENAME WHERE CONDITION;
+
+
+DELETE FROM CUSTOMER1;		-- 12 rows delete
+
+insert into customer1 
+select * from customer;
+
+delete from customer1 WHERE first_name='Dinesh';
+
+select * from customer1;
+
+
+delete from customer1 WHERE first_name='Dinesh';
+
+delete from customer1 where last_name='B';
+
+DELETE FROM CUSTOMER1 WHERE FIRST_NAME LIKE 'Raj%';
+	--in the above statement, FROM is an optional keyword. 		DELETE CUSTOMER1;	--is also correct
+------------------------------------
+
+What is the difference between DELETE and TRUNCATE
+1) DELETE can remove rows based on condition but TRUNCATE always remove all rows.
+2) DELETE may trigger DELETE TRIGGER but TRUNCATE will not trigger
+3) DELETE is DML but TRUNCATE is DDL
+4) TRUNCATE is faster than DELETE when there are lot of records present in the table
+
+last DML statement in oracle is 
+	MERGE
+
+Task:
+	Identify the use of MERGE
 
