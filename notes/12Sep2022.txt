@@ -158,7 +158,365 @@ create table with more number of columns
 
 	ctrl+enter		to run the line
 
+--------------------The columns used for CUSTOMER table---------------------
+custid			ID
+customername		NAME
+firstname			FIRST_NAME
+lastname
+ordernumber		NOT part of CUSTOMER
+address			dno, street1, street2, city, pincode, state, country
+email
+phone
+description			no
+age			derived from dateOfBirth
+dateofbirth
+education			not
 
+create table customer
+(
+colname datatype,
+colname2 datatype,
+
+
+);
+
+
+
+
+
+What are all the data types present in oracle SQL?
+int
+char
+varchar2
+float
+double
+nchar
+nvarchar2
+date
+datetime
+number(x,y)
+clob
+blob
+bfile
+nclob
+raw
+long
+rowid
+urowid
+timestamp
+timestamp with timezone
+timestamp with local timezone
+interval year to month			
+interval day to second
+
+
+
+char vs nchar
+----------------
+	char(5)	is different from nchar(5)
+
+
+
+
+
+
+
+
+
+Table name has some conventions
+	CUSTOMER is domain generic		fine in ecome. no issues
+
+SIGNUP	not good		USER
+	username
+	password
+	confirmpassword
+		frontend validation. no need to store confirm password
+	age	need not be stored in database. Date Of Birth can be an attribute. Age is a derived attribute.
+
+
+
+
+
+
+in java
+	firstName
+into
+	FIRST_NAME
+
+
+
+1 byte = 8 bit	=	0000 0000			1111 1111
+
+			0	- 	255
+
+A	=	65	
+
+AB
+Γ
+
+☺
+
+
+
+Example:
+CREATE TABLE candidates (
+    candidate_id NUMBER,
+    first_name VARCHAR2(50) NOT NULL,
+    last_name VARCHAR2(50) NOT NULL,
+    job_title VARCHAR2(255) NOT NULL,
+    year_of_experience INTERVAL YEAR TO MONTH,
+    PRIMARY KEY (candidate_id)
+);
+
+INSERT INTO candidates (
+    first_name,
+    last_name,
+    job_title,
+    year_of_experience
+    )
+VALUES (
+    'Camila',
+    'Kramer',
+    'SCM Manager',
+    INTERVAL '10-2' YEAR TO MONTH
+    );
+
+
+
+Difference between char and nchar:
+-- CREATE TABLE T1
+-- (
+--     X CHAR(5)
+-- );
+
+-- INSERT INTO T1 VALUES('ABCDE');
+-- INSERT INTO T1 VALUES ('☺☺☺☺☺');         NOT ABLE TO STORE
+-- INSERT INTO T1 VALUES('☺☺');
+
+
+-- CREATE TABLE T2
+-- (
+--     X NCHAR(5)
+-- );
+
+-- INSERT INTO T2 VALUES ('☺☺☺☺☺');
+
+ಸ್ವಾಗತ
+
+
+Difference between char and varchar2
+	char should be used only when the values are same length. Example for same length:	employeeId, pincode, zipcode
+	varchar2 should be used whenever, the data in the column are variable length.
+		varchar2(100) does not always occupy 100 units, so we can be generous in using varchar2
+
+difference between
+	date
+	datetime
+	timestamp
+	timestamp with timezone
+
+
+Next
+	what are all the ways, we can add constraints to a table?
+
+
+CREATE TABLE CUSTOMER
+(
+    ID INT,
+    FIRST_NAME VARCHAR2(20),
+    LAST_NAME VARCHAR2(20),
+    EMAIL VARCHAR2(40),
+    PRIMARY KEY(ID)
+);
+
+Sometimes we can define constraints at table level
+
+After creating the table also, we can add constraints into the table
+
+This is done using ALTER TABLE statement
+
+
+
+
+CREATE TABLE CUSTOMER
+(
+    ID INT,
+    FIRST_NAME VARCHAR2(20),
+    LAST_NAME VARCHAR2(20),
+    EMAIL VARCHAR2(40),
+    PRIMARY KEY(ID)
+);
+
+DROP TABLE CUSTOMER;
+
+
+CREATE TABLE CUSTOMER
+(
+    ID INT,
+    FIRST_NAME VARCHAR2(20),
+    LAST_NAME VARCHAR2(20),
+    EMAIL VARCHAR2(40),
+    CONSTRAINT pkcid PRIMARY KEY(ID)
+);
+
+
+in oracle, all the table definitions are maintained in dictionary tables
+
+
+user_
+all_
+dba_
+
+
+You have created a table CUSTOMER
+1) Check if primary key constrtaint is present for this table or not
+	hint:	USER_CONSTRAINTS
+2) remove constraint alone from the table and check dictionary
+
+
+
+method1:
+----------
+CREATE TABLE CUSTOMER
+(
+    ID INT PRIMARY KEY,
+    FIRST_NAME VARCHAR2(20),
+    LAST_NAME VARCHAR2(20),
+    EMAIL VARCHAR2(40)
+);
+method2:
+----------
+CREATE TABLE CUSTOMER
+(
+    ID INT,
+    FIRST_NAME VARCHAR2(20),
+    LAST_NAME VARCHAR2(20),
+    EMAIL VARCHAR2(40),
+    PRIMARY KEY(ID)
+);
+method3:
+-----------
+CREATE TABLE CUSTOMER
+(
+    ID INT,
+    FIRST_NAME VARCHAR2(20),
+    LAST_NAME VARCHAR2(20),
+    EMAIL VARCHAR2(40),
+    CONSTRAINT pkccid1 PRIMARY KEY(ID)
+);
+
+select * from USER_CONSTRAINTS;
+	--this will show all the constraints persent in user tables
+
+select * from USER_CONS_COLUMNS;
+	--this will show all the constraints and corresponding columns in user tables
+-----------------------------------------
+What is the need for composite primary key?
+
+CREATE TABLE ORDER
+(	order_id int,
+	product_id int,
+	quantity int
+);
+
+//ORDER is not allowed as a table name because, ORDER BY is a clause used in SQL.
+CHANGED TO ORDER_DETAILS;
+
+drop table order_details
+
+
+
+CREATE TABLE ORDER_DETAILS
+(	order_id int,
+	product_id int,
+	quantity int,
+	CONSTRAINT pkOd1 PRIMARY KEY(order_id, product_id)
+);
+
+
+Revisiting DDL
+
+CREATE
+ALTER
+DROP
+TRUNCATE
+
+ALTER
+	is used to modify the table structure after the table is being created.
+	ADDING A COLUMN
+	REMOVING A COLUMN
+	CHANGING THE DATA TYPE OR SIZE OF THE COLUMN
+
+Task:
+In a table that you have already created, 
+	1) add a new column to the table
+	2) modify the data type of an existing columns
+	3) rename the column name
+		alter table customer rename column email to emaildi;
+	4) remove the existing column
+
+	
+(DDL, DML, TCL, DRL, DCL) Commands, Joins
+
+We are able to CREATE TABLE
+
+ALTER TABLE
+--------------------------------------------
+DROP TABLE CUSTOMER PURGE;
+--------------------------
+TRUNCATE 
+	REMOVES ALL THE RECORDS IN THE TABLE.
+	it is similar to DROP and CREATE table
+	there is no conditions to specify to delete specific records. NOT POSSIBLE. ALL ROWS only
+
+------------------------------------------
+DML
+	Data Manipulation Language
+
+		INSERT
+		UPDATE
+		DELETE
+		MERGE
+
+INSERT
+	A row or set of rows added to the table
+
+ex:
+
+CREATE TABLE CUSTOMER
+(
+    ID INT,
+    FIRST_NAME VARCHAR2(20),
+    LAST_NAME VARCHAR2(20),
+    EMAIL VARCHAR2(40),
+    CONSTRAINT pkccid1 PRIMARY KEY(ID)
+);
+
+DESC CUSTOMER;
+
+INSERT INTO CUSTOMER VALUES(1, 'Raja','Sivakumar','raja@yahoo.com');	//basic syntax is used
+INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, ID) VALUES ('Rajesh','Kanna','rajesh@gmail.com',2);
+INSERT INTO CUSTOMER VALUES(3, 'Raja','Sivakumar',NULL);
+INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, ID) VALUES ('Rajesh','Kanna',4);
+
+
+ALTER TABLE CUSTOMER ADD NATIONALITY VARCHAR2(20) DEFAULT 'Indian';
+
+INSERT INTO CUSTOMER VALUES(6, 'Dinesh','Srinivasan','dinesh@yahoo.com', DEFAULT);
+INSERT INTO CUSTOMER (FIRST_NAME, LAST_NAME, EMAIL, ID) VALUES('John','Abraham',NULL, 8);
+
+
+
+select * from customer;
+
+Task:
+	1) add a row to the table using simple basic syntax
+	2) add a row using column list and values
+	3) add a row by specifying only few columns of choice and different order and values
+	4) use a default column and allow it to use the default value		(DEFAULT)
+	5) ignore default columns in the columns list and check
+
+	SELECT query to confirm if the INSERT operation has worked corrected.
 
 
 
