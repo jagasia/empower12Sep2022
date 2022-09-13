@@ -73,11 +73,6 @@ who can create new users?
 
 
 
-Task:
-	understand the difference between
-		WITH GRANT OPTION
-		WITH ADMIN OPTION
-
 
 
 
@@ -187,3 +182,170 @@ ORA-01031: insufficient privileges
 
 
 SQL>
+
+
+-[--------------------------------------
+
+Task:
+	understand the difference between
+		WITH GRANT OPTION		for Object Privileges
+		WITH ADMIN OPTION		for System Privileges
+
+Example:
+	1) we created an user "jag"
+	2) sys is going to GRANT an object privilege to "jag"	(UPDATE ON HR.EMPLOYEES)	WITH GRANT OPTION
+	3) let sys create one more user "anirudh"
+	4) jag will grant UPDATE ON HR.EMPLOYEES to the new user anirudh
+	5) check if anirudh is able to update on hr.employees
+	6) sys to REVOKE the privilege from jag
+	7) what happens to anirudh when he tries to UPDATE on HR.EMPLOYEES
+
+Observation:
+
+(Terminal 1)
+SQL> create user anirudh identified by anirudh;
+
+User created.
+
+SQL> grant create session to anirudh;
+
+Grant succeeded.
+
+SQL> GRANT UPDATE ON HR.DEPARTMENTS TO jag WITH GRANT OPTION;
+
+Grant succeeded.
+
+SQL> REVOKE UPDATE ON HR.DEPARTMENTS FROM JAG;
+
+Revoke succeeded.
+
+SQL> GRANT UPDATE ON HR.DEPARTMENTS TO jag WITH GRANT OPTION;
+
+Grant succeeded.
+
+SQL>
+
+
+---------------------
+(Terminal 2)
+
+SQL> connect anirudh/anirudh
+ERROR:
+ORA-01045: user ANIRUDH lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> connect anirudh/anirudh
+Connected.
+SQL> UPDATE HR.EMPLOYEES SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+UPDATE HR.EMPLOYEES SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324
+                        *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT_NAME": invalid identifier
+
+
+SQL> UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324
+          *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+
+1 row updated.
+
+SQL> UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324
+          *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324
+          *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+---------------------------
+
+We understood that, 
+	sys granted UPDATE ON HR.DEPARTMENTS to jag WITH GRANT OPTION
+	jag granted the same to anirudh
+	anirudh was able to update on hr.departments
+
+	now, sys revoke the same privilege from jag
+	anirudh was also NOT able to do update
+
+OBJECT privileges are CASCADE
+
+-------------------------anirudh---------------------
+SQL> connect anirudh/anirudh
+Connected.
+SQL> CREATE TABLE T1(SNO INT);
+CREATE TABLE T1(SNO INT)
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> CREATE TABLE T1(SNO INT);
+CREATE TABLE T1(SNO INT)
+*
+ERROR at line 1:
+ORA-01950: no privileges on tablespace 'SYSTEM'
+
+
+SQL> CREATE TABLE T1(SNO INT);
+
+Table created.
+
+SQL> CREATE TABLE T2(SNO INT);
+
+Table created.
+
+SQL>
+
+------------------sys-----------------
+
+SQL> connect sys/password as sysdba;
+Connected.
+SQL> GRANT CREATE TABLE to jag WITH ADMIN OPTION;
+
+Grant succeeded.
+
+SQL> ALTER USER anirudh QUOTA 100M ON SYSTEM;
+
+User altered.
+
+SQL> GRANT UNLIMITED TABLESPACE TO anirudh;
+
+Grant succeeded.
+
+SQL> REVOKE CREATE TABLE FROM jag;
+
+Revoke succeeded.
+
+SQL>
+
+------------------jag
+
+SQL> connect jag/jag
+Connected.
+SQL> CREATE TABLE T2(SNO INT);
+CREATE TABLE T2(SNO INT)
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> GRANT CREATE TABLE TO anirudh;
+
+Grant succeeded.
+
+SQL>
+
+--------------------------------
