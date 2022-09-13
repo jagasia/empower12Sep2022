@@ -349,3 +349,59 @@ Grant succeeded.
 SQL>
 
 --------------------------------
+
+
+Select statement with all clauses, Set Operators, Predefined functions, Indexs, Views
+
+
+What is the purpose of SELECT statement?
+	SELECT statement is used to retrieve data from the database tables.
+
+Basic syntax of SELECT statement
+	SELECT column list | * 
+	FROM table1, table2, ....
+	WHERE condition(s)
+	GROUP BY col1, col2, ...
+	HAVING group condition
+	ORDER BY col1, col2 ASC|DESC
+
+
+SELECT * FROM HR.EMPLOYEES;
+
+	* means?
+		all columns
+
+How to get all rows?
+	there is no condition in the select query, then we get all rows.
+
+PROJECTION
+	the query displays only the columns that are relevant
+		instead of using *, we can use column list for projection
+SELECTION
+	the query displays only the rows that are relevent
+		instead of displaying all rows, we can use conditions to display only the relevant records
+UNION		ignores duplicate
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID LIKE 'PU_%'
+UNION
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID='PU_CLERK';
+
+UNION ALL
+		displays duplicates also, so 5+5 is always 10
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID LIKE 'PU_%'
+UNION ALL
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID='PU_CLERK';
+
+INTERSECT
+		displays only the common records found in both the results
+
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID LIKE 'PU_%'
+INTERSECT
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID='PU_CLERK';
+
+MINUS
+	All the records of first query - common records found with second query
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID LIKE 'PU_%'
+MINUS
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID='PU_CLERK';
+
+
