@@ -1,0 +1,189 @@
+Yesterday we learnt:
+Basics, 
+Normalization, 
+SQL(DDL, DML, TCL)
+----------------------------------
+Today we continue from DCL
+
+DCL
+	Data Control Language
+
+we can 
+	Grant
+	Revoke
+
+		privileges 
+
+What are privileges?
+	Permissions.
+		Every user must be grant privileges in order to everything
+
+	There are several privileges defined in ORACLE
+	Only those users who have those privileges can do those operations.
+
+
+Activity:
+	Identify as many privileges in ORACLE
+
+There are 2 types of privileges:
+	SYSTEM Privileges
+		allow us to create objects, 
+			login	
+		DDL related privileges are system privileges
+		CREATE SESSION
+
+			
+	OBJECT Privileges
+		specific to object
+			i call allow an user to SELECT, INSERT on a particular object. 
+		DML related privileges are object priveleges
+
+	CREATE TABLE
+	ALTER TABLE
+	CREATE VIEW
+	SELECT ON
+
+Privilege              Description
+SELECT               Privilege to perform SELECT statements on the table.
+INSERT                Privilege to perform INSERT statements on the table.
+UPDATE               Privilege to perform UPDATE statements on the table.
+DELETE                Privilege to perform DELETE statements on the table.
+REFERENCES      Privilege to create a constraint that refers to the table.
+ALTER                  Privilege to perform ALTER TABLE statements to change
+                              the table definition.
+INDEX                  Privilege to create an index on the table with the create index
+                              statement.
+ALL                       All privileges on table.
+
+
+
+
+
+
+When we install oracle in our system,
+	there will be few users already present
+	sys
+	system
+	scott
+	hr		(locked)		we have to i) unlock	ii) change password
+
+who can create new users?
+	sys, system they can do everything.
+	any user can be GRANT with CREATE USER privilege
+
+
+
+Task:
+	understand the difference between
+		WITH GRANT OPTION
+		WITH ADMIN OPTION
+
+
+
+
+
+Practical example: (Terminal 1)
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Sep 13 12:03:44 2022
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> CREATE USER jag IDENTIFIED BY jag;
+SP2-0640: Not connected
+SQL> connect sys/password as sysdba
+Connected.
+SQL> CREATE USER jag IDENTIFIED BY jag;
+
+User created.
+
+SQL> GRANT CREATE SESSION to jag;
+
+Grant succeeded.
+
+SQL> GRANT SELECT ON HR.EMPLOYEES TO jag;
+
+Grant succeeded.
+
+SQL>
+
+----------------------------------
+Practical example: (Terminal 2)
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Sep 13 12:03:55 2022
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect jag/jag
+ERROR:
+ORA-01045: user JAG lacks CREATE SESSION privilege; logon denied
+
+
+SQL> connect jag/jag
+Connected.
+SQL> select * from hr.employees;
+select * from hr.employees
+                 *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> connect hr/hr
+Connected.
+SQL> select * from employees;
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID
+        SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+        100 Steven               King
+SKING                     515.123.4567         17-JUN-03 AD_PRES
+         24000
+                                     90
+
+
+
+107 rows selected.
+
+SQL> connect jag/jag
+Connected.
+SQL> select * from hr.employees;
+select * from hr.employees
+                 *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from hr.employees;
+
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID
+        SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+
+        179 Charles              Johnson
+CJOHNSON                  011.44.1644.429262   04-JAN-08 SA_REP
+          6200
+            .1        149            80
+
+        180 Winston              Taylor
+WTAYLOR                   650.507.9876         24-JAN-06 SH_CLERK
+          3200
+
+107 rows selected.
+
+SQL> delete from hr.employees;
+delete from hr.employees
+               *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL>
