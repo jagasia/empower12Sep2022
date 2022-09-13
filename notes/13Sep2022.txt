@@ -583,9 +583,19 @@ query:-
 	    WHERE extract(year from hire_date)>2005;
     
 NVL
+	NVL(Expression, x)
+		if Expression returns NULL, then x is returned
+		if Expression does not return NULL, then that expression result is returned
 NVL2
-NULL_IF
-IFNULL
+	NVL2(Expression, x, y)
+		if Expression returns NOT NULL, then x is returned
+		if Expression returns NULL, then y is returned
+select commission_pct, nvl2(commission_pct,1,2) from hr.employees;
+NULLIF
+	NULLIF(x,y)
+		returns NULL if x and y are equal
+		returns x, if they are not equal
+
 DECODE
 COALESCE
 	
