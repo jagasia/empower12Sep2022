@@ -404,4 +404,188 @@ SELECT * FROM HR.EMPLOYEES WHERE JOB_ID LIKE 'PU_%'
 MINUS
 SELECT * FROM HR.EMPLOYEES WHERE JOB_ID='PU_CLERK';
 
+WHERE
+	condition that returns TRUE or FALSE		boolean expression
 
+Logical
+	NOT
+	AND
+	OR
+Comparison
+	=
+	!=		<>
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID!='PU_CLERK';
+	is same as
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID<>'PU_CLERK';
+
+	>
+	<
+	>=
+	<=
+	>ALL
+	>ANY
+
+IS 		is an operator using with NULL
+
+IS NULL
+IS NOT NULL
+
+SELECT * FROM HR.EMPLOYEES WHERE DEPARTMENT_ID IS NULL;	
+
+SELECT * 
+FROM HR.EMPLOYEES 
+WHERE DEPARTMENT_ID=80
+AND JOB_ID='SA_MAN';
+
+
+SELECT * 
+FROM HR.EMPLOYEES 
+WHERE DEPARTMENT_ID=80
+OR JOB_ID='PU_CLERK';
+
+
+---------------------------------
+LIKE operator
+	it is used only with the character types 		(works for Date also)
+
+
+
+select to_char(hire_date,'dd-MMM-yyyy') from hr.employees;
+
+LIKE operator supports
+	%
+	_
+
+%	0 or more characters match
+_	1 character match
+
+
+select to_char(hire_date,'dd-MON-yyyy') from hr.employees
+WHERE to_char(hire_date,'dd-MON-yyyy') LIKE '%FEB%';
+
+
+
+Karthick
+Karthi
+Karthik
+Karthikeyan
+
+%arthi%
+
+B1
+B2
+A1
+A2
+
+
+A_
+
+_2
+
+Dr.%
+
+
+free text search
+full text search
+
+Aggregate Functions
+	SUM
+	AVG
+	MIN
+	MAX
+	COUNT
+
+
+SELECT COUNT(SALARY), SUM(salary), ROUND(AVG(SALARY),-2) FROM HR.EMPLOYEES;
+
+--SELECT AVG(SALARY) FROM HR.EMPLOYEES;
+
+SELECT DEPARTMENT_ID, COUNT(SALARY), AVG(SALARY) FROM HR.EMPLOYEES
+GROUP BY DEPARTMENT_ID;
+
+
+SELECT DISTINCT DEPARTMENT_ID FROM HR.EMPLOYEES;
+
+GROUP BY
+
+Sometimes, we dont want to display all the groups. We want to display significant group (groups that pass a condition)
+
+
+
+SELECT DEPARTMENT_ID, AVG(SALARY), COUNT(SALARY), MIN(SALARY)
+FROM HR.EMPLOYEES
+GROUP BY DEPARTMENT_ID
+HAVING COUNT(SALARY)>4;
+
+
+
+
+ORDER BY FIRST_NAME DESC, LAST_NAME ASC;
+Challenges:
+--------------
+1) Display the employee id, first name, last name, salary of all employees, whose department id is either 90 or 100
+	SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY 
+	FROM EMPLOYEES 
+	WHERE DEPARTMENT_ID IN (90,100);
+
+	SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY 
+	FROM HR.EMPLOYEES 
+	WHERE DEPARTMENT_ID = 90
+	    OR
+	   DEPARTMENT_ID = 100;
+
+IN
+NOT IN
+
+
+2) Display employee id, first name, last name, salary of all employees whose hire date is after 2005
+
+		SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, hire_date, extract (year from hire_date)
+	FROM hr.EMPLOYEES
+    WHERE extract (year from hire_date)>2005;
+    
+
+		SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, hire_date, extract (year from hire_date)
+	FROM hr.EMPLOYEES
+    WHERE HIRE_DATE>'31-Dec-05';
+    
+
+	
+
+
+3) Display the employee id, first name, department id of employees whose salary is between 5k and 7k
+
+SALARY>=5000 AND SALARY<=7000
+
+SALARY BETWEEN 5000 AND 7000
+
+
+
+Challenge 2:
+---------------
+1) Display the employee id, first name, last name, salary of all employees, whose department id is neither 90 nor 100
+
+2) Display all the employees id, fname, salary and BONUS.
+	Bonus is 10% of their salary
+
+3) Display the employees id, fname, and their commission.
+	Commission = salary * commission_pct
+
+	Note: if commission percentage is null, then their commission = salary
+query:-
+	select employee_id, first_name, salary,commission_pct, salary * nvl(commission_pct,1)
+	from hr.employees;
+
+--------------------------------------------------------
+
+	SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, hire_date, extract (year from hire_date)
+	FROM hr.EMPLOYEES
+	    WHERE extract(year from hire_date)>2005;
+    
+NVL
+NVL2
+NULL_IF
+IFNULL
+DECODE
+COALESCE
+	
