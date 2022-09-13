@@ -5,7 +5,7 @@
 --  DDL for Table CUSTOMER_MASTER
 --------------------------------------------------------
 
-  CREATE TABLE "SYS"."CUSTOMER_MASTER" 
+  CREATE TABLE "CUSTOMER_MASTER" 
    (	"CUSTOMER_ID" VARCHAR2(10 BYTE), 
 	"CUSTOMER_NAME" VARCHAR2(30 BYTE), 
 	"CONTACT_NO" NUMBER(10,0), 
@@ -22,7 +22,7 @@
 --  DDL for Table LIBRARY_CARD_MASTER
 --------------------------------------------------------
 
-  CREATE TABLE "SYS"."LIBRARY_CARD_MASTER" 
+  CREATE TABLE "LIBRARY_CARD_MASTER" 
    (	"CARD_ID" VARCHAR2(10 BYTE), 
 	"DESCRIPTION" VARCHAR2(30 BYTE), 
 	"AMOUNT" NUMBER(38,0), 
@@ -37,7 +37,7 @@
 --  DDL for Table MOVIES_MASTER
 --------------------------------------------------------
 
-  CREATE TABLE "SYS"."MOVIES_MASTER" 
+  CREATE TABLE "MOVIES_MASTER" 
    (	"MOVIE_ID" VARCHAR2(10 BYTE), 
 	"MOVIE_NAME" VARCHAR2(50 BYTE), 
 	"RELEASE_DATE" VARCHAR2(30 BYTE), 
@@ -60,7 +60,7 @@
 --  DDL for Table CUSTOMER_CARD_DETAILS
 --------------------------------------------------------
 
-  CREATE TABLE "SYS"."CUSTOMER_CARD_DETAILS" 
+  CREATE TABLE "CUSTOMER_CARD_DETAILS" 
    (	"CUSTOMER_ID" VARCHAR2(10 BYTE), 
 	"CARD_ID" VARCHAR2(10 BYTE), 
 	"ISSUE_DATE" DATE
@@ -74,7 +74,7 @@
 --  DDL for Table CUSTOMER_ISSUE_DETAILS
 --------------------------------------------------------
 
-  CREATE TABLE "SYS"."CUSTOMER_ISSUE_DETAILS" 
+  CREATE TABLE "CUSTOMER_ISSUE_DETAILS" 
    (	"ISSUE_ID" VARCHAR2(10 BYTE), 
 	"CUSTOMER_ID" VARCHAR2(10 BYTE), 
 	"MOVIE_ID" VARCHAR2(10 BYTE), 
