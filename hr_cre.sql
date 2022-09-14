@@ -333,3 +333,71 @@ WHERE e.department_id = d.department_id
   AND c.region_id = r.region_id
   AND j.job_id = e.job_id 
 WITH READ ONLY;
+
+
+
+NON-EQUI JOIN:
+SELECT EMPLOYEE_ID, FIRST_NAME, SALARY, j.job_title
+FROM HR.EMPLOYEES E
+JOIN HR.JOBS J
+ON E.SALARY BETWEEN J.MIN_SALARY AND J.MAX_SALARY;
+
+
+-------------------------------------------
+PL/SQL Basics, Cursors, Procedures, Functions, Triggers
+
+PLSQL stands for Precedural Language Extension for SQL
+
+We have the procedural capabilities
+	if condition
+	select case condition
+	basic loop
+	while loop
+	for loop
+
+PLSQL allows to write programs
+	if you just check how we coded in SQL
+		SINGLE STATEMENT
+
+	
+
+DECLARE	(OPTIONAL)
+BEGIN
+EXCEPTION	(OPTIONAL)
+END;
+
+
+	
+set serveroutput on;
+
+
+
+
+--set serveroutput on;
+BEGIN
+    DBMS_OUTPUT.PUT('Hello');
+    DBMS_OUTPUT.PUT_LINE(' Bengaluru');
+END;
+
+
+
+
+
+DECLARE
+    i INT;
+BEGIN
+    i:=20;
+    DBMS_OUTPUT.PUT_LINE(I);
+END;
+
+
+
+DECLARE
+    i INT:=100;
+BEGIN
+--    i:=20;
+    DBMS_OUTPUT.PUT_LINE(I);
+END;
+
+
+

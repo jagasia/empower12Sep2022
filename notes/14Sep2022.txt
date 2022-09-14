@@ -1,0 +1,86 @@
+Sub Query
+Joins
+Foreign Key constraints
+
+------------
+Basics, Normalization, SQL(DDL, DML, TCL, DRL, DCL) Commands, Joins
+Select statement with all clauses, Set Operators, Predefined functions, Indexs, Views
+PL/SQL Basics, Cursors, Procedures, Functions, Triggers
+---------------
+
+FOREIGN KEY
+-------------------
+Scenario:
+	EMPLOYEES table has a foreign key called "DEPARTMENT_ID"
+
+	there are some department id like 	10, 20, 30,....270
+
+There are records in EMPLOYEES table where department_id 10 is found
+
+in order to ensure referential integrity, even when we delete/update primary key value, the corresponding foreign key value must be able to still maintain reg integrity
+	FOREIGN KEY CONSTRAINTS
+		RESTRICT
+		NULLIFY/SET NULL
+		CASCADE
+		           If you delete a row in master table (ex: departments), all the child rows present in details table (ex: employees) are also deleted
+
+
+----------------------		
+Sub query:
+--------------
+Display all the employees who belong to Neena's department
+	employee id, first name and department id
+
+
+SELECT employee_id, first_name, department_id
+FROM hr.EMPLOYEES
+WHERE department_id=(SELECT department_id FROM hr.EMPLOYEES WHERE first_name='Neena');
+
+What happens if the sub query returns more than 1 row?
+	we cannot use the operators like 
+		=	
+		>
+		>=
+		<
+		<=
+			whenever sub query returns more than 1 row
+	we can modify the above operations using
+		ALL
+		ANY	(SOME)
+
+
+Solution1:
+-----------
+select department_id, sum(salary) from hr.employees
+group by department_id
+having sum(salary)=
+(select max(sum(salary)) from hr.employees
+group by department_id);
+
+Solution 2:
+-------------
+select department_id, sum(salary) from hr.employees
+group by department_id
+having sum(salary)>=ALL
+(select sum(salary) from hr.employees
+group by department_id);
+
+-----------------------------------
+Rules for sub query:
+	1) enclose the subquery in paranthesis	()
+	2) subquery to be in the right side of the operator		
+	3) order by should not be used unless TOP n analysis is used
+	4) normally sub query should select only 1 column
+		except when we use EXISTS or NOT EXISTS operators
+	5) sub query must return only 1 row unless we use IN, ALL, ANY
+	6) sub query column must match with outer query conditions
+
+Challenge:
+	Display all department id, name of departments where there are NO employees found.
+
+SELECT department_id, department_name
+FROM HR.DEPARTMENTS D
+WHERE NOT EXISTS
+(SELECT * FROM HR.
+EMPLOYEES E WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID);
+
