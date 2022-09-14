@@ -558,3 +558,292 @@ LOOPS
 	WHILE LOOP
 	FOR LOOP
 
+
+
+loop
+end loop;
+
+
+
+
+
+example for basic loop:
+
+DECLARE
+    X INT:=1;
+BEGIN
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(X);
+        X:=X+1;
+        IF X>10 THEN
+            EXIT;
+        END IF;
+    END LOOP;
+END;
+
+
+
+
+
+DECLARE
+    X INT:=100;
+    sal int;
+    fn varchar2(100);
+BEGIN
+    LOOP
+--        DBMS_OUTPUT.PUT_LINE(X);
+        select salary, first_name into sal, fn from hr.employees where employee_id=x;
+        dbms_output.put_line(fn|| ' earns '||sal);
+        X:=X+1;
+        IF X>206 THEN
+            EXIT;
+        END IF;
+    END LOOP;
+END;
+
+--A) 1...9
+--B) Error
+--C) 1...10
+
+
+
+
+--------------------------------
+Next type of loop:
+	WHILE LOOP
+
+DECLARE 
+    X INT:=100;
+BEGIN
+    WHILE X<=206
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(X);
+        X:=X+1;
+    END LOOP;
+END;
+
+Next type of loop:
+	FOR LOOP
+
+
+
+
+BEGIN
+    FOR I IN 100 .. 206
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(I);
+    END LOOP;
+END;
+
+------------------------------
+Cursor
+--------
+
+any DML operation we do, 
+	there will be an implicit cursor
+		name of that implicit cursor 		SQL
+
+ex:
+	SQL%ROWCOUNT
+
+What are the attributes of IMPLICIT CURSOR
+	FOUND
+	NOTFOUND
+	ROWCOUNT
+
+How to create our own CURSORs?
+
+Life cycle of cursor
+
+1) DEFINE a CURSOR
+	CURSOR cur1 IS SELECT * FROM HR.EMPLOYEES;
+2) OPEN a CURSOR
+	your select query is executed
+	OPEN cur1;
+3) FETCH the cursor into a variable
+	FETCH cur1 INTO EMPREC;
+4) CLOSE/ DEALLOCATE THE CURSOR
+	CLOSE cur1;
+
+
+Example:
+declare
+    CURSOR cur1 IS SELECT * FROM HR.EMPLOYEES;
+    EMPREC hr.employees%ROWTYPE;
+begin
+    OPEN cur1;
+    loop
+        FETCH cur1 INTO EMPREC;
+        EXIT WHEN cur1%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(EMPREC.EMPLOYEE_ID);
+    end loop;
+    CLOSE cur1;
+end;
+
+
+
+
+
+-------------------
+declare
+
+
+    CURSOR cur1 IS SELECT * FROM HR.EMPLOYEES;
+    EMPREC hr.employees%ROWTYPE;
+begin
+    OPEN cur1;
+        FETCH cur1 INTO EMPREC;
+    while cur1%found
+    loop
+        DBMS_OUTPUT.PUT_LINE(EMPREC.EMPLOYEE_ID);
+        FETCH cur1 INTO EMPREC;
+    end loop;
+    CLOSE cur1;
+end;
+
+
+
+
+
+---------------------
+begin
+    for EMPREC IN (SELECT * FROM HR.EMPLOYEES)
+    loop
+        DBMS_OUTPUT.PUT_LINE(EMPREC.EMPLOYEE_ID);
+    end loop;
+end;
+
+-------------------------------------
+VIEWS
+---------
+	View is a precompiled query stored in the database.
+	View provides selective hiding or row/ columns/ column names from the user
+
+
+DML on views, 
+	is possible when
+		that DML affects only columns of 1 underlying table
+
+	not possible when
+		the query has computed columns, aggregates
+			
+--------------------------------------------------
+Index
+-------
+CREATE INDEX idxjag1
+on hr.EMPLOYEES(commission_pct, manager_id);
+	--this index will be useful only when we query using both the columns
+
+CREATE INDEX idxJag2
+on hr.EMPLOYEES(upper(FIRST_NAME);
+	--this index will be useful only when we query using WHERE UPPER(FIRST_NAME)='STEVEN';
+
+drop index idxjag1;
+
+----------------------------
+Triggers
+-------------
+
+	PRODUCT
+		PID	PNAME	STOCK
+		1	PEN	100
+		2	PENCIL	100
+
+	SALES
+		SID	PID	QTY
+		111	1	20
+
+
+What should be the stock of PEN?
+	80
+
+whenever a ROW is inserted into SALES table, 
+automatically, an UPDATE should happen in PRODUCT table.
+
+
+Task:
+-------
+	Identify the types of triggers in Oracle.
+
+BEFORE, 	AFTER,	INSTEAD OF
+
+DML Triggers
+
+LOGON triggers
+
+DDL triggers
+
+Statement triggers vs FOR EACH ROW trigger
+
+-----------------------
+Ex:
+
+CREATE OR REPLACE TRIGGER trgJag1
+BEFORE UPDATE ON HR.DEPARTMENTS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('trgJag1 trigger is fired now!');
+END;
+
+--Trigger TRGJAG1 compiled
+
+
+
+How can a trigger see the values, that are INSERTED/UPDATE/DELETED?
+	ans:	Magic tables
+
+What are the magic tables?
+	:new
+	:old
+
+if i am inserting a new row, then INSERT trigger, uses :new table to obtain the values proposed to insert
+if i am deleting a row, then DELETE trigger uses :old table to obtain the values that are going to vanish
+if i am updating a row, then UPDATE trigger uses both :new and :old
+
+
+If the trigger is a statement trigger?
+	the trigger fires only ONCE for the entire statement
+
+
+
+
+
+
+CREATE OR REPLACE TRIGGER trgJag1
+AFTER UPDATE ON HR.DEPARTMENTS
+FOR EACH ROW
+BEGIN
+    IF :new.MANAGER_ID=101 THEN
+        DBMS_OUTPUT.PUT_LINE('trgJag1 trigger is fired now!');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('101 is not allowed');
+        RAISE_APPLICATION_ERROR(-20000, 'nOT ALLOWED.');
+    END IF;
+END;
+
+update hr.departments set MANAGER_ID=101 WHERE department_id in (300, 270);
+
+----------------
+
+Task:
+-------
+Create a trigger on INSERT into DEPARTMENTS
+The trigger should check if the given department_id is >300
+if not, the trigger should raise exception with a message "Department Id must be >300 only"
+else
+it should allow the insert on departments table
+
+
+
+
+
+aggregate function in SQL
+DDL statement
+sub query
+DML statements
+ON DELETE, while creating foreign key constraint
+creating a table
+view
+Primary Key
+UPDATE
+
+
