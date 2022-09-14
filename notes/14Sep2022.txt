@@ -397,7 +397,164 @@ Which function returns the largest integer lesser than the given number?
 
 	ABS
 
+----------------------------------------------------------
+PLSQL FUNCTIONS
+	we can create our own functions in PLSQL
 
-aggregate functions
+CREATE OR REPLACE FUNCTION FN1
+RETURN INT
+AS
+S INT;
+BEGIN
+    SELECT SALARY INTO S FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=102;
+    RETURN S;
+END;
 
-	
+
+SELECT FN1() FROM DUAL;
+
+(OR)
+
+DECLARE
+    X INT;
+BEGIN
+    X:=FN1();
+    DBMS_OUTPUT.PUT_LINE(X);
+END;
+
+
+In PLSQL program,
+	we can use procedural features of a language
+
+IF
+IF ELSE
+IF ELSIF
+IF ELSIF ELSIF ELSIF ELSE
+
+
+DECLARE
+    EID INT :=103;
+    SAL INT;
+BEGIN
+    SELECT SALARY INTO SAL FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=EID;
+    IF SAL >10000 THEN
+        DBMS_OUTPUT.PUT_LINE(SAL|| ' is greater than 10k');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(SAL|| ' is lesser than 10k');
+    END IF;
+END;
+
+
+----------------------
+DECLARE
+    EID INT :=203;
+    JID hr.employees.job_id%type;
+BEGIN
+    SELECT JOB_ID INTO JID FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=EID;
+    IF JID='AC_ACCOUNT' THEN
+        DBMS_OUTPUT.PUT_LINE('You are an accountant');
+    ELSIF JID='AC_MGR' THEN
+        DBMS_OUTPUT.PUT_LINE('You are accounts manager');
+    ELSIF JID='HR_REP' THEN
+        DBMS_OUTPUT.PUT_LINE('You are HR Representative');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('You are an Employee');
+    END IF;    
+END;
+
+
+
+--SELECT * FROM HR.EMPLOYEES;
+
+--AC_ACCOUNT
+--AC_MGR
+--AD_ASST
+--AD_PRES
+
+
+
+------------------
+
+In C language, 
+	switch case
+
+in PLSQL
+	CASE
+
+
+SELECT - CASE (it is SQL)
+
+
+
+
+select EMPLOYEE_ID, FIRST_NAME, JOB_ID,
+CASE JOB_ID
+WHEN 'IT_PROG' THEN 'Programmer'
+WHEN 'ST_MAN' THEN 'Steno Manager'
+WHEN 'ST_CLERK' THEN 'Steno Clerk'
+ELSE
+'Employee'
+END PROFILE
+from hr.employees;
+
+
+
+
+
+
+select EMPLOYEE_ID, FIRST_NAME, JOB_ID,
+CASE JOB_ID
+WHEN 'IT_PROG' THEN 'Programmer'
+WHEN 'ST_MAN' THEN 'Steno Manager'
+WHEN 'ST_CLERK' THEN 'Steno Clerk'
+ELSE
+'Employee'
+END PROFILE
+from hr.employees;
+
+SELECT EMPLOYEE_ID, FIRST_NAME, JOB_ID, DECODE(JOB_ID,'IT_PROG','Programmer','ST_MAN','Steno Manager','ST_CLERK','Steno Clerk', 'Employee')
+FROM HR.EMPLOYEES;
+
+
+SELECT COALESCE(10, NULL, NULL, 20, NULL) FROM DUAL;
+
+
+
+
+select EMPLOYEE_ID, FIRST_NAME, JOB_ID,
+CASE 
+WHEN JOB_ID='IT_PROG' THEN 'Programmer'
+WHEN SALARY>10000 THEN 'Steno Manager'
+WHEN DEPARTMENT_ID IS NULL THEN 'Steno Clerk'
+ELSE
+'Employee'
+END PROFILE
+from hr.employees;
+
+
+
+
+
+DECLARE
+    JID HR.EMPLOYEES.JOB_ID%TYPE;
+    DESIGNATION VARCHAR2(50);
+BEGIN
+    SELECT JOB_ID INTO JID FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=100;
+    DESIGNATION:=CASE JID
+    WHEN 'AD_PRES' THEN 'Steno Manager'
+    WHEN 'AD_VP' THEN 'Vice President'
+    ELSE 'Employee'
+    END;
+    DBMS_OUTPUT.PUT_LINE(DESIGNATION);
+END;
+
+
+----------------------------------
+if
+switch
+
+LOOPS
+	Basic loop
+	WHILE LOOP
+	FOR LOOP
+
