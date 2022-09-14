@@ -84,3 +84,320 @@ WHERE NOT EXISTS
 (SELECT * FROM HR.
 EMPLOYEES E WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID);
 
+----------------------------------------
+JOINS
+----------
+	INNER JOIN
+	OUTER JOIN
+		LEFT OUTER JOIN
+		RIGHT OUTER JOIN
+		FULL OUTER JOIN
+	EQUI JOIN
+	NON EQUI JOIN
+	SELF JOIN
+
+What is Inner JOIN?
+	Returns records which has matching based on the join condition
+
+1) Display Employee Id, First Name, Department Name
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E
+JOIN HR.DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+
+
+
+
+In 1990s, there was syntax called 'theta join'
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E, HR.DEPARTMENTS D
+WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+Left outer join:
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E
+LEFT OUTER JOIN HR.DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+Right outer join:
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E
+RIGHT OUTER JOIN HR.DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+Full outer join:
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E
+FULL OUTER JOIN HR.DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+theta syntax for join:
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E, HR.DEPARTMENTS D
+WHERE E.DEPARTMENT_ID(+)=D.DEPARTMENT_ID;
+===================================
+
+
+PL/SQL Basics, Cursors, Procedures, Functions, Triggers
+
+PLSQL stands for Precedural Language Extension for SQL
+
+We have the procedural capabilities
+	if condition
+	select case condition
+	basic loop
+	while loop
+	for loop
+
+PLSQL allows to write programs
+	if you just check how we coded in SQL
+		SINGLE STATEMENT
+
+	
+
+DECLARE	(OPTIONAL)
+BEGIN
+EXCEPTION	(OPTIONAL)
+END;
+
+
+	
+set serveroutput on;
+
+
+
+
+--set serveroutput on;
+BEGIN
+    DBMS_OUTPUT.PUT('Hello');
+    DBMS_OUTPUT.PUT_LINE(' Bengaluru');
+END;
+
+
+
+
+
+DECLARE
+    i INT;
+BEGIN
+    i:=20;
+    DBMS_OUTPUT.PUT_LINE(I);
+END;
+
+
+
+DECLARE
+    i INT:=100;
+BEGIN
+--    i:=20;
+    DBMS_OUTPUT.PUT_LINE(I);
+END;
+
+
+
+DECLARE
+    FNAME VARCHAR2(100);
+    SAL HR.EMPLOYEES.SALARY%TYPE;
+BEGIN
+    SELECT FIRST_NAME, SALARY INTO FNAME, SAL 
+        FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=100;
+    DBMS_OUTPUT.PUT_LINE(FNAME);
+    DBMS_OUTPUT.PUT_LINE(SAL);
+END;
+
+
+
+DECLARE
+    X HR.EMPLOYEES%ROWTYPE;
+BEGIN
+    SELECT * INTO X
+        FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=100;
+    DBMS_OUTPUT.PUT_LINE(X.FIRST_NAME);
+    DBMS_OUTPUT.PUT_LINE(X.SALARY);
+END;
+
+----------------------------------------------------------------
+
+BEGIN
+	SELECT * FROM EMPLOYEES;
+END;
+/
+
+
+
+List of data types in PL/SQL:
+------------------------------------
+RECORD
+
+
+%ROWTYPE
+
+
+DECLARE
+    TYPE EMP_REC IS RECORD(EID INT, FNAME VARCHAR2(50), SAL INT);
+    X EMP_REC;
+BEGIN
+    SELECT EMPLOYEE_ID, FIRST_NAME, SALARY INTO X
+    FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=101;
+    DBMS_OUTPUT.PUT_LINE(X.EID);
+    DBMS_OUTPUT.PUT_LINE(X.FNAME);
+    DBMS_OUTPUT.PUT_LINE(X.SAL);
+END;
+
+
+
+ANONYMOUS PROGRAM or Block
+
+Then how to create named block.
+A named block can be created once, and be executed many times.
+
+DECLARE
+BEGIN
+END;
+	These anonymous blocks, when we run the program, the program is executed to do the tasks.
+But	Named blocks, when we write the code and execute, they do not run. They are created as objects in the database.
+
+Example for named blocks in plsql:	These are database objects. They are created permanently in the database.
+	PROCEDURE
+	FUNCTION
+	TRIGGERS
+
+
+	x=getc();	
+
+	y=scanf("%d",&i);
+
+
+	PRCSQUARE(X,Y);
+	PRCCUBE(X,Y)
+
+
+CREATE OR REPLACE PROCEDURE PRC1
+AS
+    FNAME HR.EMPLOYEES.FIRST_NAME%TYPE;
+    SAL HR.EMPLOYEES.SALARY%TYPE;
+BEGIN
+    SELECT FIRST_NAME, SALARY INTO FNAME, SAL FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=101;
+    DBMS_OUTPUT.PUT_LINE('Hi this is PRC1. The First Name is '||FNAME||' and the Salary is '||SAL);
+END;
+
+
+
+---------------------------PROCEDURE WITH ARGUMENT
+
+CREATE OR REPLACE PROCEDURE PRC1(EID INT)
+AS
+    FNAME HR.EMPLOYEES.FIRST_NAME%TYPE;
+    SAL HR.EMPLOYEES.SALARY%TYPE;
+BEGIN
+    SELECT FIRST_NAME, SALARY INTO FNAME, SAL FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=EID;
+    DBMS_OUTPUT.PUT_LINE('Hi this is PRC1. The First Name is '||FNAME||' and the Salary is '||SAL);
+END;
+
+
+BEGIN
+    PRC1(100);
+    PRC1(102);
+END;
+
+
+
+-------------------------------how to pass output parameters to a  procedure?
+CREATE OR REPLACE PROCEDURE PRC1(EID INT, FNAME OUT HR.EMPLOYEES.FIRST_NAME%TYPE, 
+SAL OUT INT)
+AS
+BEGIN
+    SELECT FIRST_NAME, SALARY INTO FNAME, SAL FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=EID;
+END;
+
+DECLARE
+    EID INT:=101;
+    F VARCHAR2(100);
+    S INT;
+BEGIN
+    PRC1(EID,F,S);
+    DBMS_OUTPUT.PUT_LINE(F);
+    DBMS_OUTPUT.PUT_LINE(S);
+END;
+
+
+------------------
+Task:
+Create a procedure PRC2 that accepts employee id as input parameter and gives outputs FIRST NAME, DEPARTMENT NAME
+Call the procedure with 3 parameters and display the outputs
+
+
+CREATE OR REPLACE PROCEDURE PRC1(EID INT, FNAME OUT HR.EMPLOYEES.FIRST_NAME%TYPE, 
+dname OUT HR.DEPARTMENTS.DEPARTMENT_NAME%TYPE)
+AS
+BEGIN
+    SELECT FIRST_NAME, D.DEPARTMENT_NAME INTO FNAME, DNAME FROM 
+    HR.EMPLOYEES E JOIN HR.DEPARTMENTS D
+    ON E.DEPARTMENT_ID=D.DEPARTMENT_ID
+    WHERE EMPLOYEE_ID=EID;
+END;
+
+
+
+-----------
+DECLARE
+    EID INT :=101;
+    FNAME HR.EMPLOYEES.FIRST_NAME%TYPE;
+    DNAME HR.DEPARTMENTS.DEPARTMENT_NAME%TYPE;
+BEGIN
+    PRC1(EID, FNAME, DNAME);
+    DBMS_OUTPUT.PUT_LINE(FNAME);
+    DBMS_OUTPUT.PUT_LINE(DNAME);
+END;
+
+
+--------------------------------------------------------
+PLSQL Functions
+-----------------------
+
+
+Task:
+	Identify as many Predefined functions as possible.
+
+character functions
+	UPPER
+	LOWER
+	SUBSTR
+	LENGTH
+	LPAD
+	RPAD
+	CONCATE
+	INITCAP
+	TRIM
+	LTRIM
+	RTRIM
+	SOUNDEX
+
+date and time functions
+	MONTHS_BETWEEN
+	SELECT MONTHS_BETWEEN(sysdate, '01-Jan-2000') FROM DUAL;
+
+
+
+numeric functions
+	FLOOR
+	CEIL(1.1)
+
+TRUNC vs ROUND
+	trunc(1.456,2)	=	1.45
+
+
+
+Which function returns the largest integer lesser than the given number?
+	ans:	FLOOR
+
+	ABS
+
+
+aggregate functions
+
+	
