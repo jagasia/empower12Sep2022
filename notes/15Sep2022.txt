@@ -433,3 +433,63 @@ public class ArrayInput {
 	}
 
 }
+---------------------------------------------Challenge 3--------------------
+Bus Game 
+ 
+In a village, N kids were playing the bus game.
+The rules for the bus game is as follows:
+Starting from the number 1,  the kids keep telling the consequtive numbers one by one.  A number 'X' will be given. The kid who gets a number which is divisible by X should say "Bus", instead of the original number , and the next kid will continue with the next number. This will go on in a circular manner. If any kid says incorrectly, that kid is out of the game.
+The kids are very clever. So they won't make any mistake while telling the numbers. They make mistake only while telling "Bus".
+
+Write a program to find the kid's number(index starting from 1) who went wrong.
+
+Input Format: 
+The first input is an integer, that corresponds to the number of kids, N.
+The second input is an integer, that corresponds to the number X.
+The following lines are strings, which correspond to the number said by the kids. The input stops only when any kid says incorrectly.
+ 
+Output Format:
+Output is an integer value which represents the kid's number who went wrong.
+
+Sample Input:
+5
+4
+1
+2
+3
+Bus
+5
+6
+7 
+8 
+
+Sample Output:
+3 
+ 
+----------------Solution------------
+import java.util.Scanner;
+
+public class BusGame {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int noOfKids=sc.nextInt();
+		int x=sc.nextInt();
+		int output=0;
+		for(int i=1;true;i++)
+		{
+			String input=sc.next();
+			if(i%x==0)
+			{
+				//expect Bus here
+				if(!input.equals("Bus"))
+				{
+					output=i%noOfKids;
+					break;
+				}
+			}
+		}
+		System.out.println(output);
+	}
+
+}
