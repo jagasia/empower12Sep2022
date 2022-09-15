@@ -1,0 +1,273 @@
+Fundas, Controll Statements, Arrays, Strings
+-------------------------------------------------------
+Backend programming
+Object Oriented Programming language
+
+Java Language
+------------------
+	Compiler based language
+	what a typical compiler do?
+		Source code	-> translated -> 	Machine code
+
+Java compilation 		has 2 stages of compilation:
+	Java compiler:
+		converts the java language code into BYTE CODE.
+	at runtime:	Java Runtime Environment
+			JRE has another compiler, that converts the BYTE CODE into Machine Language code
+
+Language features
+----------------------
+	Data Types
+		8 data types
+			byte		1 byte		8 bit	
+			short		2 bytes		16 bit
+			int		4 bytes		32 bit
+			long		8 bytes		4
+
+			float
+			double
+
+			char		'\0'		'\n'		'\t'	'a'	'b'	'0'
+	
+			boolean
+
+	constructs
+		if, else, else if 
+		switch case
+		while, do - while, 
+		for loop, for-each loop (enhanced for loop)
+	
+	arrays
+	
+
+------------------------------------------
+Copy the sts zip file from n/w path to local D:\tools folder
+
+UNZIP the zip file (Extract All)
+
+in d:\training folder, create a "java" folder
+
+in sts (extracted) folder,
+	right click SpringToolSuite4.exe
+		and send to desktop (create shortcut)
+		you can also drag that shortcut to Task Bar (pin to task bar)
+
+	this SpringToolSuite4.exe	(or its shortcut) can be run to get STS
+
+When you run STS
+	it will ask the 
+
+	STS 4.15 only WORKS
+
+
+Open STS
+	choose the location where you want all your project folders to be created		(workspace)
+
+	File -> New -> Java Project
+		give a name for the project		(convention	all small letters, hyphen separated)
+
+
+
+
+Class Name conventions:
+------------------------------
+	should start with a capital letter				Every word first letter is in capital		PascalCase
+		ex:
+			ArrayIndexOutOfBoundsException
+	should be a noun
+	class name and file name be same
+	
+
+How to get input from the user?
+	Scanner
+
+
+
+==	vs 	equals()
+
+Task:
+	accept a character input from the user.
+	check if it is a vowel or not.
+		display Vowel		or 	Not Vowel
+
+------------------------------
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("Enter no1:");
+		int no1=sc.nextInt();
+		System.out.println("Enter no2:");
+		int no2=sc.nextInt();
+		System.out.println("What do you want to do? Add/ Subtract");
+		String op=sc.next();
+		
+		if(op.equalsIgnoreCase("Add"))
+		{
+			System.out.println(no1+no2);
+		}
+		else
+		{
+			System.out.println(no1-no2);
+		}
+
+	
+	char c=sc.next().charAt(0);			
+
+=====================
+import java.util.Scanner;
+
+public class A4 {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		char input=sc.next().toLowerCase().charAt(0);
+		
+		if(input=='a' || input=='e' || input=='i' || input=='o' ||input=='u')
+		{
+			System.out.println("Vowel");
+		}else
+		{
+			System.out.println("Not Vowel");
+		}
+	}
+
+}
+
+
+
+Try the same task using "switch-case" construct
+
+break
+	exits from wherever we use "break"
+	can be used inside a 
+		loop	(or)
+		switch
+
+	
+
+Task:
+	Accept 3 numbers as input
+	Display the largest number as output
+
+
+---------------------------------------
+Loops
+	while
+	do while
+	for 
+	enhanced for
+
+
+
+
+++i
+i++
+
+
+
+
+
+public class App6 {
+	public static void main(String[] args) {
+		int i=0;
+//		i++;		//post increment
+//		++i;		//pre increment
+		while(++i<10)
+		{
+			System.out.println(i);
+		}
+	}
+}
+
+
+
+
+------------------Do While------------------
+
+
+public class App7 {
+
+	public static void main(String[] args) {
+		int i=0;
+		do
+		{
+			System.out.println(i++);
+		}while(i<10);
+	}
+
+}
+
+
+
+--------------------For loop---------
+
+public class App8 {
+
+	public static void main(String[] args) {
+		System.out.println("Printing 0 - 9");
+		for(int i=0;i<10;i++)
+		{
+			System.out.println(i);
+		}
+	}
+
+}
+
+
+
+
+
+
+
+---------------------------------------Arrays----------------
+What is Array?
+
+	same data type		
+	collection of elements
+	index used to identify elements directly
+	elements are present in contigeous memory locations
+
+
+import java.util.Arrays;
+
+public class App1 {
+
+	public static void main(String[] args) {
+		int arr[]= {55,100,48,97,85,20,18,33};
+		System.out.println(Arrays.toString(arr));
+	}
+
+}
+
+
+
+--------------------
+import java.util.Arrays;
+
+public class App1 {
+
+	public static void main(String[] args) {
+		int arr[]= {55,100,48,97,85,20,18,33};
+//		System.out.println(Arrays.toString(arr));
+		for(int i=0;i<arr.length;i++)
+		{
+			System.out.println(arr[i]);
+		}
+	}
+
+}
+
+---------------------
+
+import java.util.Arrays;
+
+public class App1 {
+
+	public static void main(String[] args) {
+		int arr[]= {55,100,48,97,85,20,18,33};
+		for(int x:arr)
+			System.out.println(x);
+	}
+
+}
+----------------------
+Arrays in java can be multi-dimensional also.
