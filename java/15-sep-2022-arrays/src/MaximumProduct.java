@@ -18,8 +18,7 @@ public class MaximumProduct {
 		for(int i=0;i<size;i++)
 		{
 			int result=0;
-			if(arr[i]!=max)
-			{
+			
 				result=max/arr[i];
 				//check if this result is found in array
 				for(int j=0;j<size;j++)
@@ -31,7 +30,7 @@ public class MaximumProduct {
 						break;
 					}
 				}
-			}
+			
 		}
 		if(flag)
 		{
