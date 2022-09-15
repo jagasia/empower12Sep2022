@@ -7,6 +7,7 @@ public class AbundantNumber {
 		int from=sc.nextInt();
 		int to=sc.nextInt();
 		boolean isFirst=true;
+		boolean nothingFound=true;
 		for(int i=from;i<=to;i++)
 		{
 			//check if "i" is abundant number or not
@@ -28,8 +29,13 @@ public class AbundantNumber {
 					System.out.print(",");
 				}
 				System.out.print(i);
+				nothingFound=false;
 				isFirst=false;
 			}
+		}
+		if(nothingFound)
+		{
+			System.out.println(-1);
 		}
 	}
 
