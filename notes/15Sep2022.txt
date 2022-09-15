@@ -624,3 +624,68 @@ public class MaximumProduct {
 	}
 
 }
+------------------------
+Abundant Number
+
+Amit was listening to the teacher's lecture and she was teaching on the topic divisors of a number. When she gave a homework to find the divisors of a number, he found that for some numbers, the sum of its divisors is greater than the number itself. Given a range from X to Y, write a program to print all the abundant numbers within it. An abundant number or excessive number is a number for which the sum of its proper divisors is greater than the number itself. If there are no abundant numbers within the given range then print "-1".
+
+Note :
+    Range X to Y denotes all numbers between X and Y, including X and excluding Y. The minimum value of X is 1 and the maximum value of Y is 500 and always X<Y. 
+
+Input format: 
+First input is an integer that denotes the X value.
+Second input is an integer that denotes the Y value. 
+
+Output format: 
+Output is a series of integers separated by a comma. 
+
+Sample Input 1: 
+1
+50 
+Sample Output 1: 
+12,18,20,24,30,36,40,42,48 
+
+Sample Input 2: 
+1
+10 
+Sample Output 2: 
+-1 
+
+
+-------------Solution
+import java.util.Scanner;
+
+public class AbundantNumber {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int from=sc.nextInt();
+		int to=sc.nextInt();
+		boolean isFirst=true;
+		for(int i=from;i<=to;i++)
+		{
+			//check if "i" is abundant number or not
+			int sumOfDivisors=0;
+			int j;
+			for(j=1;j<=i/2;j++)
+			{
+				if(i%j==0)
+				{
+					sumOfDivisors+=j;
+				}
+			}
+			//check if the sumOfDivisors > i
+			if(sumOfDivisors>i)
+			{
+//				System.out.print(i+",");
+				if(!isFirst)
+				{
+					System.out.print(",");
+				}
+				System.out.print(i);
+				isFirst=false;
+			}
+		}
+	}
+
+}
