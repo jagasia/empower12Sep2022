@@ -553,6 +553,7 @@ public class PercentageOfRuns {
 Challenge 3:
 
 Maximum Product
+---------------------
 Playing with arrays has become a hobby for Arun. This time Arun wants to find the greatest number in the array such that it is the product of any two numbers in the array.
 Write a program to help Arun to the do the task. If no such number exists, then print -1.
 [Note: The two number that are used to find the product can be the number itself.  For example, if the array elements are [1,2,3] , then 1*3 = 3 will be the solution for this array.]
@@ -577,3 +578,49 @@ Sample Output 2:
 -1
 
 
+----------------------------------
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class MaximumProduct {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		int size=sc.nextInt();
+		int arr[]=new int[size];
+		for(int i=0;i<size;i++)
+		{
+			arr[i]=sc.nextInt();
+		}
+		
+		Arrays.sort(arr);
+		int max=arr[size-1];
+		boolean flag=false;
+		for(int i=0;i<size;i++)
+		{
+			int result=0;
+			if(arr[i]!=max)
+			{
+				result=max/arr[i];
+				//check if this result is found in array
+				for(int j=0;j<size;j++)
+				{
+					if(result==arr[j])
+					{
+						//found
+						flag=true;
+						break;
+					}
+				}
+			}
+		}
+		if(flag)
+		{
+			System.out.println(max);
+		}else
+		{
+			System.out.println(-1);
+		}
+	}
+
+}
