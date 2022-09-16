@@ -298,7 +298,6 @@ public class SquareAndTower {
 
 
 
-<<<<<<< HEAD
 --------------------------------------Object Oriented Programming
 What is a class?
 	Class is a blue print for creating objects
@@ -338,7 +337,245 @@ you have private/ non public data members,
 	then provide public getter/ setter/ both
 
 
+How can we convert a String into a Date?
+	SimpleDateFormat
+
+-------------------------------------------------------------------
+University - Requirement 1
+The Government all these days were using paperwork to store data of University and Colleges that are available. Your organization has been given the opportunity to create an application to have an easy process for this. Go on and create an application. There are two major domains College and University.
+
+Requirement 1:
+Let’s start off by creating two College objects and check whether they are equal. 
+1.    Create a College Class with the following attributes:
+Member Field Name	Type
+name	String
+website	String
+mobile	String
+founder	String
+numberOfDept	Integer
+location	String
+startingDate	java.util.Date
+
+ 	2.    Mark all the attributes as private
+3.    Create / Generate appropriate Getters & Setters
+4.    Add a default constructor and a parameterized constructor to take in all attributes in the given order: 
+College(String name, String website, String mobile, String founder,Integer numberOfDept, String location, java.util.DatestartingDate)
+5.    When the “note” object is printed, it should display the following details: [Override the toString method]
+Print format:
+Name: "name"
+Website: "website"
+Mobile: "mobile"
+Founder: "founder"
+Number of Dept: "numberOfDept"
+Location: "location"
+Starting Date: "startingDate"
+ 
+6.    Two colleges are considered same if they have the same name and startingDate. 
+Implement the logic in the appropriate function. (Case – Insensitive)
+[Override the equals method]
+
+The input format consists of college details separated by comma in the below order,
+name,website,mobile,founder,numberOfDept,location,startingDate
+The Input to your program would be details of two colleges, you need to display their details as given in "5th point(refer above)" and compare the two colleges and display whether they are same or different.
+
+Note: There is an empty line between display statements. Print the empty lines in the main method.
+
+ 
+Sample INPUT & OUTPUT 1: 
+Enter college 1 detail:
+IIT Madras,www.iitm.ac.in,7845612390,iit,16,Madras,15-12-1959
+Enter college 2 detail:
+iit Madras,www.iitm.ac.in,7845612390,iit,16,Madras,15-12-1959
+
+College 1:
+Name: IIT Madras
+Website: www.iitm.ac.in
+Mobile: 7845612390
+Founder: iit 
+Number of Dept: 16
+Location: Madras
+Starting Date: 15-12-1959
+
+College 2:
+Name: iit Madras
+Website: www.iitm.ac.in
+Mobile: 7845612390
+Founder: iit 
+Number of Dept: 16
+Location: Madras
+Starting Date: 15-12-1959
+
+College 1 is same as College 2 
+
+Sample INPUT & OUTPUT 2: 
+Enter college 1 detail:
+SKCT,www.skct.edu.in,7402600200,BalaKrishna Naidu,6,kovaipudhur,20-05-1985
+Enter college 2 detail:
+SKCET,www.skcet.edu.in,7402452130,Vankantram,6,kuniamuthur,02-10-1995
+
+College 1:
+Name: SKCT
+Website: www.skct.edu.in
+Mobile: 7402600200
+Founder: BalaKrishna Naidu
+Number of Dept: 6
+Location: kovaipudhur 
+Starting Date: 20-05-1985
+
+College 2:
+Name: SKCET
+Website: www.skcet.edu.in
+Mobile: 7402452130
+Founder: Vankantram
+Number of Dept: 6
+Location: kuniamuthur 
+Starting Date: 02-10-1995
+
+College 1 and College 2 are different
 
 
-=======
->>>>>>> dfea665abb64dc3099102c5c0af92e3809f231dc
+
+------------------------------Solution
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class College {
+	private String name;
+	private String website;
+	private String mobile;
+	private String founder;
+	private Integer numberOfDept;
+	private String location;
+	private Date startingDate;
+	
+	public College() {}
+
+	public College(String name, String website, String mobile, String founder, Integer numberOfDept, String location,
+			Date startingDate) {
+		super();
+		this.name = name;
+		this.website = website;
+		this.mobile = mobile;
+		this.founder = founder;
+		this.numberOfDept = numberOfDept;
+		this.location = location;
+		this.startingDate = startingDate;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getWebsite() {
+		return website;
+	}
+
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getFounder() {
+		return founder;
+	}
+
+	public void setFounder(String founder) {
+		this.founder = founder;
+	}
+
+	public Integer getNumberOfDept() {
+		return numberOfDept;
+	}
+
+	public void setNumberOfDept(Integer numberOfDept) {
+		this.numberOfDept = numberOfDept;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public Date getStartingDate() {
+		return startingDate;
+	}
+
+	public void setStartingDate(Date startingDate) {
+		this.startingDate = startingDate;
+	}
+
+	public boolean equals(College arg) {
+		return this.getName().equalsIgnoreCase(arg.getName()) && this.getStartingDate().equals(arg.getStartingDate());
+	}
+
+	@Override
+	public String toString() {
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+		String output=String.format("Name: %s\nWebsite: %s\nMobile: %s\nFounder: %s\nNumber of Dept: %s\nLocation: %s\nStarting Date: %s\n", name, website, mobile, founder, numberOfDept, location, sdf.format(startingDate));
+		return output;
+	}
+	
+	
+}
+
+--------------------------------------------------
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Req1 {
+
+	public static void main(String[] args) throws ParseException {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter college 1 detail:");
+		String input1=sc.nextLine();
+		System.out.println("Enter college 2 detail:");
+		String input2=sc.nextLine();
+		
+		//convert these strings into college objects
+		
+		String[] arr1 = input1.split(",");
+		College college1=new College();
+		
+		college1.setName(arr1[0]);
+		college1.setWebsite(arr1[1]);
+		college1.setMobile(arr1[2]);
+		college1.setFounder(arr1[3]);
+		college1.setNumberOfDept(Integer.valueOf(arr1[4]));
+		college1.setLocation(arr1[5]);
+//		15-12-1959
+		SimpleDateFormat sdf=new SimpleDateFormat("dd-MM-yyyy");
+		Date startDate=sdf.parse(arr1[6]);
+		college1.setStartingDate(startDate);
+		
+		//--------------------
+		
+		String[] arr2 = input2.split(",");
+		College college2=new College(arr2[0], arr2[1], arr2[2], arr2[3], Integer.valueOf(arr2[4]), arr2[5], sdf.parse(arr2[6]));
+		
+		if(college1.equals(college2)) {
+			System.out.println("College 1 is same as College 2");
+		}else
+		{
+			System.out.println("College 1 and College 2 are different");
+		}
+	}
+
+}
+
+
