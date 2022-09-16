@@ -1,0 +1,140 @@
+Strings
+----------
+String in java, is a class.
+
+String str="hello";
+
+String str4="hello";
+
+String str2=new String("hello");
+
+String str3=str2;	
+
+Stack	primitives are stored in stack
+Heap	(objects are stored in heap)
+
+
+if you create any variable inside a method (function)
+
+public static void main(String []jags)
+{
+	String str="hello";				//hello is an object present in heap. Its reference is stored in stack (str)
+	new String("hello");
+	Scanner sc=new Scanner(System.in);		//
+	Scanner sc;				// a variable is created in stack;
+	sc.next();
+
+
+	sc=new Scanner(System.in);
+
+	String input=new Scanner(System.in).next();
+
+
+}
+
+
+
+	a==b
+== compares the values, if the operands are value types
+== compares the references, if the operands are reference types
+
+
+
+String is immutable
+
+
+
+str1="hello";		//str1 refers to a memory location 		
+str1="world";		//str1 refers to a difference location
+
+StringBuilder	
+StringBuffer		is synchronized
+
+x=arr.length;
+
+
+char c=sc.next().charAt(0);
+	is same as
+String input=sc.next();
+char c=input.charAt(0);
+
+String
+	properties
+		
+	method
+		length();		returns the length of the string
+		charAt(index);
+		substring
+		
+
+
+TasK
+	Identify as many properties and methods of a String class
+
+	toCharArray()			return a char [] 
+	charAt(index)
+	substring()
+	split()		accepts a regex
+	toLowerCase()
+	toUpperCase()
+	equals()
+	equalsIgnoreCase()
+	trim()
+	isEmpty()
+	valueOf()
+	contains()
+	indexOf()
+	lastIndexOf()
+	concat()
+	
+
+Task:
+------
+	Accept a String input from the user and display only the vowels present in the string
+	ex:
+		input:	education
+		output:	euaio
+
+
+import java.util.Scanner;
+
+public class App2 {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		String input=sc.nextLine();
+		//convert the string into char array and loop
+//		char[] arr = input.toCharArray();
+//		for(int i=0;i<arr.length;i++)
+//		{
+//			//display the character only if it is a vowel
+//			switch(arr[i])
+//			{
+//			case 'a':
+//			case 'e':
+//			case 'i':
+//			case 'o':
+//			case 'u':
+//				System.out.print(arr[i]);				
+//			}
+			
+//		}
+		
+		for(int i=0;i<input.length();i++)
+		{
+			char c=input.charAt(i);
+			switch(c)
+			{
+			case 'a':
+			case 'e':
+			case 'i':
+			case 'o':
+			case 'u':
+				System.out.print(c);				
+			}
+		}
+		
+	}
+
+}
+
