@@ -298,6 +298,7 @@ public class SquareAndTower {
 
 
 
+<<<<<<< HEAD
 --------------------------------------Object Oriented Programming
 What is a class?
 	Class is a blue print for creating objects
@@ -339,3 +340,5 @@ you have private/ non public data members,
 
 
 
+=======
+>>>>>>> dfea665abb64dc3099102c5c0af92e3809f231dc
