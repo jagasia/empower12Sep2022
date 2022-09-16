@@ -1,0 +1,849 @@
+Sub Query
+Joins
+Foreign Key constraints
+
+------------
+Basics, Normalization, SQL(DDL, DML, TCL, DRL, DCL) Commands, Joins
+Select statement with all clauses, Set Operators, Predefined functions, Indexs, Views
+PL/SQL Basics, Cursors, Procedures, Functions, Triggers
+---------------
+
+FOREIGN KEY
+-------------------
+Scenario:
+	EMPLOYEES table has a foreign key called "DEPARTMENT_ID"
+
+	there are some department id like 	10, 20, 30,....270
+
+There are records in EMPLOYEES table where department_id 10 is found
+
+in order to ensure referential integrity, even when we delete/update primary key value, the corresponding foreign key value must be able to still maintain reg integrity
+	FOREIGN KEY CONSTRAINTS
+		RESTRICT
+		NULLIFY/SET NULL
+		CASCADE
+		           If you delete a row in master table (ex: departments), all the child rows present in details table (ex: employees) are also deleted
+
+
+----------------------		
+Sub query:
+--------------
+Display all the employees who belong to Neena's department
+	employee id, first name and department id
+
+
+SELECT employee_id, first_name, department_id
+FROM hr.EMPLOYEES
+WHERE department_id=(SELECT department_id FROM hr.EMPLOYEES WHERE first_name='Neena');
+
+What happens if the sub query returns more than 1 row?
+	we cannot use the operators like 
+		=	
+		>
+		>=
+		<
+		<=
+			whenever sub query returns more than 1 row
+	we can modify the above operations using
+		ALL
+		ANY	(SOME)
+
+
+Solution1:
+-----------
+select department_id, sum(salary) from hr.employees
+group by department_id
+having sum(salary)=
+(select max(sum(salary)) from hr.employees
+group by department_id);
+
+Solution 2:
+-------------
+select department_id, sum(salary) from hr.employees
+group by department_id
+having sum(salary)>=ALL
+(select sum(salary) from hr.employees
+group by department_id);
+
+-----------------------------------
+Rules for sub query:
+	1) enclose the subquery in paranthesis	()
+	2) subquery to be in the right side of the operator		
+	3) order by should not be used unless TOP n analysis is used
+	4) normally sub query should select only 1 column
+		except when we use EXISTS or NOT EXISTS operators
+	5) sub query must return only 1 row unless we use IN, ALL, ANY
+	6) sub query column must match with outer query conditions
+
+Challenge:
+	Display all department id, name of departments where there are NO employees found.
+
+SELECT department_id, department_name
+FROM HR.DEPARTMENTS D
+WHERE NOT EXISTS
+(SELECT * FROM HR.
+EMPLOYEES E WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID);
+
+----------------------------------------
+JOINS
+----------
+	INNER JOIN
+	OUTER JOIN
+		LEFT OUTER JOIN
+		RIGHT OUTER JOIN
+		FULL OUTER JOIN
+	EQUI JOIN
+	NON EQUI JOIN
+	SELF JOIN
+
+What is Inner JOIN?
+	Returns records which has matching based on the join condition
+
+1) Display Employee Id, First Name, Department Name
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E
+JOIN HR.DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+
+
+
+
+In 1990s, there was syntax called 'theta join'
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E, HR.DEPARTMENTS D
+WHERE E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+Left outer join:
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E
+LEFT OUTER JOIN HR.DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+Right outer join:
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E
+RIGHT OUTER JOIN HR.DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+Full outer join:
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E
+FULL OUTER JOIN HR.DEPARTMENTS D
+ON E.DEPARTMENT_ID=D.DEPARTMENT_ID;
+
+theta syntax for join:
+
+SELECT E.EMPLOYEE_ID, E.FIRST_NAME, D.DEPARTMENT_NAME
+FROM HR.EMPLOYEES E, HR.DEPARTMENTS D
+WHERE E.DEPARTMENT_ID(+)=D.DEPARTMENT_ID;
+===================================
+
+
+PL/SQL Basics, Cursors, Procedures, Functions, Triggers
+
+PLSQL stands for Precedural Language Extension for SQL
+
+We have the procedural capabilities
+	if condition
+	select case condition
+	basic loop
+	while loop
+	for loop
+
+PLSQL allows to write programs
+	if you just check how we coded in SQL
+		SINGLE STATEMENT
+
+	
+
+DECLARE	(OPTIONAL)
+BEGIN
+EXCEPTION	(OPTIONAL)
+END;
+
+
+	
+set serveroutput on;
+
+
+
+
+--set serveroutput on;
+BEGIN
+    DBMS_OUTPUT.PUT('Hello');
+    DBMS_OUTPUT.PUT_LINE(' Bengaluru');
+END;
+
+
+
+
+
+DECLARE
+    i INT;
+BEGIN
+    i:=20;
+    DBMS_OUTPUT.PUT_LINE(I);
+END;
+
+
+
+DECLARE
+    i INT:=100;
+BEGIN
+--    i:=20;
+    DBMS_OUTPUT.PUT_LINE(I);
+END;
+
+
+
+DECLARE
+    FNAME VARCHAR2(100);
+    SAL HR.EMPLOYEES.SALARY%TYPE;
+BEGIN
+    SELECT FIRST_NAME, SALARY INTO FNAME, SAL 
+        FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=100;
+    DBMS_OUTPUT.PUT_LINE(FNAME);
+    DBMS_OUTPUT.PUT_LINE(SAL);
+END;
+
+
+
+DECLARE
+    X HR.EMPLOYEES%ROWTYPE;
+BEGIN
+    SELECT * INTO X
+        FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=100;
+    DBMS_OUTPUT.PUT_LINE(X.FIRST_NAME);
+    DBMS_OUTPUT.PUT_LINE(X.SALARY);
+END;
+
+----------------------------------------------------------------
+
+BEGIN
+	SELECT * FROM EMPLOYEES;
+END;
+/
+
+
+
+List of data types in PL/SQL:
+------------------------------------
+RECORD
+
+
+%ROWTYPE
+
+
+DECLARE
+    TYPE EMP_REC IS RECORD(EID INT, FNAME VARCHAR2(50), SAL INT);
+    X EMP_REC;
+BEGIN
+    SELECT EMPLOYEE_ID, FIRST_NAME, SALARY INTO X
+    FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=101;
+    DBMS_OUTPUT.PUT_LINE(X.EID);
+    DBMS_OUTPUT.PUT_LINE(X.FNAME);
+    DBMS_OUTPUT.PUT_LINE(X.SAL);
+END;
+
+
+
+ANONYMOUS PROGRAM or Block
+
+Then how to create named block.
+A named block can be created once, and be executed many times.
+
+DECLARE
+BEGIN
+END;
+	These anonymous blocks, when we run the program, the program is executed to do the tasks.
+But	Named blocks, when we write the code and execute, they do not run. They are created as objects in the database.
+
+Example for named blocks in plsql:	These are database objects. They are created permanently in the database.
+	PROCEDURE
+	FUNCTION
+	TRIGGERS
+
+
+	x=getc();	
+
+	y=scanf("%d",&i);
+
+
+	PRCSQUARE(X,Y);
+	PRCCUBE(X,Y)
+
+
+CREATE OR REPLACE PROCEDURE PRC1
+AS
+    FNAME HR.EMPLOYEES.FIRST_NAME%TYPE;
+    SAL HR.EMPLOYEES.SALARY%TYPE;
+BEGIN
+    SELECT FIRST_NAME, SALARY INTO FNAME, SAL FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=101;
+    DBMS_OUTPUT.PUT_LINE('Hi this is PRC1. The First Name is '||FNAME||' and the Salary is '||SAL);
+END;
+
+
+
+---------------------------PROCEDURE WITH ARGUMENT
+
+CREATE OR REPLACE PROCEDURE PRC1(EID INT)
+AS
+    FNAME HR.EMPLOYEES.FIRST_NAME%TYPE;
+    SAL HR.EMPLOYEES.SALARY%TYPE;
+BEGIN
+    SELECT FIRST_NAME, SALARY INTO FNAME, SAL FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=EID;
+    DBMS_OUTPUT.PUT_LINE('Hi this is PRC1. The First Name is '||FNAME||' and the Salary is '||SAL);
+END;
+
+
+BEGIN
+    PRC1(100);
+    PRC1(102);
+END;
+
+
+
+-------------------------------how to pass output parameters to a  procedure?
+CREATE OR REPLACE PROCEDURE PRC1(EID INT, FNAME OUT HR.EMPLOYEES.FIRST_NAME%TYPE, 
+SAL OUT INT)
+AS
+BEGIN
+    SELECT FIRST_NAME, SALARY INTO FNAME, SAL FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=EID;
+END;
+
+DECLARE
+    EID INT:=101;
+    F VARCHAR2(100);
+    S INT;
+BEGIN
+    PRC1(EID,F,S);
+    DBMS_OUTPUT.PUT_LINE(F);
+    DBMS_OUTPUT.PUT_LINE(S);
+END;
+
+
+------------------
+Task:
+Create a procedure PRC2 that accepts employee id as input parameter and gives outputs FIRST NAME, DEPARTMENT NAME
+Call the procedure with 3 parameters and display the outputs
+
+
+CREATE OR REPLACE PROCEDURE PRC1(EID INT, FNAME OUT HR.EMPLOYEES.FIRST_NAME%TYPE, 
+dname OUT HR.DEPARTMENTS.DEPARTMENT_NAME%TYPE)
+AS
+BEGIN
+    SELECT FIRST_NAME, D.DEPARTMENT_NAME INTO FNAME, DNAME FROM 
+    HR.EMPLOYEES E JOIN HR.DEPARTMENTS D
+    ON E.DEPARTMENT_ID=D.DEPARTMENT_ID
+    WHERE EMPLOYEE_ID=EID;
+END;
+
+
+
+-----------
+DECLARE
+    EID INT :=101;
+    FNAME HR.EMPLOYEES.FIRST_NAME%TYPE;
+    DNAME HR.DEPARTMENTS.DEPARTMENT_NAME%TYPE;
+BEGIN
+    PRC1(EID, FNAME, DNAME);
+    DBMS_OUTPUT.PUT_LINE(FNAME);
+    DBMS_OUTPUT.PUT_LINE(DNAME);
+END;
+
+
+--------------------------------------------------------
+PLSQL Functions
+-----------------------
+
+
+Task:
+	Identify as many Predefined functions as possible.
+
+character functions
+	UPPER
+	LOWER
+	SUBSTR
+	LENGTH
+	LPAD
+	RPAD
+	CONCATE
+	INITCAP
+	TRIM
+	LTRIM
+	RTRIM
+	SOUNDEX
+
+date and time functions
+	MONTHS_BETWEEN
+	SELECT MONTHS_BETWEEN(sysdate, '01-Jan-2000') FROM DUAL;
+
+
+
+numeric functions
+	FLOOR
+	CEIL(1.1)
+
+TRUNC vs ROUND
+	trunc(1.456,2)	=	1.45
+
+
+
+Which function returns the largest integer lesser than the given number?
+	ans:	FLOOR
+
+	ABS
+
+----------------------------------------------------------
+PLSQL FUNCTIONS
+	we can create our own functions in PLSQL
+
+CREATE OR REPLACE FUNCTION FN1
+RETURN INT
+AS
+S INT;
+BEGIN
+    SELECT SALARY INTO S FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=102;
+    RETURN S;
+END;
+
+
+SELECT FN1() FROM DUAL;
+
+(OR)
+
+DECLARE
+    X INT;
+BEGIN
+    X:=FN1();
+    DBMS_OUTPUT.PUT_LINE(X);
+END;
+
+
+In PLSQL program,
+	we can use procedural features of a language
+
+IF
+IF ELSE
+IF ELSIF
+IF ELSIF ELSIF ELSIF ELSE
+
+
+DECLARE
+    EID INT :=103;
+    SAL INT;
+BEGIN
+    SELECT SALARY INTO SAL FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=EID;
+    IF SAL >10000 THEN
+        DBMS_OUTPUT.PUT_LINE(SAL|| ' is greater than 10k');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(SAL|| ' is lesser than 10k');
+    END IF;
+END;
+
+
+----------------------
+DECLARE
+    EID INT :=203;
+    JID hr.employees.job_id%type;
+BEGIN
+    SELECT JOB_ID INTO JID FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=EID;
+    IF JID='AC_ACCOUNT' THEN
+        DBMS_OUTPUT.PUT_LINE('You are an accountant');
+    ELSIF JID='AC_MGR' THEN
+        DBMS_OUTPUT.PUT_LINE('You are accounts manager');
+    ELSIF JID='HR_REP' THEN
+        DBMS_OUTPUT.PUT_LINE('You are HR Representative');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('You are an Employee');
+    END IF;    
+END;
+
+
+
+--SELECT * FROM HR.EMPLOYEES;
+
+--AC_ACCOUNT
+--AC_MGR
+--AD_ASST
+--AD_PRES
+
+
+
+------------------
+
+In C language, 
+	switch case
+
+in PLSQL
+	CASE
+
+
+SELECT - CASE (it is SQL)
+
+
+
+
+select EMPLOYEE_ID, FIRST_NAME, JOB_ID,
+CASE JOB_ID
+WHEN 'IT_PROG' THEN 'Programmer'
+WHEN 'ST_MAN' THEN 'Steno Manager'
+WHEN 'ST_CLERK' THEN 'Steno Clerk'
+ELSE
+'Employee'
+END PROFILE
+from hr.employees;
+
+
+
+
+
+
+select EMPLOYEE_ID, FIRST_NAME, JOB_ID,
+CASE JOB_ID
+WHEN 'IT_PROG' THEN 'Programmer'
+WHEN 'ST_MAN' THEN 'Steno Manager'
+WHEN 'ST_CLERK' THEN 'Steno Clerk'
+ELSE
+'Employee'
+END PROFILE
+from hr.employees;
+
+SELECT EMPLOYEE_ID, FIRST_NAME, JOB_ID, DECODE(JOB_ID,'IT_PROG','Programmer','ST_MAN','Steno Manager','ST_CLERK','Steno Clerk', 'Employee')
+FROM HR.EMPLOYEES;
+
+
+SELECT COALESCE(10, NULL, NULL, 20, NULL) FROM DUAL;
+
+
+
+
+select EMPLOYEE_ID, FIRST_NAME, JOB_ID,
+CASE 
+WHEN JOB_ID='IT_PROG' THEN 'Programmer'
+WHEN SALARY>10000 THEN 'Steno Manager'
+WHEN DEPARTMENT_ID IS NULL THEN 'Steno Clerk'
+ELSE
+'Employee'
+END PROFILE
+from hr.employees;
+
+
+
+
+
+DECLARE
+    JID HR.EMPLOYEES.JOB_ID%TYPE;
+    DESIGNATION VARCHAR2(50);
+BEGIN
+    SELECT JOB_ID INTO JID FROM HR.EMPLOYEES WHERE EMPLOYEE_ID=100;
+    DESIGNATION:=CASE JID
+    WHEN 'AD_PRES' THEN 'Steno Manager'
+    WHEN 'AD_VP' THEN 'Vice President'
+    ELSE 'Employee'
+    END;
+    DBMS_OUTPUT.PUT_LINE(DESIGNATION);
+END;
+
+
+----------------------------------
+if
+switch
+
+LOOPS
+	Basic loop
+	WHILE LOOP
+	FOR LOOP
+
+
+
+loop
+end loop;
+
+
+
+
+
+example for basic loop:
+
+DECLARE
+    X INT:=1;
+BEGIN
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(X);
+        X:=X+1;
+        IF X>10 THEN
+            EXIT;
+        END IF;
+    END LOOP;
+END;
+
+
+
+
+
+DECLARE
+    X INT:=100;
+    sal int;
+    fn varchar2(100);
+BEGIN
+    LOOP
+--        DBMS_OUTPUT.PUT_LINE(X);
+        select salary, first_name into sal, fn from hr.employees where employee_id=x;
+        dbms_output.put_line(fn|| ' earns '||sal);
+        X:=X+1;
+        IF X>206 THEN
+            EXIT;
+        END IF;
+    END LOOP;
+END;
+
+--A) 1...9
+--B) Error
+--C) 1...10
+
+
+
+
+--------------------------------
+Next type of loop:
+	WHILE LOOP
+
+DECLARE 
+    X INT:=100;
+BEGIN
+    WHILE X<=206
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(X);
+        X:=X+1;
+    END LOOP;
+END;
+
+Next type of loop:
+	FOR LOOP
+
+
+
+
+BEGIN
+    FOR I IN 100 .. 206
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(I);
+    END LOOP;
+END;
+
+------------------------------
+Cursor
+--------
+
+any DML operation we do, 
+	there will be an implicit cursor
+		name of that implicit cursor 		SQL
+
+ex:
+	SQL%ROWCOUNT
+
+What are the attributes of IMPLICIT CURSOR
+	FOUND
+	NOTFOUND
+	ROWCOUNT
+
+How to create our own CURSORs?
+
+Life cycle of cursor
+
+1) DEFINE a CURSOR
+	CURSOR cur1 IS SELECT * FROM HR.EMPLOYEES;
+2) OPEN a CURSOR
+	your select query is executed
+	OPEN cur1;
+3) FETCH the cursor into a variable
+	FETCH cur1 INTO EMPREC;
+4) CLOSE/ DEALLOCATE THE CURSOR
+	CLOSE cur1;
+
+
+Example:
+declare
+    CURSOR cur1 IS SELECT * FROM HR.EMPLOYEES;
+    EMPREC hr.employees%ROWTYPE;
+begin
+    OPEN cur1;
+    loop
+        FETCH cur1 INTO EMPREC;
+        EXIT WHEN cur1%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(EMPREC.EMPLOYEE_ID);
+    end loop;
+    CLOSE cur1;
+end;
+
+
+
+
+
+-------------------
+declare
+
+
+    CURSOR cur1 IS SELECT * FROM HR.EMPLOYEES;
+    EMPREC hr.employees%ROWTYPE;
+begin
+    OPEN cur1;
+        FETCH cur1 INTO EMPREC;
+    while cur1%found
+    loop
+        DBMS_OUTPUT.PUT_LINE(EMPREC.EMPLOYEE_ID);
+        FETCH cur1 INTO EMPREC;
+    end loop;
+    CLOSE cur1;
+end;
+
+
+
+
+
+---------------------
+begin
+    for EMPREC IN (SELECT * FROM HR.EMPLOYEES)
+    loop
+        DBMS_OUTPUT.PUT_LINE(EMPREC.EMPLOYEE_ID);
+    end loop;
+end;
+
+-------------------------------------
+VIEWS
+---------
+	View is a precompiled query stored in the database.
+	View provides selective hiding or row/ columns/ column names from the user
+
+
+DML on views, 
+	is possible when
+		that DML affects only columns of 1 underlying table
+
+	not possible when
+		the query has computed columns, aggregates
+			
+--------------------------------------------------
+Index
+-------
+CREATE INDEX idxjag1
+on hr.EMPLOYEES(commission_pct, manager_id);
+	--this index will be useful only when we query using both the columns
+
+CREATE INDEX idxJag2
+on hr.EMPLOYEES(upper(FIRST_NAME);
+	--this index will be useful only when we query using WHERE UPPER(FIRST_NAME)='STEVEN';
+
+drop index idxjag1;
+
+----------------------------
+Triggers
+-------------
+
+	PRODUCT
+		PID	PNAME	STOCK
+		1	PEN	100
+		2	PENCIL	100
+
+	SALES
+		SID	PID	QTY
+		111	1	20
+
+
+What should be the stock of PEN?
+	80
+
+whenever a ROW is inserted into SALES table, 
+automatically, an UPDATE should happen in PRODUCT table.
+
+
+Task:
+-------
+	Identify the types of triggers in Oracle.
+
+BEFORE, 	AFTER,	INSTEAD OF
+
+DML Triggers
+
+LOGON triggers
+
+DDL triggers
+
+Statement triggers vs FOR EACH ROW trigger
+
+-----------------------
+Ex:
+
+CREATE OR REPLACE TRIGGER trgJag1
+BEFORE UPDATE ON HR.DEPARTMENTS
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('trgJag1 trigger is fired now!');
+END;
+
+--Trigger TRGJAG1 compiled
+
+
+
+How can a trigger see the values, that are INSERTED/UPDATE/DELETED?
+	ans:	Magic tables
+
+What are the magic tables?
+	:new
+	:old
+
+if i am inserting a new row, then INSERT trigger, uses :new table to obtain the values proposed to insert
+if i am deleting a row, then DELETE trigger uses :old table to obtain the values that are going to vanish
+if i am updating a row, then UPDATE trigger uses both :new and :old
+
+
+If the trigger is a statement trigger?
+	the trigger fires only ONCE for the entire statement
+
+
+
+
+
+
+CREATE OR REPLACE TRIGGER trgJag1
+AFTER UPDATE ON HR.DEPARTMENTS
+FOR EACH ROW
+BEGIN
+    IF :new.MANAGER_ID=101 THEN
+        DBMS_OUTPUT.PUT_LINE('trgJag1 trigger is fired now!');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('101 is not allowed');
+        RAISE_APPLICATION_ERROR(-20000, 'nOT ALLOWED.');
+    END IF;
+END;
+
+update hr.departments set MANAGER_ID=101 WHERE department_id in (300, 270);
+
+----------------
+
+Task:
+-------
+Create a trigger on INSERT into DEPARTMENTS
+The trigger should check if the given department_id is >300
+if not, the trigger should raise exception with a message "Department Id must be >300 only"
+else
+it should allow the insert on departments table
+
+
+
+
+
+aggregate function in SQL
+DDL statement
+sub query
+DML statements
+ON DELETE, while creating foreign key constraint
+creating a table
+view
+Primary Key
+UPDATE
+
+

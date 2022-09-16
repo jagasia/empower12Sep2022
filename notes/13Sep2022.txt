@@ -1,0 +1,601 @@
+Yesterday we learnt:
+Basics, 
+Normalization, 
+SQL(DDL, DML, TCL)
+----------------------------------
+Today we continue from DCL
+
+DCL
+	Data Control Language
+
+we can 
+	Grant
+	Revoke
+
+		privileges 
+
+What are privileges?
+	Permissions.
+		Every user must be grant privileges in order to everything
+
+	There are several privileges defined in ORACLE
+	Only those users who have those privileges can do those operations.
+
+
+Activity:
+	Identify as many privileges in ORACLE
+
+There are 2 types of privileges:
+	SYSTEM Privileges
+		allow us to create objects, 
+			login	
+		DDL related privileges are system privileges
+		CREATE SESSION
+
+			
+	OBJECT Privileges
+		specific to object
+			i call allow an user to SELECT, INSERT on a particular object. 
+		DML related privileges are object priveleges
+
+	CREATE TABLE
+	ALTER TABLE
+	CREATE VIEW
+	SELECT ON
+
+Privilege              Description
+SELECT               Privilege to perform SELECT statements on the table.
+INSERT                Privilege to perform INSERT statements on the table.
+UPDATE               Privilege to perform UPDATE statements on the table.
+DELETE                Privilege to perform DELETE statements on the table.
+REFERENCES      Privilege to create a constraint that refers to the table.
+ALTER                  Privilege to perform ALTER TABLE statements to change
+                              the table definition.
+INDEX                  Privilege to create an index on the table with the create index
+                              statement.
+ALL                       All privileges on table.
+
+
+
+
+
+
+When we install oracle in our system,
+	there will be few users already present
+	sys
+	system
+	scott
+	hr		(locked)		we have to i) unlock	ii) change password
+
+who can create new users?
+	sys, system they can do everything.
+	any user can be GRANT with CREATE USER privilege
+
+
+
+
+
+
+
+Practical example: (Terminal 1)
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Sep 13 12:03:44 2022
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> CREATE USER jag IDENTIFIED BY jag;
+SP2-0640: Not connected
+SQL> connect sys/password as sysdba
+Connected.
+SQL> CREATE USER jag IDENTIFIED BY jag;
+
+User created.
+
+SQL> GRANT CREATE SESSION to jag;
+
+Grant succeeded.
+
+SQL> GRANT SELECT ON HR.EMPLOYEES TO jag;
+
+Grant succeeded.
+
+SQL>
+
+----------------------------------
+Practical example: (Terminal 2)
+
+SQL*Plus: Release 11.2.0.2.0 Production on Tue Sep 13 12:03:55 2022
+
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+
+SQL> connect jag/jag
+ERROR:
+ORA-01045: user JAG lacks CREATE SESSION privilege; logon denied
+
+
+SQL> connect jag/jag
+Connected.
+SQL> select * from hr.employees;
+select * from hr.employees
+                 *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> connect hr/hr
+Connected.
+SQL> select * from employees;
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID
+        SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+        100 Steven               King
+SKING                     515.123.4567         17-JUN-03 AD_PRES
+         24000
+                                     90
+
+
+
+107 rows selected.
+
+SQL> connect jag/jag
+Connected.
+SQL> select * from hr.employees;
+select * from hr.employees
+                 *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> select * from hr.employees;
+
+
+
+EMPLOYEE_ID FIRST_NAME           LAST_NAME
+----------- -------------------- -------------------------
+EMAIL                     PHONE_NUMBER         HIRE_DATE JOB_ID
+        SALARY
+------------------------- -------------------- --------- ---------- ----------
+COMMISSION_PCT MANAGER_ID DEPARTMENT_ID
+-------------- ---------- -------------
+
+        179 Charles              Johnson
+CJOHNSON                  011.44.1644.429262   04-JAN-08 SA_REP
+          6200
+            .1        149            80
+
+        180 Winston              Taylor
+WTAYLOR                   650.507.9876         24-JAN-06 SH_CLERK
+          3200
+
+107 rows selected.
+
+SQL> delete from hr.employees;
+delete from hr.employees
+               *
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL>
+
+
+-[--------------------------------------
+
+Task:
+	understand the difference between
+		WITH GRANT OPTION		for Object Privileges
+		WITH ADMIN OPTION		for System Privileges
+
+Example:
+	1) we created an user "jag"
+	2) sys is going to GRANT an object privilege to "jag"	(UPDATE ON HR.EMPLOYEES)	WITH GRANT OPTION
+	3) let sys create one more user "anirudh"
+	4) jag will grant UPDATE ON HR.EMPLOYEES to the new user anirudh
+	5) check if anirudh is able to update on hr.employees
+	6) sys to REVOKE the privilege from jag
+	7) what happens to anirudh when he tries to UPDATE on HR.EMPLOYEES
+
+Observation:
+
+(Terminal 1)
+SQL> create user anirudh identified by anirudh;
+
+User created.
+
+SQL> grant create session to anirudh;
+
+Grant succeeded.
+
+SQL> GRANT UPDATE ON HR.DEPARTMENTS TO jag WITH GRANT OPTION;
+
+Grant succeeded.
+
+SQL> REVOKE UPDATE ON HR.DEPARTMENTS FROM JAG;
+
+Revoke succeeded.
+
+SQL> GRANT UPDATE ON HR.DEPARTMENTS TO jag WITH GRANT OPTION;
+
+Grant succeeded.
+
+SQL>
+
+
+---------------------
+(Terminal 2)
+
+SQL> connect anirudh/anirudh
+ERROR:
+ORA-01045: user ANIRUDH lacks CREATE SESSION privilege; logon denied
+
+
+Warning: You are no longer connected to ORACLE.
+SQL> connect anirudh/anirudh
+Connected.
+SQL> UPDATE HR.EMPLOYEES SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+UPDATE HR.EMPLOYEES SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324
+                        *
+ERROR at line 1:
+ORA-00904: "DEPARTMENT_NAME": invalid identifier
+
+
+SQL> UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324
+          *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+
+1 row updated.
+
+SQL> UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324
+          *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL> UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324;
+UPDATE HR.DEPARTMENTS SET DEPARTMENT_NAME='JAGINDIA' WHERE DEPARTMENT_ID=324
+          *
+ERROR at line 1:
+ORA-00942: table or view does not exist
+
+
+SQL>
+---------------------------
+
+We understood that, 
+	sys granted UPDATE ON HR.DEPARTMENTS to jag WITH GRANT OPTION
+	jag granted the same to anirudh
+	anirudh was able to update on hr.departments
+
+	now, sys revoke the same privilege from jag
+	anirudh was also NOT able to do update
+
+OBJECT privileges are CASCADE
+
+-------------------------anirudh---------------------
+SQL> connect anirudh/anirudh
+Connected.
+SQL> CREATE TABLE T1(SNO INT);
+CREATE TABLE T1(SNO INT)
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> CREATE TABLE T1(SNO INT);
+CREATE TABLE T1(SNO INT)
+*
+ERROR at line 1:
+ORA-01950: no privileges on tablespace 'SYSTEM'
+
+
+SQL> CREATE TABLE T1(SNO INT);
+
+Table created.
+
+SQL> CREATE TABLE T2(SNO INT);
+
+Table created.
+
+SQL>
+
+------------------sys-----------------
+
+SQL> connect sys/password as sysdba;
+Connected.
+SQL> GRANT CREATE TABLE to jag WITH ADMIN OPTION;
+
+Grant succeeded.
+
+SQL> ALTER USER anirudh QUOTA 100M ON SYSTEM;
+
+User altered.
+
+SQL> GRANT UNLIMITED TABLESPACE TO anirudh;
+
+Grant succeeded.
+
+SQL> REVOKE CREATE TABLE FROM jag;
+
+Revoke succeeded.
+
+SQL>
+
+------------------jag
+
+SQL> connect jag/jag
+Connected.
+SQL> CREATE TABLE T2(SNO INT);
+CREATE TABLE T2(SNO INT)
+*
+ERROR at line 1:
+ORA-01031: insufficient privileges
+
+
+SQL> GRANT CREATE TABLE TO anirudh;
+
+Grant succeeded.
+
+SQL>
+
+--------------------------------
+
+
+Select statement with all clauses, Set Operators, Predefined functions, Indexs, Views
+
+
+What is the purpose of SELECT statement?
+	SELECT statement is used to retrieve data from the database tables.
+
+Basic syntax of SELECT statement
+	SELECT column list | * 
+	FROM table1, table2, ....
+	WHERE condition(s)
+	GROUP BY col1, col2, ...
+	HAVING group condition
+	ORDER BY col1, col2 ASC|DESC
+
+
+SELECT * FROM HR.EMPLOYEES;
+
+	* means?
+		all columns
+
+How to get all rows?
+	there is no condition in the select query, then we get all rows.
+
+PROJECTION
+	the query displays only the columns that are relevant
+		instead of using *, we can use column list for projection
+SELECTION
+	the query displays only the rows that are relevent
+		instead of displaying all rows, we can use conditions to display only the relevant records
+UNION		ignores duplicate
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID LIKE 'PU_%'
+UNION
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID='PU_CLERK';
+
+UNION ALL
+		displays duplicates also, so 5+5 is always 10
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID LIKE 'PU_%'
+UNION ALL
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID='PU_CLERK';
+
+INTERSECT
+		displays only the common records found in both the results
+
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID LIKE 'PU_%'
+INTERSECT
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID='PU_CLERK';
+
+MINUS
+	All the records of first query - common records found with second query
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID LIKE 'PU_%'
+MINUS
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID='PU_CLERK';
+
+WHERE
+	condition that returns TRUE or FALSE		boolean expression
+
+Logical
+	NOT
+	AND
+	OR
+Comparison
+	=
+	!=		<>
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID!='PU_CLERK';
+	is same as
+SELECT * FROM HR.EMPLOYEES WHERE JOB_ID<>'PU_CLERK';
+
+	>
+	<
+	>=
+	<=
+	>ALL
+	>ANY
+
+IS 		is an operator using with NULL
+
+IS NULL
+IS NOT NULL
+
+SELECT * FROM HR.EMPLOYEES WHERE DEPARTMENT_ID IS NULL;	
+
+SELECT * 
+FROM HR.EMPLOYEES 
+WHERE DEPARTMENT_ID=80
+AND JOB_ID='SA_MAN';
+
+
+SELECT * 
+FROM HR.EMPLOYEES 
+WHERE DEPARTMENT_ID=80
+OR JOB_ID='PU_CLERK';
+
+
+---------------------------------
+LIKE operator
+	it is used only with the character types 		(works for Date also)
+
+
+
+select to_char(hire_date,'dd-MMM-yyyy') from hr.employees;
+
+LIKE operator supports
+	%
+	_
+
+%	0 or more characters match
+_	1 character match
+
+
+select to_char(hire_date,'dd-MON-yyyy') from hr.employees
+WHERE to_char(hire_date,'dd-MON-yyyy') LIKE '%FEB%';
+
+
+
+Karthick
+Karthi
+Karthik
+Karthikeyan
+
+%arthi%
+
+B1
+B2
+A1
+A2
+
+
+A_
+
+_2
+
+Dr.%
+
+
+free text search
+full text search
+
+Aggregate Functions
+	SUM
+	AVG
+	MIN
+	MAX
+	COUNT
+
+
+SELECT COUNT(SALARY), SUM(salary), ROUND(AVG(SALARY),-2) FROM HR.EMPLOYEES;
+
+--SELECT AVG(SALARY) FROM HR.EMPLOYEES;
+
+SELECT DEPARTMENT_ID, COUNT(SALARY), AVG(SALARY) FROM HR.EMPLOYEES
+GROUP BY DEPARTMENT_ID;
+
+
+SELECT DISTINCT DEPARTMENT_ID FROM HR.EMPLOYEES;
+
+GROUP BY
+
+Sometimes, we dont want to display all the groups. We want to display significant group (groups that pass a condition)
+
+
+
+SELECT DEPARTMENT_ID, AVG(SALARY), COUNT(SALARY), MIN(SALARY)
+FROM HR.EMPLOYEES
+GROUP BY DEPARTMENT_ID
+HAVING COUNT(SALARY)>4;
+
+
+
+
+ORDER BY FIRST_NAME DESC, LAST_NAME ASC;
+Challenges:
+--------------
+1) Display the employee id, first name, last name, salary of all employees, whose department id is either 90 or 100
+	SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY 
+	FROM EMPLOYEES 
+	WHERE DEPARTMENT_ID IN (90,100);
+
+	SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY 
+	FROM HR.EMPLOYEES 
+	WHERE DEPARTMENT_ID = 90
+	    OR
+	   DEPARTMENT_ID = 100;
+
+IN
+NOT IN
+
+
+2) Display employee id, first name, last name, salary of all employees whose hire date is after 2005
+
+		SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, hire_date, extract (year from hire_date)
+	FROM hr.EMPLOYEES
+    WHERE extract (year from hire_date)>2005;
+    
+
+		SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, hire_date, extract (year from hire_date)
+	FROM hr.EMPLOYEES
+    WHERE HIRE_DATE>'31-Dec-05';
+    
+
+	
+
+
+3) Display the employee id, first name, department id of employees whose salary is between 5k and 7k
+
+SALARY>=5000 AND SALARY<=7000
+
+SALARY BETWEEN 5000 AND 7000
+
+
+
+Challenge 2:
+---------------
+1) Display the employee id, first name, last name, salary of all employees, whose department id is neither 90 nor 100
+
+2) Display all the employees id, fname, salary and BONUS.
+	Bonus is 10% of their salary
+
+3) Display the employees id, fname, and their commission.
+	Commission = salary * commission_pct
+
+	Note: if commission percentage is null, then their commission = salary
+query:-
+	select employee_id, first_name, salary,commission_pct, salary * nvl(commission_pct,1)
+	from hr.employees;
+
+--------------------------------------------------------
+
+	SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME, SALARY, hire_date, extract (year from hire_date)
+	FROM hr.EMPLOYEES
+	    WHERE extract(year from hire_date)>2005;
+    
+NVL
+	NVL(Expression, x)
+		if Expression returns NULL, then x is returned
+		if Expression does not return NULL, then that expression result is returned
+NVL2
+	NVL2(Expression, x, y)
+		if Expression returns NOT NULL, then x is returned
+		if Expression returns NULL, then y is returned
+select commission_pct, nvl2(commission_pct,1,2) from hr.employees;
+NULLIF
+	NULLIF(x,y)
+		returns NULL if x and y are equal
+		returns x, if they are not equal
+
+DECODE
+COALESCE
+	
