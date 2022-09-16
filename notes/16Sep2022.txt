@@ -190,3 +190,111 @@ The character at 25 th index is 'a'.
 
 
 ============================
+Square and Tower
+In a city, there are N mobile signal towers. Raj is creating an application to visualize the coverage area of the signal towers.
+        For simplicity, the following are assumed: 
+1) the shape of the city is square. 
+2) the signal coverage is in the form of a square. 
+3) the side length of the signal coverage is 3 meters.
+        Given side length of the city, number of towers, and coordinates of towers, find whether whole city is under coverage.  If the whole city is not under signal coverage, find how much area is not under coverage. 
+
+Assume that the two of the end of points of the city are  (0,0) and (n-1,n-1). 
+Input Format: 
+First input corresponds to n, length of the city. 
+Second input corresponds to the number of towers, t. 
+The next n lines of the input follow the following format: x and y coordinates of each tower, respectively. 
+
+Consider that tower is always placed at valid position. 
+
+Output Format: 
+Print "Yes" if the whole city is under coverage. Else, print "No", along with the left out area. 
+
+Sample Input 1: 
+5
+3
+2 2
+0 1
+4 1 
+
+Sample output 1:
+No
+8 
+
+Sample Input 2: 
+3 
+1 
+1 1 
+Sample Output 2: 
+Yes 
+
+
+Explanation for sample 1: 
+4	 	T3	 	 	 
+3	 	 	 	 	 
+2	 	 	T1	 	 
+1	 	 	 	 	 
+0	 	T2	 	 	 
+ 	0	1	2	3	4
+Green colour indicates the coverage area. 
+Red colour indicates the area which is not under coverage. 
+Total red area = 8. 
+ 
+
+
+--------------------Solution-----------
+import java.util.Scanner;
+
+public class SquareAndTower {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int cityLength=sc.nextInt();
+		int noOfTowers=sc.nextInt();
+		int towers[][]=new int[noOfTowers][2];
+		int city[][]=new int[cityLength][cityLength];
+		
+		for(int i=0;i<noOfTowers;i++)
+		{
+			towers[i][0]=sc.nextInt();
+			towers[i][1]=sc.nextInt();
+		}
+		//for as many towers present, we need to update the towers and adjacent
+		for(int i=0;i<noOfTowers;i++)
+		{
+			int x=towers[i][0];
+			int y=towers[i][1];
+			
+			city[x][y]=1;
+//			System.out.println("The adjacency of "+x+" and "+y);
+			for(int m=-1;m<=1;m++)
+			{
+				for(int n=-1;n<=1;n++)
+				{
+					int x1=x+m;
+					int y1=y+n;
+					if(x1>=0 && x1<cityLength && y1>=0 && y1<cityLength)
+					{
+//						System.out.println("x1="+x1+" y1="+y1);
+						city[x1][y1]=1;
+					}
+				}
+			}
+//			
+		}
+		
+		System.out.println("-----------------");
+		//showing the city
+		for(int i=0;i<cityLength;i++)
+		{
+			for(int j=0;j<cityLength;j++)
+			{
+				System.out.print(city[i][j]+"\t");
+			}
+			System.out.println();
+		}
+	}
+
+}
+
+
+
