@@ -138,3 +138,55 @@ public class App2 {
 
 }
 
+-------------------------------------------------
+
+Character at Index
+
+Somu has an excellent visualization skill using which he answers any logical and arithmetic calculation by mind calculation. To test his skill, Ramu gave him the following question. Given a String, s, and an integer, i, find the character present at the given index, i, when the string is repeatedly concatenated.
+Write a program to  help Somu.
+
+Input Format:
+First line of the input is the string, s. Assume max length of the string is 50.
+Second line is an Integer that denotes the index value, i.
+
+Output Format:
+Output is a character present at ith index.
+
+Note:
+Print "Invalid" if the index is negative.
+
+Sample Input 1:
+Amphibian
+25
+Sample Output 1:
+a
+
+Sample Input 2:
+Java
+-1
+Sample Output 2:
+Invalid 
+
+
+Explanation for Sample1:
+input String is "Amphibian".
+After repeated concatenation, the string becomes "AmphibianAmphibianAmphibianAmphibian......"
+The character at 25 th index is 'a'. 
+ 
+
+-----------Solution-----------
+		Scanner sc=new Scanner(System.in);
+		String input=sc.next();
+		int index=sc.nextInt();
+		if(index<0)
+		{
+			System.out.println("Invalid");
+		}
+		else
+		{
+			System.out.println(input.charAt(index%input.length()));
+		}
+
+
+
+============================
