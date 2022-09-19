@@ -1,3 +1,11 @@
+Abstract class
+Interface
+Final
+	final class
+	final data member
+	final method
+
+
 Regular expressions
 ------------------
 we can extract the portions of the string that matches a regex pattern
@@ -171,4 +179,96 @@ we need to give message while throwing exception, so, we can pass it to construc
 3) User defined exceptions 
 	checked		extends Exception
 	unchecked		extends RuntimeException
+
+
+
+next()
+nextLine()
+-------------------------------------------------------------
+Collections Framework:
+------------------
+
+package name is:	java.util
+
+1) List		allows adding duplicates.          Ordered means, the elements are stored in the same order they are added
+	ArrayList		
+	LinkedList
+	Vector		(legacy class)		synchronized
+2) Set		rejects duplicates (when added) 
+	HashSet		adds elements in the order of hashCode
+	TreeSet		adds elements in sorted manner (specified by comparable/ comparator)
+	LinkedHashSet	is Ordered 	(similar to list)
+Map
+	HashMap
+	TreeMap
+	LinkedHashMap
+
+
+Map is 2 dimensional data structure
+
+	key	value	pair
+
+1	India
+2	Australia
+3	Pakistan
+null	Bangladesh
+4	China
+5	Srilanka
+
+
+in collections, we have elements.
+in map, we have entries
+	and entry = key + value
+
+a map has entry set
+
+
+ArrayList
+	add(element)
+	add(index, element);
+	get(index)		returns the element at that index
+	index(element)	if found, it returns the index. else, it returns -1
+	remove(index)
+	remove(Object)
+
+
+Collections.sort(marks);		//works only for List category of collection classes
+
+	
+Iterator<Integer> it = marks.iterator();
+
+methods of iterator?
+	next()
+	hasNext()
+	remove()			//
+
+in a for loop, if you  remove an element from collection, then it may raise ConcurrentModificationException
+
+		Iterator<Integer> it = marks.iterator();
+		while(it.hasNext())
+		{
+			Integer temp = it.next();
+			if(temp%15==0)
+				it.remove();
+//			System.out.println(it.next());
+		}
+	}
+
+iterators start from first and move towards next.
+
+what if we need to move towards previous till first.
+
+Use:
+	ListIterator
+		hasNext()
+		next()
+		remove()
+		hasPrevious()
+		previous()
+
+
+
+public final class java.lang.Integer extends java.lang.Number implements java.lang.Comparable {
+
+
 
