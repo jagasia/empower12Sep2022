@@ -1,0 +1,174 @@
+Regular expressions
+------------------
+we can extract the portions of the string that matches a regex pattern
+
+		Scanner sc=new Scanner(System.in);
+		String input=sc.nextLine();
+//		System.out.println(input);
+		Pattern p = Pattern.compile("E[0-9]{3}");
+		Matcher m = p.matcher(input);
+		while(m.find())
+		{
+			System.out.println(m.group());
+		}
+	}
+
+-------------------------------
+String is immutable
+So Java offers 2 String related classes.
+
+StringBuilder		not synchronized
+StringBuffer		(is synchronized. multiple threads cannot access this object at a time. Allowed One by One)
+
+Identify as many methods of StringBuilder
+
+StringBuilder sb=new StringBuilder("Raja");
+sb.append(" Sivakumar");
+System.out.println(sb);			//syso always call the toString method of the object
+String str=sb;		//wont work
+String str=sb.toString();	//works
+
+Task:
+-------
+insert
+replace
+length
+reverse
+trim
+delete
+trimToSize
+capacity
+ensureCapacity
+charAt
+substring
+lastIndexOf
+indexOf
+append
+toString
+equals
+
+
+Task:
+Write a program to accept a string input from the user. (input is 1 word)
+Check if the string is a palindrome or not.
+
+ex:
+	Malayalam
+
+	
+		Scanner sc=new Scanner(System.in);
+		String input=sc.next();
+		String input1=input.toLowerCase();
+		//check if input1 is a palindrome or not.
+		String reverse="";
+		StringBuilder sb=new StringBuilder(input1);
+		reverse=sb.reverse().toString();
+		if(input1.equals(reverse))
+		{
+			System.out.println(input+" is a palindrome");
+		}else
+		{
+			System.out.println(input+" is not a palindrome");
+		}
+---------------------------------------------------
+Task: Write a java program to accept 2 strings. Check if they are Anagrams.	(ex: 	tea, eat)
+
+Scanner sc=new Scanner(System.in);
+		String input1=sc.next();
+		String input2=sc.next();
+		char[] carr1 = input1.toCharArray();
+		char[] carr2 = input2.toCharArray();
+		Arrays.sort(carr1);
+		Arrays.sort(carr2);
+		
+		String output1=new String(carr1);
+		String output2=new String(carr2);
+		
+		System.out.println(input1+" and "+input2 +" are"
+				+(output1.equalsIgnoreCase(output2)?" ":" not")
+				+ " anagrams");
+
+
+--------------------------------------------------------------------------------------
+Exception Handling:
+----------------------------
+Error underlines in red color are syntax errors. They are visible at compilation time.	We are not discussing this.
+Sometime, we expect some output. 2+3=5	instead of 5, we get 6 means, that is logical error.	--do--
+
+What we discuss in this chapter is,		Runtime Exceptions
+
+Exceptions:
+	abnormal situation
+100
+hundred
+
+For every error you see in java, it is defined as an Exception class
+
+Object
+	Throwable
+		Exception
+		Error
+
+
+Exception
+	all classed derived from Exception class are called as "checked exception"
+	
+RuntimeException
+	all classes dervied from RuntimeException are called as "unchecked exception"
+
+in your program
+	throw new IOException("this is your message");
+
+Unhandled Exception
+
+	handle the exception
+	declare with "throws"
+
+
+
+UnhandledException
+	is a checked exception
+
+Whenever we see unhandled exception, by the compiler, we understand that a checked exception is being thrown
+we have 2 options
+	i) declare the method with "throws" clause
+	ii) surround with try-catch clause
+
+
+try		this block defined the guarded section. An exception occurred in this block can be handled
+catch		catch comes immediately after the try block. There can be 0 or more catch blocks for a try block
+finally		optional block. there can be 0 or 1 finally block for a try block
+
+
+
+
+IOException		
+	FileNotFoundException
+
+NullPointerException
+		Scanner sc;		
+		sc.next();		//null reference is accessed		
+
+ArithmeticException
+	
+ArrayIndexOutOfBoundsException
+	int arr[]=new int[5];				0,1,2,3,4
+	arr[5]=20;			5 is not allowed
+
+How can we create an Exception class and throw it in some situations?
+
+	to create an user defined checked Exception, derive a class from Exception class
+	to create an user defined unchecked Exception, derive a class from RuntimeException class
+
+we need to give message while throwing exception, so, we can pass it to constructor
+
+
+---------------------------------------------
+1) Exception
+2) Exception handling
+	throws
+	try-catch-finally
+3) User defined exceptions 
+	checked		extends Exception
+	unchecked		extends RuntimeException
+

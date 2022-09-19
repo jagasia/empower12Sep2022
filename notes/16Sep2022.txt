@@ -579,3 +579,102 @@ public class Req1 {
 }
 
 
+------------------------------
+Classes and Objects
+Inheritance
+Encapsulation
+Abstraction
+Polymorphism
+
+Inheritance:
+	Is the process of creating a new class from existing class.
+	We do not need to create a class from scratch.
+	
+	By inheritance,
+		we can reuse, the properties and methods of super class
+
+final class cannot be inherited		(final class cannot become a super class) 	final class do not have sub class
+abstract class is meant for inheritance	
+
+Vehicle
+	Car
+		SuperCar
+
+
+Person
+	Employee
+		ContractEmployee
+
+
+Encapsulation:
+	hiding data
+	wrapping data, methods inside a class
+
+
+
+
+
+
+
+---------------String regex
+Scanner sc=new Scanner(System.in);
+		//accept a string input and check if it has only number and also 5 digits
+		String input=sc.next();
+		System.out.println(input.matches("\\d{5}"));
+
+
+patterns will have
+symbol that matches	+	multiplicity
+
+multiplicity:
+	+		1 or more
+	*		0 or more
+	?		0 or 1
+
+symbols
+
+\d	digit			ex:		\\d{3}
+\D	non digit
+
+[]	are used to specify characters from which 1 is allowed
+	ex:
+			[aeiou]		either of these letters, one is allowed
+
+			[a-z]		any lower case alphabet
+			[A-Za-z0-9]	any character or number is allowed
+
+()	brackets are used to group 
+
+
+Write a program to check if the given input string is an IPv4 or not
+example for IPv4	
+		127.0.0.1		
+
+rules:
+	there should be 4 parts, separated by dot
+	each part can be in the range of 0-255
+
+
+
+split 	vs 	StringTokenizer
+
+		String input=new Scanner(System.in).nextLine();
+		StringTokenizer st=new StringTokenizer(input,".");
+		while(st.hasMoreTokens())
+		{
+			System.out.println(st.nextToken());
+		}
+
+
+
+
+
+
+
+		String[] arr = input.split("[.]");
+		System.out.println(Arrays.toString(arr));
+
+
+
+
+
