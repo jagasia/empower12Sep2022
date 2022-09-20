@@ -19,7 +19,7 @@ public class App {
 				detail=sc.nextLine();
 			//split the detail into Employee
 			String[] arr = detail.split(",");
-			Employee employee=new Employee(Integer.valueOf(arr[0]),arr[1],Integer.valueOf(arr[2]),arr[3]);
+			Employee employee=new Employee(Integer.parseInt(arr[0]), arr[0], Integer.parseInt(arr[2]), arr[3]);
 			employeeList.add(employee);
 		}
 		
