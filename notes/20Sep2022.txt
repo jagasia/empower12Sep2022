@@ -4,3 +4,35 @@ Final
 	final class
 	final data member
 	final method
+
+
+
+abstract class does not allow us to create object.
+we can create sub class for an abstract class.
+abstract class can contain methods that, sub classes can override.
+
+
+
+1: Rectange
+2: Triangle
+3: Circle
+4: Exit
+
+
+
+
+
+Task:
+create a class called Furniture
+	name
+	color
+	methods:		acceptDetails		input for name and color
+			displayDetails		display name and color
+
+class Chair
+	name, color, number of legs
+class BookShelf
+	name, color, number of shelves
+
+
+
