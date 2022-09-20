@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Furniture {
+public abstract class Furniture {
 	private String name;
 	private String color;
 	

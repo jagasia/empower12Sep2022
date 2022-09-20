@@ -35,4 +35,130 @@ class BookShelf
 	name, color, number of shelves
 
 
+public class Furniture {
+	private String name;
+	private String color;
+	
+	public void acceptDetails()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the name:");
+		name=sc.nextLine();
+		System.out.println("Enter the color:");
+		color=sc.nextLine();
+	}
+	
+	public void displayDetails()
+	{
+		System.out.println("Name:"+name);
+		System.out.println("Color:"+color);
+	}
+}
 
+
+
+-----------------------------
+Interfaces
+	provides the highest level of abstraction	
+		till java 1.7, interfaces never had methods with body.
+		all methods declared inside interface where empty	(abstract. we dont mention abstract)
+
+	java 1.8 onwards,
+	interfaces can have
+		static & default methods with body
+
+
+What is the difference between Intefaces & Abstract class
+
+
+
+in c++
+
+
+class A
+{
+public:
+	void add(){}
+};
+
+class B
+{
+public:
+	void subtract(){}
+};
+
+class C : A, B
+{};
+
+
+C c;
+c.add();
+c.subtract();
+
+---------------------------------Now, in java.....
+
+interface A
+{
+	void add();
+}
+
+interfacer B
+{
+	void subtract();
+}
+
+class C implements A, B
+{
+	
+}
+
+--------------------------------------------------
+interface A
+{
+	public void display();
+}
+
+class X implements A
+{
+	public void display()
+	{
+		////
+	}	
+}
+
+class Y implements A
+{
+	public void display()
+	{
+		////
+	}	
+}
+
+A obj=new X();			obj.display();		get the output as per X
+obj=new Y();			obj.display();		get the output as per Y
+
+
+--------------------
+final
+	final int SCORE=100;			//SCORE is a constant here
+
+	final void display()
+	{}				this method cannot be overridden
+
+	final class A	
+	{
+	}
+					final class cannot be inherited
+
+----------------------------------------------------------
+Collections
+--------------------
+Set interface
+
+HashSet
+TreeSet			SortedSet
+LinkedHashSet
+
+
+	add()
+	
