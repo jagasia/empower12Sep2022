@@ -160,5 +160,61 @@ TreeSet			SortedSet
 LinkedHashSet
 
 
-	add()
-	
+	-------------------------------------------
+
+Map
+	key - value pair
+
+	2 dimensional data structure
+
+every element in map is called as "entry"
+
+
+
+
+Task:
+	accept a string input from the user.
+	and display the count of each alphabet present in the string.
+
+ex:	
+	input:
+		Java is an object oriented language.
+
+J	1
+a	5
+v	1
+ 	5
+i	2
+
+
+
+Map
+	keySet()			returns all the keys as a Set
+	values()			returns all the values as a Collection
+Set has a iterator
+
+
+-------------------
+Task:
+--------
+
+Employee
+	id
+	name
+	salary
+	department		(String		ex:		ECE	EEE)
+
+App.java
+	Enter the number of Employees:		n
+	accept n strings and split each into employee object
+	store those employee objects in the List<Employee>
+
+	create a map		Map<String, Integer>		
+		and store the department wise, sum of salary
+
+test:
+10,Ram,100000,ECE
+5,Siva,100000,EEE
+15,Raja,100000,ECE
+20,Abdul,100000,Civil
+25, Dinesh,100000,Civil
