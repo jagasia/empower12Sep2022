@@ -92,5 +92,27 @@ shashank.jfif
 Task:
 Identify the purpose of
 	DataInputStream
+		read primitive data
 	ObjectInputStream
+		read objects of class that implements Serializable
+
+
 	
+Demo:
+	Create an Employee object and write into a file
+	Create another program that reads an object and display the values.
+
+
+Serialization
+	is the process of converting an object into series of bytes so that it can written into a stream
+
+Serializable 
+	is a marker interface	(that do not have any abstract methods inside)
+
+
+Marker interface		0 abstract methods	(ex:	Serializable)
+Functional interface		1 abstract method	(ex:	Runnable, Comparable, Comparator, Predicate)
+
+
+
+
