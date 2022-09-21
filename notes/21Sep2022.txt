@@ -114,5 +114,58 @@ Marker interface		0 abstract methods	(ex:	Serializable)
 Functional interface		1 abstract method	(ex:	Runnable, Comparable, Comparator, Predicate)
 
 
+Task:
+create a class that implements Serializable
+write an object into the file using ObjectOutputStream
+read that object from the file using ObjectInputStream
+
+---------------------------------------------------------
+
+1) Create a java program that allows the users to 
+	1) add Employee details
+	2) Update Employee details
+	3) Remove an Employee
+	4) Display All employees details
+	5) Find an employee by Id
+	6) Find an employee by Name	(multiple employees may be displayed)
+	7) Exit
+
+This will be infinite loop until user choose 7 or above
+
+Note:
+	The employee details will be stored permanently so that it is available next time/day also
+Steps:
+	1) create an Employee class (implements Serializable)
+	2) App.java
+		create an ArrayList or HashSet of employees
+		
 
 
+1
+10
+Dinesh Srinivasan
+12345678
+ECE
+1
+20
+Rajesh
+929292
+EEE
+1
+30
+Prakash
+122222
+ECE
+1
+40
+Ganesh
+888888
+EEE
+6
+
+
+
+-----------
+Access specifiers
+Comparable, Comparator
+Find age by dateOfBirth
