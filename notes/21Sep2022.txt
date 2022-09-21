@@ -1,0 +1,96 @@
+Java IO
+------------
+txt
+doc
+pdf
+iso
+docx
+xls
+xml
+css
+csv
+
+2 categories
+----------------
+text
+binary
+
+
+123
+	numbers
+	number
+	text
+
+	
+
+in java,
+	InputStream		binary input
+	OutputStream		binary output
+	Reader			character input
+	Writer			character output
+
+
+
+		File f=new File("D:\\Jag\\Empower\\all\\notes\\yash.txt");
+		Scanner sc=new Scanner(f);
+		String input=sc.nextLine();
+		System.out.println(input);
+
+
+
+
+File
+-----
+File f=new File("yash.txt");
+
+
+FileInputStream
+FileReader
+
+
+
+
+		System.out.println("Enter your name:");
+		String name="";
+		BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+		name=br.readLine();
+		System.out.println(name);
+
+
+
+Demo:
+--------
+FileInputStream
+FileOutputStream
+
+source:
+C:\Users\rjaga\Pictures\briyani1.jfif
+
+destination:
+shashank.jfif
+
+
+
+		File f1=new File("C:\\Users\\rjaga\\Pictures\\briyani1.jfif");
+		FileInputStream fis=new FileInputStream(f1);
+		int len=(int) f1.length();
+		System.out.println("There are "+len+" bytes in that file");
+		byte []data=new byte[len];
+		fis.read(data);
+		fis.close();
+		
+		//write all the bytes into a new file
+		FileOutputStream fos=new FileOutputStream("shashak.jfif");
+		fos.write(data);
+		fos.flush();
+		fos.close();
+		System.out.println("check");
+
+
+
+-------------------
+Task:
+Identify the purpose of
+	DataInputStream
+	ObjectInputStream
+	
