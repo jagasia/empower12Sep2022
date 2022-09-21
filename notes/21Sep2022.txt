@@ -219,3 +219,53 @@ in java 8,
 we can use lambda for functional interface implementation
 
 
+Access specifiers:
+
+	private
+	default
+	protected
+	public
+
+
+class Maths
+{		
+	int i;		//i is of what access?		default
+}
+
+
+
+	within class	within package	from subclass	other packages
+private	Yes		No		No		No
+default	Yes		Yes		No		No
+protected	Yes		Yes		Yes		No
+public	Yes		Yes		Yes		Yes
+
+
+
+
+
+
+javac Employee.java			compiles Employee.java and produces Employee.class
+
+javac -d . Employee.java		. means, current location	-d means create directory
+
+
+
+Add Employee			insert
+Update Employee			update
+Delete Employee			delete
+Find Employee By Id			select	where id=?
+Display All Employees			select
+	//this is called as CRUD		
+
+class EmployeeDao
+{
+		
+}
+
+MCQs		25*2 marks=50
+Hands on		5*10 marks=50
+
+
+
+
