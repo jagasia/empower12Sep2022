@@ -323,3 +323,10 @@ public class App5 {
 	}
 
 }
+----------------------------------------------
+Metadata
+	ResultSetMetaData
+	DatabaseMetaData
+Scrollable, Updateable result sets
+CallableStatement
+DAO

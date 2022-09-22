@@ -18,6 +18,7 @@ public class App6_Update {
 		
 		Driver driver=new oracle.jdbc.OracleDriver();
 		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","hr","hr");
+//		UPDATE Departments SET department_name=?, manager_id=?, location_id=? WHERE department_id=?
 		PreparedStatement st = con.prepareStatement("UPDATE Departments SET department_name=?, manager_id=?, location_id=? WHERE department_id=?");
 		
 		st.setString(1, departmentName);
