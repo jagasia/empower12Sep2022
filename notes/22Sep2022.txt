@@ -119,3 +119,39 @@ Thread t2=new Thread(()->{
 
 Create a thread using Runnable interface
 ------------------------------------------------------
+
+Thread Synchronization
+-----------------------------------
+	some portion of the code, you do not want multiple threads to execute simultaneously.
+	we can declare a block of code as synchronized block
+	or
+	we can declare the method itself as synchronized method
+
+to ensure that
+	no two threads are allowed to execute that code at a time.
+	they are allowed one by one
+
+sleep()
+
+join()	
+	informs the running threads to proceed and complete, while, other threads do not start untill running thread complete.
+
+wait()	how is wait different from sleep?
+	sleep has time limit to sleep. After time limit, the thread continues
+	wait do not have a time limit. until notify() or notifyAll() is called, the thread will be waiting only
+
+notify
+		t1.notify()			t1, if it is waiting, will continue now
+
+notifyAll()
+		all threads that are waiting, will now, continue
+
+monitor
+	
+
+yield()
+	whoever is the owner of the monitor, pls give up the monitor to the next thread
+
+start()
+stop()
+
