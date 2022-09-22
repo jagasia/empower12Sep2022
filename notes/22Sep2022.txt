@@ -274,3 +274,18 @@ password
 
 "SELECT * FROM USER_MASTER WHERE username='"+username+"' and password='"+password+"'"
 SELECT * FROM USER_MASTER WHERE username='i dont know' or 1=1 --' and password='i dont care'
+
+
+
+Task:
+create a java program that accepts
+	department_id
+	department_name
+	manager_id
+	location_id
+from the user as input
+and add a row into the departments table.
+
+hint:
+	use PreparedStatement
+	executeUpdate method		(returns int means, no of rows affected)
