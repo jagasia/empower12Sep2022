@@ -155,3 +155,34 @@ yield()
 start()
 stop()
 
+------------
+synchronized block
+synchronized method
+
+Overriding rules:
+@Override
+1) overriding method (sub class method) must have same signature and return type.	covariant type
+2) overriding method cannot reduce the visibility
+3) overriding method cannot be declared with throws class with new exception
+
+--------------------------------------------------JDBC------------------------------------
+
+Hostname: localhost
+Port:	1521
+SID:	XE (you can note down service name)
+username:	hr
+password:	hr
+
+
+.jar		java archive
+
+
+
+1) Create a java project
+2) copy the ojdbc8.jar file to the project folder
+3) right click project
+	-> Properties
+		-> Java Build path 	-> 3rd tab ie., Libraries
+			-> Add external jar
+				browse and select the jar file (in your project folder)
+					Apply and Close
