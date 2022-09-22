@@ -186,3 +186,91 @@ password:	hr
 			-> Add external jar
 				browse and select the jar file (in your project folder)
 					Apply and Close
+
+
+
+Driver driver=new oracle.jdbc.driver.OracleDriver();
+	this is loading a driver
+
+
+
+JDBC API
+	is layer between Java program & Database
+
+
+
+Statement
+PreparedStatement
+CallableStatement
+
+execute			execute any SQL statement. But will not give result.
+executeQuery		select queries, and it returns result set
+executeUpdate		DML statement, it returns int	(no of rows affected)
+
+
+normally ResultSet is read-only, forward-only
+	but we can modify a resultset into scrollable, updatable result sets.
+next
+
+
+
+------------------Statements-------------
+Statement
+PreparedStatement
+CallableStatement
+
+
+Statement
+	for simple queries
+
+PreparedStatement
+	for parameterized queries
+		SELECT * FROM Employees WHERE EMPLOYEE_ID=?
+
+
+CallableStatement
+	for calling stored procedures and functions
+
+------------------------------	using Statement------------------------------
+		Driver driver = new oracle.jdbc.driver.OracleDriver();
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","hr","hr");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM Employees");
+		while(rs.next())
+		{
+			System.out.println(rs.getInt(1)+"\t"+rs.getString(2));
+		}
+
+
+----------------------------- using PreparedStatement---------------------------
+		Driver driver = new oracle.jdbc.driver.OracleDriver();
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","hr","hr");
+		PreparedStatement st=con.prepareStatement("SELECT * FROM Employees WHERE employee_id=?");
+		st.setInt(1,100);
+		ResultSet rs=st.executeQuery();
+		if(rs.next())
+		{
+			System.out.println(rs.getInt(1)+"\t"+rs.getString(2));
+		}
+	
+
+
+
+
+
+CREATE TABLE USER_MASTER
+(
+USERNAME VARCHAR2(30) PRIMARY KEY,
+PASSWORD VARCHAR2(30) NOT NULL,
+FIRST_NAME VARCHAR2(30),
+LAST_NAME VARCHAR2(30)
+);
+
+
+username
+	i dont know' or 1=1 --
+password
+	i dont care
+
+"SELECT * FROM USER_MASTER WHERE username='"+username+"' and password='"+password+"'"
+SELECT * FROM USER_MASTER WHERE username='i dont know' or 1=1 --' and password='i dont care'
