@@ -97,3 +97,25 @@ The program should display a question (GK).
 The user should answer the question within 25 seconds. If not, the program should display "Failed" message and terminate.
 If user answers before 25 seconds, then "Congratulations" message should be displayed.
 
+------------------------------------------------------
+
+extends Thread
+implements Runnable
+
+
+class MThread implements Runnable
+{
+	public void run()
+	{
+	}
+}
+
+Thread t1=new Thread(new MThread());
+Thread t2=new Thread(()->{
+	//code here
+});
+
+
+
+Create a thread using Runnable interface
+------------------------------------------------------
