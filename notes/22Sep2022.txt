@@ -1,0 +1,99 @@
+Process
+	is a running instance of a Program
+
+
+	
+Single Threaded process
+Multi Threaded process
+
+Process can contain one or more threads
+Main thread
+	
+
+Thread
+	is a sequence / flow of execution
+
+
+display1();		
+display2();			//synchronous
+
+using threads, we can do asynchronous programming
+
+Parallel
+Concurrent
+
+Processor
+	allocating resources to each process
+
+resource 
+	time
+	memory
+advantages:
+1) effective utilization of resources
+2) parallelism or concurrency
+3) asynchronous programming
+
+drawbacks:
+1) race condition
+2) dead lock
+3) lock starvation
+
+
+When will a thread die?
+	1) work is over
+	2) when process is dead,	all the threads inside the process are also dead
+	3) when you assign null
+
+--------------------------
+How can we create Thread?
+
+Thread t1=new Thread();
+
+run()		define the work of the thread
+
+	public void displayEven()
+	{
+	}
+
+	public void run()
+	{
+		displayEven();
+	}
+
+
+class MyThread extends Thread
+{
+	public void run()
+	{
+	}
+}
+
+MyThread mt=new MyThread();
+mt.start();				//start will call the run method
+
+2 ways we can create Thread.
+1) extends Thread
+2) implements Runnable		(functional interface)	it has only run() method
+
+
+Demo1:	using (extends Thread)
+
+t1	displays 	Odd numbers from 1 to 19
+t2 	displays	Even numbers from 2 to 20
+
+
+TasK:
+--------
+Create 2 subclasses of Thread and override the run method
+first thread to display odd numbers
+second thread to display even numbers
+
+extends Thread
+------------------------
+
+TasK:	(hangman game)
+
+The program should display a question (GK). 
+The user should answer the question within 25 seconds. If not, the program should display "Failed" message and terminate.
+If user answers before 25 seconds, then "Congratulations" message should be displayed.
+
