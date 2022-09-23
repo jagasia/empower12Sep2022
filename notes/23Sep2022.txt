@@ -1,0 +1,22 @@
+----------------------------------------------
+Metadata
+	ResultSetMetaData
+	DatabaseMetaData
+Scrollable, Updateable result sets
+CallableStatement
+DAO
+
+
+Metadata
+ResultSetMetaData
+	getColumnCount
+	getColumnName
+	getColumnType
+	getColumnTypeName
+
+Task:
+	CREATE TABLE DEPT AS
+	SELECT * FROM DEPARTMENTS;
+
+This will create a duplication table and have all columns of departments
+
