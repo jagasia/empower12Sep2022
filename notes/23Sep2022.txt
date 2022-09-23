@@ -18,5 +18,71 @@ Task:
 	CREATE TABLE DEPT AS
 	SELECT * FROM DEPARTMENTS;
 
-This will create a duplication table and have all columns of departments
+This will create a duplication table and have all columns and rows of departments
 
+
+
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import oracle.jdbc.OracleDriver;
+
+public class App {
+
+	public static void main(String[] args) throws SQLException {
+		Driver driver=new oracle.jdbc.OracleDriver();
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","hr","hr");
+		Statement st = con.createStatement();
+		ResultSet rs = st.executeQuery("SELECT * FROM DEPT");
+		ResultSetMetaData rsmd = rs.getMetaData();
+		int columnCount = rsmd.getColumnCount();
+		for(int i=1;i<=columnCount;i++)
+		{			
+			System.out.print(rsmd.getColumnName(i)+"\t");
+		}
+		System.out.println();
+		while(rs.next())
+		{
+			for(int i=1;i<=columnCount;i++)
+			{			
+				System.out.print(rs.getString(i)+"\t");
+			}
+			System.out.println();
+		}
+	}
+
+}
+
+------------------------------------------
+Database Meta data:
+
+		DatabaseMetaData dbmd = con.getMetaData();
+		System.out.println(dbmd.getDatabaseProductName());
+		System.out.println(dbmd.getDatabaseProductVersion());
+		System.out.println(dbmd.getDriverName()
+
+
+---------------------------------------------------------------------------
+Write a java program that accepts the department name as input (case insensitive),
+and displays the 
+	1) Number of Employees
+	2) Sum of their salary
+	3) Avg salary
+	4) Highest salary
+of that department.
+
+SELECT count(*), sum(salary), avg(salary), max(salary)
+FROM EMPLOYEES
+GROUP BY department_id
+HAVING department_id IN
+(
+	SELECT department_id FROM DEPARTMENTS WHERE LOWER(department_name)=?
+);
+
+
+input should be converted into lower case.
