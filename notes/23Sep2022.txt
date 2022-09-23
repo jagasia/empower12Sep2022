@@ -81,7 +81,7 @@ FROM EMPLOYEES
 GROUP BY department_id
 HAVING department_id IN
 (
-	SELECT department_id FROM DEPARTMENTS WHERE LOWER(department_name)=?
+	SELECT department_id FROM DEPARTMENTS WHERE LOWER(department_name)='marketing'
 );
 
 
