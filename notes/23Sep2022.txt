@@ -86,3 +86,42 @@ HAVING department_id IN
 
 
 input should be converted into lower case.
+======================================================================
+CallableStatement
+1) we need a procedure in oracle db
+2) we need to understand their parameters		(IN, OUT, IN OUT)
+3) call the procedure, and if any, get the outputs also
+
+
+
+PRCJAG1
+
+		Driver driver=new oracle.jdbc.OracleDriver();
+		Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:XE","hr","hr");
+		CallableStatement st = con.prepareCall("{call prc1() }");
+		boolean status = st.execute();
+		System.out.println("Done");
+		con.close();
+
+
+
+CREATE OR REPLACE PROCEDURE prc1
+as
+begin
+	UPDATE EMPLOYEES SET SALARY=SALARY+1;
+end;
+
+
+create or replace procedure prc2(no1 int, sqr out int, cube out int)
+as
+begin
+	sqr:=no1*no1;
+	cube:=no1*sqr;
+end;
+
+--------------------------------------------
+Task:
+Create a stored procedure that accepts the department id as input and returns the sum of salary, avg of salary as output parameters.
+
+call the procedure from jdbc program.
+
