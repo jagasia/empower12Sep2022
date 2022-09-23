@@ -125,3 +125,52 @@ Create a stored procedure that accepts the department id as input and returns th
 
 call the procedure from jdbc program.
 
+---------------------------------
+DAO
+	Data Access Objects
+
+example:
+CUSTOMER table			Customer class in java
+PRODUCT table			Product class in java
+
+CREATE TABLE CUSTOMER
+(
+	id int PRIMARY KEY,
+	name varchar2(50) not null,
+	phone varchar2(15)
+);
+
+public class Customer
+{
+	private Integer id;
+	private String name;
+	private String phone;
+
+}
+
+
+
+Product table should contain:
+	id		int
+	name		varchar2(50)
+	price		float
+
+Steps:
+	1) Create the PRODUCT table in the sql developer
+	2) Create a java project
+	3) add ojdbc jar file to the build path
+	4) create Product class
+	5) create ProductDao class
+	6) create App.java and test the dao methods
+
+
+
+1) Customer
+2) Product
+3) Sales		details/transaction
+	id
+	salesDate
+	pid		Product product;
+	cid		Customer customer;
+	qty
+
