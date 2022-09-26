@@ -2,3 +2,17 @@ Stream api
 	Activity:
 		What is java stream api?
 
+1) use to process the collection of objects
+2) sequence of elements supporting sequence, aggregate operations
+3) a stream is not a datastructure, it takes input from collection		
+		Arrays.stream(arr);
+4) stream itself do not have data. It works on collection / array
+5) A stream operation returns stream
+
+
+
+	Map<String, Double> result = empList.stream()
+	.collect(Collectors.groupingBy(Employee::getDepartment,Collectors.averagingDouble(Employee::getSalary)));
+
+
+

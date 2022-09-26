@@ -5,6 +5,7 @@ import java.util.stream.Stream;
 public class App {
 
 	public static void main(String[] args) {
+		
 		List<String> countryList=new ArrayList<String>();
 		countryList.add("India");
 		countryList.add("Australia");
@@ -26,8 +27,8 @@ public class App {
 		.filter((x)->x.length()>10)
 		.map((x)->x.toUpperCase())
 		.sorted()
-		.forEach((x)->System.out.println(x));
-		
+//		.forEach((x)->System.out.println(x));
+		.forEach(System.out::println);
 	}
 
 }
