@@ -16,3 +16,188 @@ Stream api
 
 
 
+Task:
+	stream api to find	
+	1)	department wise sum of salary
+	2)		avg salary
+
+	3) 	find the largest salary of all employees
+			min, max
+		map	employee to name alone
+	4) 	filter employees based on various attributes		like department
+	5) 	sort employees by id, name etc
+
+---------------------------------------
+Revision
+--------------
+Java
+	Operators
+		shift operators		<<		>>
+		<< shifts the 1s to left
+
+		1		in binary is =	1 in decimal
+		10				2 in decimal
+
+		10	=	2 in decimal. But after 1 right shift???
+		1	=	1 in decimal
+
+	left shift operators are like multiply by 2
+	right shift operators are like divide by 2
+
+	>>2		2 positions it will shift to right		100	=	1	divide by 4
+
+	>>2	is same as /2 power 2
+
+
+	+=	-=	/=	*=	%=
+
+	ternary operator		?:
+
+	(x>5)?true:false
+
+
+----------------------------------------
+Data types:
+	how many data types are there in Java language?
+		int
+		long
+		short
+		byte
+
+		float
+		double
+
+		char
+
+		boolean
+
+Wrapper classes provide reference type for the primitives
+
+
+in c++
+	void swap(int i, int j)		//call by value
+	{
+	}
+
+
+	void swap(int *i, int *j)	//call by reference
+	{
+	}
+
+
+	swap(a,b);		//a and b are actual parameters passed by value
+	swap(&a,&b);	//a and b are actual parameters passed by reference
+
+	swap(int i, int j)		in java
+	swap(Integer i, Integer j)	in java
+
+
+Integer x=20;
+int y=x;
+
+
+
+class JInteger
+{
+	int value;
+}
+
+
+---------------------------
+methods
+	camelCase
+	doThis()
+
+	verbNoun()
+
+
+
+getters & setters
+accesors & mutators
+
+
+constructors
+	
+
+System.gc();
+
+
+String
+------------
+	methods
+	
+
+char c='A';
+c++;
+System.out.println(c);
+
+B
+
+
+ascii value of 0	is 	48
+
+
+Password strength
+	length check		8 or above is ok
+	atleast 1 upper case character	
+	atleast 1 lower case character
+	at least 1 number
+	at least 1 symbol
+
+
+5 checks are there. 
+
+5 = good
+3 = average
+<3 = weak
+
+
+How do you know that a character is a number or not?
+
+char x='0';
+
+if(x>='0')
+if(x>=48)
+------------------
+char x='0';
+if(x=='0')		//true
+
+if(x==48)		//true
+
+char x='0';
+
+if(Character.isDigit(x))		//true
+
+
+if(Character.isLetter(x))		//returns true if x has an alphabet		
+
+-----------------------
+String reverse
+	StringBuilder 
+		reverse()
+
+Arrays
+-----------
+
+
+What will be the result of compiling the following program?
+public class MyClass {
+long var;
+public void MyClass(long param) { var = param; } // (Line no 1)
+public static void main(String[] args) {
+MyClass a, b;
+a = new MyClass(); // (Line no 2) 
+}
+}
+
+
+
+A compilation error will occur at (Line no 1), since constructors cannot specify a return value	
+A compilation error will occur at (2), since the class does not have a default constructor	
+A compilation error will occur at (Line no 2), since the class does not have a constructor that takes one argument of type int.	The program will compile without errors.	
+
+
+
+
+
+a
