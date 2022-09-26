@@ -208,3 +208,10 @@ maven
 	https://maven.apache.org/download.cgi
 
 
+D:\Softwares\Maven\apache-maven-3.8.6-bin\apache-maven-3.8.6
+
+
+volatile
+transient
+deepToString
+checked exceptions
