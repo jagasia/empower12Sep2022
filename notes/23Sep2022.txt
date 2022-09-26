@@ -174,3 +174,8 @@ Steps:
 	cid		Customer customer;
 	qty
 
+
+------------------
+TasK:
+
+Java Mock 27: 	Music Aggregator - Requirement 6
