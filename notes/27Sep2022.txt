@@ -117,3 +117,9 @@ Activity:
 Identify how Category runner can be used in junit
 so that some of the test methods are given an category and we run a particular category only.
 
+
+TasK:
+
+Identify Paramterized test runner.
+	we can supply test cases as a collection	(array list)
+ 
