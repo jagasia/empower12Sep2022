@@ -1,0 +1,57 @@
+What is Testing, Need of Testing, Types of Testings, What is J-Unit, Need of J-Unit, Programming with J-Unit
+---------------------------------------------
+whether the requirements are met or not?
+identifying errors
+fixing bugs
+creating test cases
+checking faults if any
+check all functionalities
+SDLC
+--------
+Conception
+Analysis
+Design
+Code
+Test
+Deploy
+Maintenance
+
+Types of testing
+---------------------
+manual / automated 
+
+unit testing
+integration testing
+regression testing
+
+
+What is Junit?
+
+.jar 
+
+
+
+@Override
+
+annotation = comment
+
+
+comment
+	//
+	/*		*/
+
+comments are ignored by the compiler.
+
+@Deprecated
+
+@Test
+
+
+--------------------
+Task:
+
+Create an AUT that class contains few methods.
+
+You need to test these methods using a Test class
+
+test the aut 
