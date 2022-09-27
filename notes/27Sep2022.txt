@@ -123,3 +123,52 @@ TasK:
 Identify Paramterized test runner.
 	we can supply test cases as a collection	(array list)
  
+-------------------------------------------
+EJB
+	Enterprise Java Beans
+
+Java SE		core java
+Java EE				J2EE
+	Web container			war			servlet / jsp
+	EJB container			ear			'''
+
+container?
+	takes care of generic services
+	we will  write beans (reusable piece of code in java) for application specific requirement
+
+
+Java ME
+
+
+class MyBean implements EntityBean
+{
+	//override 7 methods
+}
+
+
+
+ejb container creates pool of instances
+passivation
+	state of the object is persisted in secondary storage device
+
+activation
+
+2.5 * 1024 * 1024 * 1024
+
+ejbCreate()
+ejbActivate()
+ejbPassivate()
+ejbDestroy()
+
+
+Modules of Spring framework
+-------------------------------------------
+Spring 
+	Core
+	AOP
+	MVC
+	REST
+
+
+
+
