@@ -55,3 +55,18 @@ Create an AUT that class contains few methods.
 You need to test these methods using a Test class
 
 test the aut 
+
+
+
+-------------
+4) Run test:
+
+	Result result = JUnitCore.runClasses(TestJunit.class);
+		
+      for (Failure failure : result.getFailures()) {
+         System.out.println(failure.toString());
+      }
+		
+      System.out.println(result.wasSuccessful());
+
+

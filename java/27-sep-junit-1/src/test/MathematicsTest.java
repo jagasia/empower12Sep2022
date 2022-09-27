@@ -15,7 +15,7 @@ import model.Mathematics;
  * @author rjaga
  *
  */
-class MathematicsTest {
+public class MathematicsTest {
 	Mathematics aut;
 	/**
 	 * @throws java.lang.Exception
@@ -89,7 +89,7 @@ class MathematicsTest {
 	void testDivide() {
 		aut.setNo1(2);
 		aut.setNo2(3);
-		Double expected=0.67;
+		Double expected=0.6666666666666666;
 		aut.divide();
 		Double actual=aut.getResult();
 		
