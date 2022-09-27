@@ -1,11 +1,13 @@
-package test2;
+package test;
+
 import static org.junit.Assert.*;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
-public class Test2 {
+public class MathematicsTest1 {
 
 	@Before
 	public void setUp() throws Exception {
@@ -16,11 +18,13 @@ public class Test2 {
 	}
 
 	@Test
+	@Category(Admin.class)
 	public void testAdd() {
 		fail("Not yet implemented");
 	}
 
 	@Test
+	@Category(User.class)
 	public void testSubtract() {
 		fail("Not yet implemented");
 	}

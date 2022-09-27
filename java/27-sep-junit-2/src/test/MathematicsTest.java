@@ -3,12 +3,14 @@
  */
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Ignore;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import model.Mathematics;
 
@@ -17,20 +19,20 @@ import model.Mathematics;
  *
  */
 public class MathematicsTest {
-	Mathematics aut;
+	Mathematics aut=new Mathematics();
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@BeforeEach
-	void setUp() throws Exception {
+	@Before
+	public void setUp() throws Exception {
 		aut=new Mathematics();
 	}
 
 	/**
 	 * @throws java.lang.Exception
 	 */
-	@AfterEach
-	void tearDown() throws Exception {
+	@After
+	public void tearDown() throws Exception {
 		aut=null;
 	}
 
@@ -38,7 +40,7 @@ public class MathematicsTest {
 	 * Test method for {@link model.Mathematics#add()}.
 	 */
 	@Test
-	void testAdd() {
+	public void testAdd() {
 		aut.setNo1(2);
 		aut.setNo2(3);
 		Double expected=5.0;
@@ -51,7 +53,7 @@ public class MathematicsTest {
 	 * Test method for {@link model.Mathematics#subtract()}.
 	 */
 	@Test
-	void testSubtract() {
+	public void testSubtract() {
 		aut.setNo1(2);
 		aut.setNo2(3);
 		Double expected=-1.0;
@@ -64,7 +66,7 @@ public class MathematicsTest {
 	 * Test method for {@link model.Mathematics#difference()}.
 	 */
 	@Test
-	void testDifference() {
+	public void testDifference() {
 		aut.setNo1(2);
 		aut.setNo2(3);
 		Double expected=1.0;
@@ -77,7 +79,8 @@ public class MathematicsTest {
 	 * Test method for {@link model.Mathematics#product()}.
 	 */
 	@Test
-	void testProduct() {
+	@Ignore
+	public void testProduct() {
 		aut.setNo1(2);
 		aut.setNo2(3);
 		Double expected=6.0;
@@ -88,7 +91,7 @@ public class MathematicsTest {
 
 	@Test
 	@Ignore
-	void testDivide() {
+	public void testDivide() {
 		aut.setNo1(2);
 		aut.setNo2(3);
 		Double expected=0.67;

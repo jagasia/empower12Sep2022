@@ -70,3 +70,50 @@ test the aut
       System.out.println(result.wasSuccessful());
 
 
+
+@BeforeEach		(junit 5)
+@BeforeClass		(junit 4)
+
+What is the difference between @Before and @BeforeClass
+
+before 
+	is executed before every test method
+beforeClass
+	is executed only once for the entire test class
+
+
+
+Test Suite
+	is a collection of test cases
+
+--------------------------------------------
+
+Task:
+
+Create 3 test classes
+and create a test suite
+and run
+	test 1 and test 3 classes
+
+and run
+	test 2 and test 3 classes
+
+
+package test;
+
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+@RunWith(Suite.class)
+@SuiteClasses({MathematicsTest2.class,MathematicsTest3.class})
+public class MySuite {
+
+}
+
+
+-----------------
+Activity:
+Identify how Category runner can be used in junit
+so that some of the test methods are given an category and we run a particular category only.
+
