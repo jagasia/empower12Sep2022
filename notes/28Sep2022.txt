@@ -69,3 +69,32 @@ public class Car
 -----------------------------------
 
 https://github.com/jagasia/jun03-spring-jars-demo
+
+
+inside "bin" folder, there is a "jars" folder
+
+
+Lets create our first spring core project
+------------------------------------------------------
+1) Create a java project
+	28-sep-spring-1
+2) add spring jars to the build path
+	right click project
+		properties
+			build path -> Libraries tab
+				add external jar
+					choose the jar files (ideally have them in your project folder)
+3) Lets create a Bean
+	Employee.java
+		id
+		name
+		emailId
+
+	constructors
+	getters & setters
+	toString
+
+4) Spring configuration can be done in
+	xml
+	annotations
+
