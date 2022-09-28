@@ -85,7 +85,7 @@ Lets create our first spring core project
 				add external jar
 					choose the jar files (ideally have them in your project folder)
 3) Lets create a Bean
-	Employee.java
+	Employee.java			package:	com.empower.hrms.model
 		id
 		name
 		emailId
@@ -94,7 +94,7 @@ Lets create our first spring core project
 	getters & setters
 	toString
 
-4) Spring configuration can be done in
+4) Spring configuration can be done in		xml file is directly created inside "src" folder (not inside any package)
 	xml
 	annotations
 
@@ -110,14 +110,36 @@ Lets create our first spring core project
    xsi:schemaLocation = "http://www.springframework.org/schema/beans
    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-  <bean name="emp" class="com.wipro.hrms.model.Employee">
-  	<property name="id" value="123" />
-  	<property name="firstName" value="Raja" />
-  	<property name="lastName" value="Sivakumar" />
-  	<property name="salary" value="123456.5" />
-  </bean>
+	<bean id="employee" class="com.empower.hrms.model.Employee" scope="prototype">
+		<property name="id" value="100" />
+		<property name="name" value="Dheeraj" />
+		<property name="email" value="dheeraja@india.com" />
+	</bean>
 
 </beans>
+
+
+
+package com.empower.hrms;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.empower.hrms.model.Employee;
+
+public class App {
+
+	public static void main(String[] args) {
+		ApplicationContext ctx=new ClassPathXmlApplicationContext("bean.xml");
+		Employee x = (Employee) ctx.getBean("employee");
+		x.setName("Dheeraj Kumar");
+		System.out.println(x);
+		
+		Employee y=(Employee) ctx.getBean("employee");
+		System.out.println(y);
+	}
+
+}
 
 
 
