@@ -1,0 +1,71 @@
+Singleton class
+	Runtime r=new Runtime();		//not possible
+	Runtime r=Runtime.getRuntime();	//is possible
+
+
+Challenge:
+	create a class Sun that has a private constructor but we can obtain an object of Sun using getInstance method.
+
+	getInstance method can be public static method
+
+
+scope of bean:
+	Singleton
+	Prototype
+
+
+
+------------------------------------------------------------
+java project?	yes
+dynamic we project?	yes
+web services?	yes
+
+
+IOC container provides the instance of the beans
+
+IOC
+------
+	Inversion Of Control
+
+example for IOC is DI
+what is DI
+	Dependency Injection
+
+class Customer
+{
+	private Integer id;
+	private String name;
+	private Address address;	//is a dependency for Customer
+	//constructors
+	//setters & getters
+}
+
+class Address
+{
+}
+
+Address add=new Address();
+add.setDoor........
+
+Customer raja=new Customer();
+raja.setId(100);
+raja.setName("Raja");
+raja.setAddress(add);		//setter based dependency injection
+
+
+Customer siva=new Customer(100,"Siva",add);		//constructor based dependency injection
+
+
+public class Car
+{
+//	private Sony sony;		//music player
+//	private JBL jbl;
+	private Audio audio;		//interface
+
+	
+}
+
+
+-----------------------------------
+
+https://github.com/jagasia/jun03-spring-jars-demo
