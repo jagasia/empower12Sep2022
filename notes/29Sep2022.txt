@@ -47,3 +47,109 @@ pom	-	project object model
 
 Download apache tomcat 9 for windows 64 bit
 
+console application		CUI
+GUI
+web application
+mobile application
+
+
+---------------------------------------
+We create web applications
+-------------------------------------
+contains web pages
+	static web pages			html css
+	dynamic web pages
+		html + scripts
+
+scripting
+	client side script		javascript
+	server side script		servlet, jsp, php, asp
+
+
+Servlet
+	is a server side scripting language in java
+
+
+
+
+--------------------
+File -> new -> Project
+	Dynamic Web Project
+		project name: 29-sep-servlet-1
+		Target runtime:	showing "None"	so click "New Runtime" button
+			choose Apache tomcat 9
+			click next	-> Browse and choose the apache tomcat folder (unzipped) that contains "bin"
+			finish
+
+Task:
+	Create a dynamic web project and choose target runtime as Apache tomcat 9 server
+
+
+
+		String fn=request.getParameter("firstName");
+		String ln=request.getParameter("lastName");
+		
+		PrintWriter out = response.getWriter();
+		out.print("Hello "+fn+" "+ln);
+
+
+
+
+--------------------------------------
+
+Servlet
+	a class that extends HttpServlet
+	HttpServlet extends GenericServlet
+
+Web Container creates a pool of instances of the servlet
+
+Methods of Servlet?	Life cycle of a servlet
+	init
+	service
+	destroy
+
+service
+	is called whenever a request comes to servlet
+
+How can a request come to a servlet?
+	URL is used to call a servlet
+	when a form is submitted, it can call a servlet	(using URL)
+
+
+service method can be
+	doGet			less secure, simple
+	doPost
+
+http://localhost:8081/29-sep-dwp-1/MyServlet?firstName=Anirudh&lastName=Attiganal
+
+url re-writing
+query string
+
+
+@WebServlet({"/MyServlet","/ms","/jag"})			there are 3 url patterns we have used
+
+
+MVC
+	Model 
+	View
+	Controller
+
+<input type="text"
+text
+number
+date
+email
+range
+file
+
+
+Task:
+	Create a signup form and on submit, it should call a servlet	SignupServlet
+	the servlet should display the information for a confirmation.
+
+for Dropdownlist?
+	<SELECT	name="education">
+		<OPTION>Choose...</OPTION>
+		<OPTION>ECE</OPTION>
+		<OPTION>EEE</OPTION>
+	</SELECT>
