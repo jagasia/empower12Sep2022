@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+<!-- 	<bean id="employee" class="com.empower.hrms.model.Employee">
+		<constructor-arg name="id" value="100" />
+		<constructor-arg name="name" value="Dheeraj" />
+		<constructor-arg name="email" value="dheeraja@india.com" />
+	</bean> -->
+	
+	<bean id="add1" class="com.empower.hrms.model.Address">
+		<property name="dno" value="1" />
+		<property name="street" value="kadubeesanahalli" />
+		<property name="city" value="Bengaluru" />
+	</bean>
+	
+	<bean id="employee" class="com.empower.hrms.model.Employee">
+		<property name="id" value="100" />
+		<property name="name" value="Dheeraj" />
+		<property name="email" value="dheeraja@india.com" />
+		<!-- <property name="address" value="123, Main road, India" /> -->
+		<property name="address" ref="add1" />
+	</bean>
+
+</beans>

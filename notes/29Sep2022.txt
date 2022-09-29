@@ -1,0 +1,45 @@
+<beans>
+	<bean	id="emp" class="">
+		<constructor-arg>
+			
+		</contructor-arg>
+	</bean>
+</beans>
+
+Constructor based injection	(pending)
+------------------------------------	
+
+
+	<bean id="add1" class="com.empower.hrms.model.Address">
+		<property name="dno" value="1" />
+		<property name="street" value="kadubeesanahalli" />
+		<property name="city" value="Bengaluru" />
+	</bean>
+	
+	<bean id="employee" class="com.empower.hrms.model.Employee">
+		<property name="id" value="100" />
+		<property name="name" value="Dheeraj" />
+		<property name="email" value="dheeraja@india.com" />
+		<!-- <property name="address" value="123, Main road, India" /> -->
+		<property name="address" ref="add1" />
+	</bean>
+
+
+
+-----------------Annotation based configuration-----------------------
+annotation
+	@Bean
+	@Component
+
+
+
+@Bean
+public Product getProduct()
+{
+	return new Product();
+}
+
+
+
+
+pom	-	project object model
