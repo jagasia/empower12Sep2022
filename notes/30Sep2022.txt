@@ -54,5 +54,48 @@ for color:
 	${	}
 
 
+JSTL
+	JSP Standard Tag Library
 
+jstl 1.1
+jstl 1.2 jar
+
+we have downloaded jstl-1.2.jar
+	zip file is unzipped now.
+
+where to add this jar file in a Dynamic Web Project?????
+	Web Content\WEB-INF\lib	(or)
+	webapp/WEB-INF/lib
+		copy jstl jar and paste it inside the above location of the project
+
+paste the .jar file only		
+
+JSTL is a library, that contains sub libraries
+	html
+	core
+	sql
+
+core library		has lot of tags for basic java operations
+	if
+	choose
+	forEach
+	set
+	out
+	
+
+
+1) CUSTOMER table in the oracle database
+2) entity class
+	Customer.java
+3) dao class
+	CustomerDao.java
+4) customer.jsp
+5) CustomerServlet.java		(servlet)
+
+CREATE TABLE CUSTOMER
+(
+	id int primary key,
+	name varchar2(50) not null,
+	phone varchar2(15)
+);
 
