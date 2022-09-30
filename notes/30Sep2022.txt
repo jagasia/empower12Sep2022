@@ -1,0 +1,16 @@
+JSP
+----
+	Java Server Pages
+
+PrintWriter out=response.getWriter();
+out.println("Hello world<br/>");
+
+servlet is more of java code and little bit of HTML code embedded inside
+
+JSP is more of HTML code and little bit of java code
+
+8080 is already in use:
+	solutions:	i) change the port
+		ii) find the process running in that port
+			cmd
+				netstat -aon

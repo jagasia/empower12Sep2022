@@ -53,6 +53,7 @@ public class SignupServlet extends HttpServlet {
 		out.println(dob+"<BR/>");
 		out.println(gender+"<BR/>");
 		out.println(education+"<BR/>");
+		out.println("Signup is successful. Click<a href=login.html> here </a>to go to Login page");
 	}
 
 }
