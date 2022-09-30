@@ -99,3 +99,9 @@ CREATE TABLE CUSTOMER
 	phone varchar2(15)
 );
 
+
+
+JSP Directives
+	page
+	taglib
+	include
