@@ -14,3 +14,45 @@ JSP is more of HTML code and little bit of java code
 		ii) find the process running in that port
 			cmd
 				netstat -aon
+
+
+Task:
+	create a login.jsp file and on submit, it calls a LoginServlet
+	if username and password are same, then it should display "Failed" and else it display "Success"
+
+	Failure should be displayed in red color
+	Success should be displayed in green color
+	
+	status must be displayed below the login form itself.
+
+
+
+for color:
+	<font color="red">Failure</font>
+
+	or
+
+	<p style="color:red">Failure</p>
+
+
+
+
+1) Scriplet
+	<% 	%>
+
+2) Expression	
+	<%=	%>
+	always prints as output		out.println()
+	<%= 20*20 %>
+
+3) Declaration
+	<%!	%>
+
+4) Expresssion Language		EL
+	is only for printing output
+
+	${	}
+
+
+
+
