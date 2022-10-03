@@ -247,3 +247,31 @@ in a website, you want to display
 &ne;		!=
 
 ============================Maven issue is now resolved===============
+Autowiring
+	we have configured 2 beans in xml file
+
+		<bean id="emp" class="com.wipro.hrms.model.Employee">
+		</bean>
+
+		<bean id="add" class="com.wipro.hrms.model.Address">
+		</bean>
+
+spring is capable of automatically finding the dependencies
+	auto wiring
+
+1) create a quick start maven project
+2) in pom.xml
+	  <dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context</artifactId>
+    <version>5.2.7.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework</groupId>
+    <artifactId>spring-context-support</artifactId>
+    <version>5.2.7.RELEASE</version>
+</dependency>
+
+3) we define 2 beans now
+	employee
+	address
