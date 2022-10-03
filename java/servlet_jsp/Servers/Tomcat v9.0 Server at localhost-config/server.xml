@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="30-sep-jsp-demo-1" path="/30-sep-jsp-demo-1" reloadable="true" source="org.eclipse.jst.jee.server:30-sep-jsp-demo-1"/><Context docBase="29-sep-task1-login" path="/29-sep-task1-login" reloadable="true" source="org.eclipse.jst.jee.server:29-sep-task1-login"/><Context docBase="30-sep-jstl-crud-demo" path="/30-sep-jstl-crud-demo" reloadable="true" source="org.eclipse.jst.jee.server:30-sep-jstl-crud-demo"/></Host>
+      <Context docBase="30-sep-jsp-demo-1" path="/30-sep-jsp-demo-1" reloadable="true" source="org.eclipse.jst.jee.server:30-sep-jsp-demo-1"/><Context docBase="29-sep-task1-login" path="/29-sep-task1-login" reloadable="true" source="org.eclipse.jst.jee.server:29-sep-task1-login"/><Context docBase="30-sep-jstl-crud-demo" path="/30-sep-jstl-crud-demo" reloadable="true" source="org.eclipse.jst.jee.server:30-sep-jstl-crud-demo"/><Context docBase="03-oct-mvc-2" path="/03-oct-mvc-2" reloadable="true" source="org.eclipse.jst.jee.server:03-oct-mvc-2"/></Host>
     </Engine>
   </Service>
 </Server>
