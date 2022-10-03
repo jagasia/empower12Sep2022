@@ -169,3 +169,81 @@ public class MyController {
 Task:
 
 mvn archetype:generate -DgroupId=org.website.codekru -DartifactId=DemoProject -DpackageName=org.website.codekru -Dversion=1.0-SNAPSHOT -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+
+
+Spring boot
+----------------
+
+1) Spring initializr
+	creates and provide you the project 
+
+2) Convention over configuration
+
+3) in built apache tomcat server
+	
+4) starter dependencies
+
+
+-----------------------------------------------------------
+Spring boot
+	JpaRepository
+
+CustomerDao	
+
+CustomerRepository
+	interface
+
+implementation
+	CustomerService
+
+==================================
+We will start HTML now, (once maven issue is resolved, we will come back to spring)
+
+HTML
+	stands for
+		HyperText Markup Language
+SGML
+	
+
+browsers understand html
+html is meant for presentation	/ display	in browser
+
+structure of html
+
+root element of html file is
+	
+	<HTML>
+		<HEAD>
+			these data are processed even before the body is displayed in the browser
+		</HEAD>
+		<BODY>
+			displayed in browser
+		</BODY>
+	</HTML>
+
+tag types:
+	Processing instruction		<!DOCTYPE html>			means html5
+	EMPTY TAG			<br/>	<hr/>	<input type="text" />	
+	BODY TAG/ CONTENT TAG		<p> this is a paragraph </p>
+	ENTITIES				&nbsp;
+	ATTRIBUTES		<p align="center" > this is a para</p>		here, align is attribute
+	COMMENTS		<!-- this is a comment -->
+
+
+<element attribute="value">
+
+
+in a website, you want to display
+	a>b
+
+
+<p> a &lt; b</p>
+
+
+&gt;		>
+&lt;		>
+&eq;		=
+&ne;		!=
+
+============================Maven issue is now resolved===============
