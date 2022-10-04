@@ -300,3 +300,8 @@ just like JSTL core, spring forms is also a custom tag library for spring f/w
 java.lang.IllegalStateException: Neither BindingResult nor plain target object for bean name 'product' available as request attribute
 
 
+
+Product entity class is getting modified
+	Date mfgDate;
+	byte[] picture;
+
