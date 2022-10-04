@@ -43,14 +43,14 @@ Now you are going to create spring boot MVC project
 3) in sts/eclipse
 	File	->	Import	->	Existing Maven project
 
-		choose the location that contains pom.xml
+		choose the location that contains pom.xml	(pom.xml will not visible. but src / .mvn will be visible)
 	Finish
 
 4) create the following folder
 	WEB-INF/views
 
 	under src/main/webapp		(this is found above target folder)
-5) create a new jsp file index.jsp here
+5) create a new jsp file index.jsp here (under views folder)
 
 6) open application.properties file 			(this is found under src/main/resources)
 
@@ -59,7 +59,7 @@ Now you are going to create spring boot MVC project
 	spring.mvc.view.suffix=.jsp
 	server.port=8083
 
-8) create the controller class 		
+8) create the controller class 	(under src/main/java)	
 	right click base package and create a class
 		sub package name can be "controller"
 
