@@ -275,3 +275,30 @@ spring is capable of automatically finding the dependencies
 3) we define 2 beans now
 	employee
 	address
+-----------------
+Task:
+Create 2 classes, 3 beans
+
+bean1:		Book	(isbn, title, author)
+bean2:		Author	(id, name)		1, Shiv Khera
+bean3:					2, Chethan Bhagath
+
+try this in xml and also in annotation configuration
+
+
+
+For database programming,
+	spring offers
+		spring jdbc		JdbcTemplate
+				HibernateTemplate
+				Dao support
+
+Spring boot
+	JpaRepository
+		
+
+Spring mvc project
+Spring boot mvc project		jpa repository
+------------------------------------------------------------------------
+1) create a dynamic web project
+	

@@ -1,0 +1,82 @@
+class Car
+{
+	Sony sony;		//Sony is a class means, Tightly coupled
+}
+
+
+class Car
+{
+	Audio audio;	//audio is an interface means, Loosely coupled
+}
+
+interface Audio
+{
+	void play();
+}
+
+class Sony implements Audio
+{
+	public void play()
+	{
+		System.out.println("Sony plays good sound");
+	}
+}
+
+
+---------------------------------------------------------------
+Now you are going to create spring boot MVC project
+1) go to start.spring.io website
+	group id:		com.empower.hrms
+	artificat id:		04-oct-mvc-1
+	package:		same as group id
+
+	maven
+	java
+	version 8
+	.war
+
+	dependencies:
+		spring web
+
+2) unzip the downloaded zip
+
+3) in sts/eclipse
+	File	->	Import	->	Existing Maven project
+
+		choose the location that contains pom.xml
+	Finish
+
+4) create the following folder
+	WEB-INF/views
+
+	under src/main/webapp		(this is found above target folder)
+5) create a new jsp file index.jsp here
+
+6) open application.properties file 			(this is found under src/main/resources)
+
+7) write the below code in application.properties
+	spring.mvc.view.prefix=/WEB-INF/views/
+	spring.mvc.view.suffix=.jsp
+	server.port=8083
+
+8) create the controller class 		
+	right click base package and create a class
+		sub package name can be "controller"
+
+	@Controller
+	public class MyController
+	{
+		@RequestMapping("/")
+		public String home()
+		{
+			return "index";
+		}
+	}
+
+
+9) run the project
+	right click project, run as Spring boot app	/ 	java application
+
+	or
+	
+	open the Application.java 	(main method)		ctrl + F11
