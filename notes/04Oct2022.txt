@@ -80,3 +80,166 @@ Now you are going to create spring boot MVC project
 	or
 	
 	open the Application.java 	(main method)		ctrl + F11
+
+
+10) go to browser and type:
+	http://localhost:8084
+
+
+Error:
+	"Path with "WEB-INF" or "META-INF": [WEB-INF/views/index.jsp]"
+
+Solution:
+	in pom.xml, add this inside <dependencies> tag:
+
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+		</dependency>
+
+
+
+
+
+	@RequestMapping("/")
+	@RequestMapping(value = "/",method = RequestMethod.GET)
+	@GetMapping("/")
+
+
+
+all the above mappings are same only
+
+
+ModelMap
+	
+
+
+Model
+	entity
+		@Entity
+			ORM	object relational mapping
+
+JPA 
+	Java Persistence Api
+
+@Entity
+	use this annotation on a class that marks the class as entity class
+	@Entity		the table name also will be Employee
+	class Employee
+		
+
+if you want a different name for the table?
+
+@Table(name="EMP")
+
+@Entity
+@Table(name="EMP")
+public class Employee
+{
+	@Id
+	private Integer associateNo;
+	private String name;
+	private String email;
+}
+
+----------------------------------------------JpaRepository----------------
+javax.persistence package
+-----------------------------------
+
+entity:
+	Product.java		
+repo:
+	ProductRepository.java		(interface)
+service:
+	ProductService.java			class that autowires the repository
+controller:
+	ProductController.java			autowire the service
+
+
+product.jsp
+
+
+whenever you want to use JpaRepository, you need to add 
+	spring data jpa dependency
+
+
+
+1) Entity:
+
+package com.empower.ecom.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Product {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer id;
+	private String name;
+	private Double price;
+	
+	public Product() {}
+
+	public Product(Integer id, String name, Double price) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+	}
+	
+	public Product(String name, Double price) {
+		super();
+		this.name = name;
+		this.price = price;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + "]";
+	}
+	
+}
+
+
+
+2) Repository
+package com.empower.ecom.model;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface ProductRepository extends JpaRepository<Product, Integer>
+{
+
+}
+
+
+3) Service class
