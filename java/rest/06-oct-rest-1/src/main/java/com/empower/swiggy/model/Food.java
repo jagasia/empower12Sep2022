@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Food {
@@ -13,6 +16,9 @@ public class Food {
 	private String name;
 	private Double price;
 	private String category;
+	@JsonIgnore
+	@ManyToOne
+	private Restaurant restaurant;
 	
 	public Food() {}
 	public Food(Integer id, String name, Double price) {
@@ -28,6 +34,16 @@ public class Food {
 		this.name = name;
 		this.price = price;
 		this.category = category;
+	}
+	
+	
+	public Food(Integer id, String name, Double price, String category, Restaurant restaurant) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.category = category;
+		this.restaurant = restaurant;
 	}
 	public Integer getId() {
 		return id;
@@ -53,6 +69,13 @@ public class Food {
 	}
 	public void setCategory(String category) {
 		this.category = category;
+	}
+	
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 	@Override
 	public String toString() {

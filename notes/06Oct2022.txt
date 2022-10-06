@@ -274,3 +274,25 @@ lets modify Food class
 
 Business requirement:
 	We should be able to find food by category
+
+
+1 - 1		Department	-	Department Head
+1 - Many		Department	-	many Employees
+Many - 1		many Employees	-	Department
+Many - Many	CUSTOMER	-	PRODUCT
+
+
+
+1 - Many		Department	-	Employee
+	1 will become a column in many
+
+Many - Many	CUSTOMER	-	PRODUCT
+
+whenever many-many relationship is there, then the relationship becomes a table
+
+SALES is the relationship between customer and product
+	SALES table 
+		CID
+		PID
+
+@OneToMany
