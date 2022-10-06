@@ -305,3 +305,11 @@ Product entity class is getting modified
 	Date mfgDate;
 	byte[] picture;
 
+
+Task:
+Create an entity (ex: 	Food/ Menu)
+repository
+service
+controller
+jsp 
+	spring forms
