@@ -225,6 +225,41 @@ public class FoodController {
 
 
 
+download this project:
+	https://github.com/jagasia/06-oct-rest-1
 
+
+-------------------------------------------------------------------------
+Swagger
+	
+steps:
+1) pom.xml
+	<dependency>
+	    <groupId>io.springfox</groupId>
+	    <artifactId>springfox-boot-starter</artifactId>
+	    <version>3.0.0</version>
+	</dependency>
+
+
+2) enable swagger
+	go to Application.java
+@SpringBootApplication
+@EnableSwagger2
+public class Application {
+
+	public static void main(String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
+
+}
+
+3) configure swagger in application.properties:
+in application.properties:
+	spring.mvc.pathmatch.matching-strategy=ant-path-matcher
+
+4) go to browser:
+	localhost:8081/swagger-ui/			
+		remember /food is not given here.
+		also	/ at the end
 
 
