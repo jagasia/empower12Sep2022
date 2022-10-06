@@ -325,3 +325,7 @@ server.port=8081
 
 
 ----------------------------
+We configure the authentication now:
+
+1) class that extends WebSecurityConfigurerAdapter
+	
