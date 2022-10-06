@@ -31,6 +31,17 @@ public class FoodController {
 		return fs.read(id);
 	}
 	
+	@GetMapping("/category/{category}")
+	public List<Food> findFoodByCategory(@PathVariable("category")String category) {
+		return fs.findFoodsByCategory(category);		
+	}
+	
+	@GetMapping("/price/{price}")
+	public List<Food> findFoodByPrice(@PathVariable("price") Double price)
+	{
+		return fs.findFoodByPrice(price);
+	}
+	
 	@PostMapping
 	public Food addFood(@RequestBody Food food) {
 		return fs.create(food);

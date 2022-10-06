@@ -44,5 +44,14 @@ public class FoodService {
 		}
 		return food;
 	}
+
+	public List<Food> findFoodsByCategory(String category)
+	{
+		return fr.findByCategory(category);		
+	}
 	
+	public List<Food> findFoodByPrice(Double price)
+	{
+		return fr.findFoodByPrice(price);
+	}
 }

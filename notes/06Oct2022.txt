@@ -263,3 +263,14 @@ in application.properties:
 		also	/ at the end
 
 
+----------------------------------------------------
+lets modify Food class
+	private Integer id;
+	private String name;
+	private Double price;
+	private String category;
+
+
+
+Business requirement:
+	We should be able to find food by category

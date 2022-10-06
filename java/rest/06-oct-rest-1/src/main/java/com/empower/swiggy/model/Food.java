@@ -12,12 +12,22 @@ public class Food {
 	private Integer id;
 	private String name;
 	private Double price;
+	private String category;
+	
 	public Food() {}
 	public Food(Integer id, String name, Double price) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.price = price;
+	}
+	
+	public Food(Integer id, String name, Double price, String category) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.price = price;
+		this.category = category;
 	}
 	public Integer getId() {
 		return id;
@@ -37,9 +47,17 @@ public class Food {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	@Override
 	public String toString() {
-		return "Food [id=" + id + ", name=" + name + ", price=" + price + "]";
+		return "Food [id=" + id + ", name=" + name + ", price=" + price + ", category=" + category + "]";
 	}
+
 	
 }
