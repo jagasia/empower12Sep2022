@@ -296,3 +296,32 @@ SALES is the relationship between customer and product
 		PID
 
 @OneToMany
+
+
+Spring modules:
+	core
+	aop
+	mvc
+	rest
+	security
+
+Spring Security:
+	basic
+	jwt
+	oauth
+		gmail
+		facebook
+		git
+
+
+Basic
+---------
+is done 
+
+server.port=8081
+#spring.security.user.name=sourabh
+#spring.security.user.password=sourabh@123
+
+
+
+----------------------------
