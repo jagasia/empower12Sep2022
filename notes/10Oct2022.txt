@@ -272,3 +272,100 @@ int main()
     
     return 0;
 }
+=================================
+Ascending order sequence
+You have found trees grown on a line , but they are not in order . You plan to find the portion of trees with heights in ascending order.
+Given a integer array  that represents the heights of trees , write a program to find the maximum length of ascending order sequence.
+
+Input Format :
+A single integer that denotes the size of the array
+Space separated integer array values that corresponds to the array values.
+
+Output Format :
+A single integer that denotes the maximum length
+
+Sample Input 1
+14
+0 1 3 5 7 0 1 2 3 4 5 6 7 0
+
+Sample Output 1
+8
+
+Sample Input 2
+5
+2 -2 2 -2 2
+
+Sample Output 2
+2 
+ 
+
+
+
+
+
+5
+5 4 3 2 1
+
+6
+1 2 0 1 2 3
+
+
+
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include<string.h>
+
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int arr[n];
+    
+    for(int i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    
+    //algorithm
+    int ascCount=0;
+    int maxAscCount=0;
+    
+    for(int i=0;i<n-1;i++)
+    {
+        // printf("%d",arr[i]);
+        if(arr[i]<arr[i+1])
+        {
+            ascCount++;
+            if(ascCount==1)
+                ascCount=2;
+            if(ascCount>maxAscCount)
+                maxAscCount=ascCount;
+        }else
+        {
+            ascCount=0;
+        }
+    }
+    
+
+    printf("answer is %d",maxAscCount);
+    return 0;
+}
+
+--------------------------------------
+Task:
+Accept a number as input (input should be less than 10)
+
+Display the factorial of that number.
+
+Ex:
+
+5 factorial = 5 * 4 * 3 * 2 * 1	=	120
+
+
