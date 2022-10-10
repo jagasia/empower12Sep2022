@@ -1,0 +1,199 @@
+Unix functions and substitutions
+--------------------------------------------
+
+
+String functions
+
+substring
+
+Task:
+Create a shell program (using nano) and 
+1) variable with value
+2) substitute them in a string
+3) function
+4) call the function
+5) function with placeholders and call them with actual values
+--------------------------------------------------------------------------------------
+
+
+  GNU nano 5.9                                            one.sh
+function display()
+{
+        echo "This is display function. First Name is $1 and Last Name is $2"
+}
+
+date=`date`
+echo "Hello $date"Hello Mon Oct 10 12:05:37 IST 2022
+
+
+name='Raja';
+echo "Hi $name"
+
+display Siva Kumar
+
+
+-------------------------Unix and Shell Programming------------------------------------
+-----------------------------------------------------------------------------------------------------
+
+
+Task:
+create a hello world program in C language
+use vi editor
+
+save the file and exit		:wq
+
+compile the file
+	gcc one.c
+
+run the file
+	./a.exe
+
+
+Identify the c language data types
+
+short
+int
+long
+
+char
+
+float
+double
+
+
+
+Type	Storage size	Value range
+char	1 byte	-128 to 127 or 0 to 255
+unsigned char	1 byte	0 to 255
+signed char	1 byte	-128 to 127
+int	2 or 4 bytes	-32,768 to 32,767 or -2,147,483,648 to 2,147,483,647
+unsigned int	2 or 4 bytes	0 to 65,535 or 0 to 4,294,967,295
+short	2 bytes	-32,768 to 32,767
+unsigned short	2 bytes	0 to 65,535
+long	8 bytes or (4bytes for 32 bit OS)	-9223372036854775808 to 9223372036854775807
+unsigned long	8 bytes	0 to 18446744073709551615
+
+long double
+
+
+Programming control statements:
+
+if
+if else
+if else if else
+switch
+while
+do while
+for
+
+
+
+Accept a string input and check if it is a palindrome or not.
+hint:
+	strlen
+	
+==
+
+char x[10];
+char y[10];
+
+x==y
+
+
+
+#define
+const
+arrays
+multi dimension arrays
+
+a[0]=	a+0
+
+
+a[3]	=	a+3
+
+
+Create a function that accepts 2 arguments
+	those 2 arguments x , y	defined in the function are called as Formal parameters
+
+	while calling the function, if you pass	a,b	then they are called as actual parameters
+
+create a function 	"swap" that accepts 2 parameters and swap them.
+
+Pointers:
+	to declare a pointer, we use * symbol
+
+	int *a;
+
+	to get the value of the pointer
+		*a
+
+address of operator		&
+
+	&x;			address of x
+
+
+scanf	
+	should be able to modify/update the value of a variable.
+	that is why we use & in scanf
+
+scanf("%d",&marks);
+
+
+
+#define
+	
+
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include<string.h>
+
+void swap(int *x, int *y)
+{
+    int temp=*x;
+    *x=*y;
+    *y=temp;
+}
+
+int main()
+{
+    int a=20;
+    int b=30;
+    swap(&a,&b);
+    printf("a=%d\tb=%d",a,b);
+    return 0;
+}
+
+
+-------------------------
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+#include<string.h>
+
+#define age 10
+#define NEWLINE '\n'
+
+int main()
+{
+    
+    int x=age;
+    printf("%d",age);
+    printf("%c",NEWLINE);
+    printf("%d",age);
+    return 0;
+}
+
+
