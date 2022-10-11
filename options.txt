@@ -1,0 +1,17 @@
+	22	holiday
+	23	holiday
+	24 mon	holiday
+	
+Option1:			already in calendar		NEUTRAL
+	25 - tue Office
+	26 - Holiday
+Option2:
+	15 - sat	Office
+	25 - tue- Holiday
+	26 - Holiday
+Option3:
+	25- tue - Holiday
+	26- 9:30 -4
+Option4:	
+	(work from home)
+	REJECTED		

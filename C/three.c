@@ -11,14 +11,35 @@ struct Customer
 
 void main()
 {
-    Customer carr[10]={
-        {1,"Siva"},
-        {2,"Ram"},
-        {3,"Ashok"}
-    };
-    // carr[0].id=100;
-    // strcpy(carr[0].name,"Raja");
-    for(int i=0;i<10;i++)
-        printf("%d\t%s\n",carr[i].id,carr[i].name);
-    printf("Hello world");
+    int count=0;
+    Customer carr[10];
+    
+    int choice=0;
+    do
+    {
+        printf("1: Add Customer\n2: Display All Customers\n3: Exit\n");
+        scanf("%d",&choice);
+        switch (choice)
+        {
+        case 1: //Add
+            printf("Id:");
+            scanf("%d",&carr[count].id);
+            printf("Name:");
+            scanf("%s",carr[count].name);
+            count++;
+            break;
+        case 2: //Display All Customers
+            printf("Displaying the existing customers\n");
+            for(int i=0;i<count;i++)
+            {
+                printf("%d\t%s\n",carr[i].id,carr[i].name);
+            }
+            printf("-----------------------\n");
+            break;
+        default:
+            break;
+        }
+    } while (choice<=2);
+    
+
 }
