@@ -1,13 +1,3 @@
-C language - Structures & Files
-------------------------------------------
-struct Address
-{
-	int dno;
-	char street[20];
-	char city[20];
-};
-
-
 #include<stdio.h>
 #include<string.h>
 
@@ -32,20 +22,3 @@ void main()
         printf("%d\t%s\n",carr[i].id,carr[i].name);
     printf("Hello world");
 }
-
-
-
-
-
-Task:
-1) Create a structure
-	Product
-		id
-		name
-		price
-
-2) Create an array of Products (size 10)
-3) Create a main function
-	1) Add Product
-	2) Display All products
-
