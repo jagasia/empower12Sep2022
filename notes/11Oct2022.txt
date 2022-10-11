@@ -1,0 +1,9 @@
+C language - Structures & Files
+------------------------------------------
+struct Address
+{
+	int dno;
+	char street[20];
+	char city[20];
+};
+
