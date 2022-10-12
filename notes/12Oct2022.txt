@@ -98,3 +98,115 @@ Identify as many semantic tags in html5
 
 
 https://www.geeksforgeeks.org/top-10-new-features-of-html5/
+
+
+
+headings
+	H1 to H6
+paragraph			BLOCK
+div			BLOCK
+span		does not display in a separate line. 		INLINE
+tables
+list
+
+span
+{
+	color:red
+}
+
+<p> this is a sentence typed in <span>english </span>language. This line also is in english.</p>
+
+
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>S.No.</th><th>Name<th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td><td>Raja</td>
+		</tr>
+	</tbody>
+</table>
+
+
+what is 
+	colspan
+	rowspan
+
+
+
+=====================================
+What is CSS?
+	Cascading Style Sheet
+
+What is the need for Stylesheet?
+
+
+3 ways a stylesheet can be used:
+	1) in-line
+	2) internal
+	3) external
+
+inline:
+	<p style="color:yellow"> this is a sentence</p>
+
+internal:
+	<style>
+        p
+        {
+            color:violet
+        }
+        span
+        {
+            color: red;
+        }
+        div
+        {
+            color:blue;
+        }
+    </style>
+
+external:
+	<link rel="stylesheet" href="blue.css">
+
+
+color:red
+
+
+Activity 2:
+identify as many css properties as possible.
+
+
+
+Selectors:
+
+p, div
+{
+	color:red
+}
+
+	here, we have used "element" selector
+
+
+1) element selector
+2) id selector			#
+	#username
+	{
+		color:red
+	}
+3) class selector			.
+	.odd
+	{
+		
+	}
+
+
+
+Activity 1:
+	3 ways of stylesheets
+	selectors
+
+
