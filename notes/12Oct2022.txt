@@ -13,3 +13,88 @@ Task:
 
 in C language, a file can be accessed using a file pointer.
 
+FILE *fptr=fopen("filename.txt","r");			r, w, a
+
+--------------------------HTML5
+10 new features of HTML5
+1) AUDIO, VIDEO
+
+	<video>
+	</video>
+
+
+<!DOCTYPE html>
+<html>
+<body>
+<h2>Example of video and audio tag</h2>
+	
+<video width = "300" height = "200" controls autoplay>
+	<source src = "/html5/foo.ogg" type ="video/ogg" />
+	<source src = "/html5/foo.mp4" type = "video/mp4" />
+		Your browser does not support the video element.
+</video>
+	
+<audio controls autoplay>
+	<source src = "/html5/audio.ogg" type = "audio/ogg" />
+	<source src = "/html5/audio.wav" type = "audio/wav" />
+		Your browser does not support the audio element.
+</audio>
+</body>
+</html>
+
+
+2) Vector Graphics
+
+<svg id = "svgelem" height = "200" xmlns = "http://www.abc.org/2000/svg">
+	<circle id = "redcircle" cx = "50" cy = "50" r = "50" fill = "red" />
+</svg>
+
+
+3) Semantic Tags
+
+before HTML5,
+	<div class="header">
+	</div>
+
+	<div class="header">
+	</div>
+
+now in HTML5
+
+	<header>
+	</header>
+
+Identify as many semantic tags in html5
+
+4) Figure and Figcaption tags for images
+
+5) Nav tag
+	for menus
+
+6) Progress
+
+
+7) placeholder
+
+	<input type="text" placeholder="Enter your name here" />
+
+8) 
+	input types:
+
+		text		already there
+		number
+		email
+		date
+		range
+		file		already there
+
+9) web storages
+	local storage
+	session storage
+
+	localStorage.setItem("key","value");
+	localStorage.getItem("key");		//returns the value
+
+
+
+https://www.geeksforgeeks.org/top-10-new-features-of-html5/
