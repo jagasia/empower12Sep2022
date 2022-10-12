@@ -1,0 +1,15 @@
+Task:
+1) Create a structure
+	Product
+		id
+		name
+		price
+
+2) Create an array of Products (size 10)
+3) Create a main function
+	1) Add Product
+	2) Display All products
+
+
+in C language, a file can be accessed using a file pointer.
+
