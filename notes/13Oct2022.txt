@@ -1,0 +1,62 @@
+HTML
+CSS
+Bootstrap
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+Grid System
+------------------
+	12 columns
+
+
+display:none
+display:block
+display:inline
+
+Bootstrap typography
+
+Activity:
+-----------
+create a html file and apply bootstrap css cdn to the page
+understand typography
+understand grid model
+try to create atleast 3 rows of different number of columns
+
+Try navbar
+--------------------------------------------
+DevOps
+-----------
+What is DevOps?
+	Development Operations
+
+		automation
+		collaboration
+		integration
+		configuration management
+
+
+Git
+	install git
+
+github
+gitlab
+
+
+Do:
+	git config --global user.name jagasia
+	git config --gloabl user.email rjagadeeswaran@Yahoo.com
+
+	git config --global user.password "1234321"
+
+to save credentials:	
+	git config --global credential.helper store
+
+
+Check:
+	git config --list --show-origin
+
+---------------------------------------------------------
+if i am a project leader, i will create a repository in github.com
+
+in windows, 
+

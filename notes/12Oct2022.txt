@@ -210,3 +210,68 @@ Activity 1:
 	selectors
 
 
+1) Team leader to create a git repository in github.com
+2) Team leader to create a spring boot app in start.spring.io
+3) copy the unzipped project to a directory
+4) from that directory, push the project to the git repository
+5) add team members as collaborator
+6) Team members choose a directory location and
+	clone the project
+	import the project and add your files
+	go inside the project folder in cmd prompt
+	push the changes to the git
+7) Team leader
+	pull the branches
+	merge them into your branch.
+
+Note:
+	every members, pull before you push
+
+
+
+
+
+
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/jagasia/hrms.git
+git push -u origin main
+
+
+
+
+git init
+git remote add origin https://github.com/jagasia/hrms.git
+git add .
+git commit -m 13Oct5pm
+git branch -M jag
+git push -u origin jag
+
+
+
+now, everytime you do some changes, you want to reflect those changes in remote repostiory,
+
+git add .
+git commit -m "second commit"
+git push -u origin jag
+
+
+
+git init
+git remote add origin https://github.com/jagasia/hrms.git
+git pull -c http.sslVerify=false
+
+
+team members pull the code and import the project to eclipse 
+add their code
+and push their code using
+
+git add .
+git commit -m message
+git branch -M shashank
+git push -u origin shashank
+
+

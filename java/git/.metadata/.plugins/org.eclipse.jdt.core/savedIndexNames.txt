@@ -1,0 +1,2 @@
+INDEX VERSION 1.131+D:\Jag\Empower\all\java\git\.metadata\.plugins\org.eclipse.jdt.core
+3791396007.index
