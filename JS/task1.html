@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous">
+
+    </script>
+    <script>
+        $(document).ready(function(){
+            $("#txt1").css("background-color","yellow");
+
+            $("form").submit(function(e){
+                e.preventDefault();
+                //
+                return false;
+            });     
+        });
+    </script>
+</head>
+<body>
+    <form>
+        <input type="text" name="" id="txt1">
+        User Name: <input type="text" name="" id="username"><br>
+
+        Password: <input type="password" name="" id="password"><br>
+        Confirm Password: <input type="password" name="" id="cpassword"><br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

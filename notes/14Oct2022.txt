@@ -94,8 +94,29 @@ Lab setup for Jquery:
     </script>
 </head>
 <body>
-    Number 1: <input type="number" name="" id="no1"><br>
+    Number 1: <input type="number" name="" id="no1" required><br>
     Number 2: <input type="number" name="" id="no2"><br>
     <input type="button" value="Add" id="btnAdd" onclick="">
 </body>
 </html>
+
+
+
+Task:
+
+signup form should validate the data entered by the user.
+
+1) password and confirm password must be same
+2) password must be atleast 8 characters and contain 1 upper, 1 lower, 1 number, 1 symbol
+3) date of birth cannot be future date
+
+
+
+....................
+...................
+...................
+...............
+
+Hint:
+	$("#txt1").css("background-color","yellow");
+
