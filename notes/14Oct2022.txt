@@ -19,4 +19,22 @@ Create a Signup form using html
 and display the user entered details for a confirmation
 
 
-https://cloud2.rpsconsulting.in/console/#/
+Events
+Display methods
+
+
+
+
+value		vs		innerHTML
+
+
+
+input:text
+
+<div id="div1">
+	
+</div>
+
+
+document.getElementByid("div1").innerHTML="<p>this is </p><b>this is bold</b>";
+document.getElementByid("div1").innerText="<p>this is </p><b>this is bold</b>";
