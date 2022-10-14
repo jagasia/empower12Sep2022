@@ -225,4 +225,10 @@ http://localhost:8081/14-oct-ajax-1/calc?no1=2&no2=3
 
 </html>
 ----------------------------------------------------------
-JSON
+Task:
+call the servlet from javascript/ jquery using ajax
+to prevent cross origin error, keep HTML file also in dynamic web project inside WEB CONTENT folder
+
+
+https://www.sonarqube.org/success-download-community-edition/
+
