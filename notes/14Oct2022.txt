@@ -1,0 +1,20 @@
+Javascript
+--------------
+	client side scripting language
+	runs in browser
+
+
+Javascript version		ES6
+
+ES = ECMA Script
+
+European Computer Manufacturers' Association
+
+DOM	Document Object Model
+
+
+TasK
+-------
+Create a Signup form using html
+and display the user entered details for a confirmation
+
