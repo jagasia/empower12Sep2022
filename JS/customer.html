@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fn1(){
+            var id=parseInt(document.getElementById("id").value);
+            var name=document.getElementById("name").value;
+            var address=document.getElementById("address").value;
+
+            var customer={"id":id,"name":name,"address":address};
+            alert(JSON.stringify(customer));
+            console.log(customer);
+        }
+        function fnPatch()
+        {
+            var inputStr=document.getElementById("str").value;
+            alert(inputStr);
+            //how to patch a JSON to a form?
+            //convert the json string into an object
+            var obj=JSON.parse(inputStr);
+            document.getElementById("id").value=obj.id;
+            document.getElementById("name").value=obj.name;
+            document.getElementById("address").value=obj.address;
+        }
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="str"><input type="button" value="Patch" onclick="fnPatch()">
+    <br>
+    <form>
+        Id: <input type="number" name="" id="id"> <br>
+        Name: <input type="text" name="" id="name"> <br>
+        Address: <input type="text" name="" id="address"> <br>
+        <input type="button" value="Submit" onclick="fn1()">
+
+    </form>
+</body>
+</html>

@@ -10,6 +10,15 @@ public class Call {
 	
 	public Call() {}
 
+	public Call(String callType, Double cost, Date duration, Date date, Contact contact) {
+		super();
+		this.callType = callType;
+		this.cost = cost;
+		this.duration = duration;
+		this.date = date;
+		this.contact = contact;
+	}
+	
 	public Call(String type, String callType, Double cost, Date duration, Date date, Contact contact) {
 		super();
 		this.type = type;
