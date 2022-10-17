@@ -232,3 +232,8 @@ to prevent cross origin error, keep HTML file also in dynamic web project inside
 
 https://www.sonarqube.org/success-download-community-edition/
 
+
+
+What is Sonar Qube?
+-------------------------------
+maven projects

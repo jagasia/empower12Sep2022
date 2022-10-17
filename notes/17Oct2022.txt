@@ -1,0 +1,90 @@
+Demo on SonarQube:
+We have uninstalled java 8
+installed java 11
+set env var:
+	JAVA_HOME		C:\Program Files\Java\jdk-11.0.1
+	path			%JAVA_HOME%\bin
+
+we have downloaded sonarqube from
+	https://www.sonarqube.org/success-download-community-edition/
+
+unzip to the softwares folder
+
+go inside the folder
+	D:\Softwares\sonarqube-8.8.0.42792\bin\windows-x86-64
+
+start sonar by running the batch file:
+	StartSonar.bat
+
+after running this batch file,
+
+	localhost:9000
+
+username: admin
+password:	admin
+
+import an old java project to eclipse workspace
+right click project
+	configure
+		convert to maven project
+
+we get pom.xml file
+	add the jacoco maven plugin
+	and
+	sonar maven plugin
+
+<plugin>
+  <groupId>org.sonarsource.scanner.maven</groupId>
+  <artifactId>sonar-maven-plugin</artifactId>
+  <version>3.7.0.1746</version>
+</plugin>
+
+<plugin>
+	<groupId>org.jacoco</groupId>
+	<artifactId>jacoco-maven-plugin</artifactId>
+	<version>0.8.1</version>
+</plugin>
+
+
+now, generate jar/war file by 
+	right click project
+		run as 
+			maven build
+				goals:	clean install
+
+between clear & install, use the jacoco options
+
+org.jacoco:jacoco-maven-plugin:prepare-agent
+
+actually:
+	clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+
+now, the jar file is being created in "target" folder
+
+
+Lets go to sonarqube admin console website and add new project
+
+Add Project
+	key = project name
+		provide a token (type anything)
+			maven
+					copy the generated mvn command
+	
+
+mvn sonar:sonar \
+  -Dsonar.projectKey=20-sep-mock24-req4 \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login=dd7cdeb0cb999b53b30270584e7283db408fa001
+
+
+mvn commands:
+	we can use these commands in command prompt to
+		create a new project	(of any arche type)
+
+
+mvn clean install		(in command prompt)
+is similar to 
+	right click project	run as 		maven build		goals:	clean install
+
+
+sonar:sonar   -Dsonar.projectKey=20-sep-mock24-req4   -Dsonar.host.url=http://localhost:9000   -Dsonar.login=dd7cdeb0cb999b53b30270584e7283db408fa001

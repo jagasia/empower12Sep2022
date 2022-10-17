@@ -9,6 +9,8 @@ import java.util.jar.Attributes.Name;
 public class App {
 
 	public static void main(String[] args) throws ParseException {
+		int abcd;
+		
 		List<Contact> contactList = Contact.prefill();
 		Scanner sc=new Scanner(System.in);
 		System.out.println("Enter the number of calls:");

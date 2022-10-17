@@ -17,7 +17,10 @@ public class CallBO {
 	}
 	public List<Call> findCall(List<Call> callList,String contactName)
 	{
+//		Call call=null;
+//		call.getContact();
 		List<Call> result=new ArrayList<>();
+//		System.out.println("Going to for loop now");
 		for(Call c:callList)
 		{
 			if(c.getContact().getName().equalsIgnoreCase(contactName))
