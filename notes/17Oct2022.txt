@@ -1052,3 +1052,47 @@ typescript 4.0.3	 or earlier
 	
 	var rama:Student;
 
+
+
+
+class Employee
+{
+	id:number=1;
+	
+}
+
+
+var i:number=20;
+var str:string="123";
+i=<number><any>str;
+console.log(i);
+console.log(str);
+
+
+
+
+we can create components using
+	ng g c <<component name>>
+	ng generate component <<component name>>
+
+
+
+
+
+Binding
+--------------
+property binding
+	<input type="text" [value]="uid" />			here, uid is a variable in .ts file
+even binding
+	<input type="button" (click)="fn1()" />			here, fn1() is a function in .ts file
+2-way data binding
+
+[(ngModel)]
+
+import FormsModule in app.module.ts
+
+
+
+how to display the value of a variable?		Interpolation
+
+Each project team to identify the user stories and allocate to team members.
