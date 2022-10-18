@@ -87,3 +87,118 @@ export class SignupComponent implements OnInit {
 }
 
 
+------------------------------------------
+Pipes
+-------
+
+		|
+
+
+is used to transform an information into some other format
+built - in pipe
+custom pipe
+
+var x="hello";
+
+{{ x | uppercase }}
+
+HELLO
+
+
+json
+uppercase
+lowercase
+titlecase
+
+Task:
+Identify the angular built-in pipes 
+
+date
+	date
+	short
+	long
+	
+	
+currency
+decimal
+percent
+splice
+slice
+
+async
+
+key value
+
+
+https://www.ngdevelop.tech/angular/pipes/
+
+ng g c signup
+
+@Component({
+selector:
+templateUrl:
+styleUrls:[]
+})
+export class SignupComponent
+{
+
+
+
+a class decorated by @Pipe decorator,
+and declared in the app.module.ts
+
+Example for custom pipe
+
+ng g p length
+
+--------------------------------------------------
+Form Validations
+--------------------------
+
+
+Validator.required
+range
+min
+max
+minLength
+maxLength
+
+custom validator
+
+
+
+
+--------------------------------------------------------
+1) entity 
+	Customer
+		id
+		name
+		phone
+		email
+
+2) respository
+	CustomerRepository
+
+3) service
+	CustomerService
+
+4) rest controller
+	CustomerController
+
+
+
+how can an angular project access a rest api?
+	http client
+
+import
+	HttpClientModule
+in app.module.ts
+
+service that access the rest api
+	ng g s customer
+	ng generate service customer
+
+
+CORS	
+	Cross Origin Resource Sharing
+

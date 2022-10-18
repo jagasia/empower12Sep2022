@@ -1,5 +1,29 @@
+{{f.name.errors.minlength | json}}
+<br>
+{{"Jagadeeswaran" | length}}
+<br>
+{{123456789 | currency:'INR'}}
+
+<br>
+
+{{ "hello" | titlecase }}
+
+<br>
+<br>
+{{signupForm.controls['dateOfBirth'].value | date:'dd-MMM-yyyy'}}
+<br>
+{{signupForm.controls.dateOfBirth.value}}
 <form [formGroup]="signupForm" (submit)="fnSubmit()">
-    Name <input type="text" name="" id="" class="form-control" formControlName="name">
+    Name 
+    <div [ngClass]="{'has-error':f.name.errors && f.name.touched}">
+        <input type="text" name="" id="" class="form-control" formControlName="name">
+        <span class="alert-danger" *ngIf="f.name.errors.required  && f.name.touched">
+            Name is mandatory
+        </span>
+        <span class="alert-danger" *ngIf="f.name.errors.minlength  && f.name.touched">
+            Name must be atleast 5 characters
+        </span>
+    </div>
 	Email <input type="email" name="" id="" class="form-control" formControlName="email">
 	Phone <input type="number" name="" id="" class="form-control" formControlName="phone">
 	Password <input type="password" name="" id="" class="form-control" formControlName="password">
@@ -14,4 +38,6 @@
 
 </form>
 <br>
-{{signupForm.value | json}}
+<!-- {{signupForm.value | json}} -->
+
+

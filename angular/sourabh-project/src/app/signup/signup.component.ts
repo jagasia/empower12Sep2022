@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormBuilder} from '@angular/forms'
+import {  FormBuilder, Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
+  // template:`<p>this is typed by me</p>
+  // <p> this is second line</p>
+  
+  // `,
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
@@ -11,21 +15,27 @@ export class SignupComponent implements OnInit {
 
   constructor(private fb:FormBuilder) { 
     this.signupForm=this.fb.group({
-      name:[],
-      email:[],
-      phone:[],
-      password:[],
+      name:['', [Validators.required,Validators.minLength(5), Validators.maxLength(5)]],
+      email:['',Validators.required],
+      phone:['',Validators.required],
+      password:['',Validators.required],
       cpassword:[],
       gender:['Female'],
-      dateOfBirth:[]
+      dateOfBirth:['',Validators.required]
     });
   }
 
   ngOnInit(): void {
   }
 
+  get f()
+  {
+    return this.signupForm.controls;
+  }
+
   fnSubmit()
   {
+    
     console.log(this.signupForm.value);
     
   }

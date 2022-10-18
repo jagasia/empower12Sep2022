@@ -1,0 +1,26 @@
+<form [formGroup]="customerForm">
+    Id: <input type="number" name="" id="" formControlName="id" class="form-control">
+    Name: <input type="text" name="" id="" formControlName="name" class="form-control">
+    Phone: <input type="text" name="" id="" formControlName="phone" class="form-control">
+    Email: <input type="email" name="" id="" formControlName="email" class="form-control">
+    <br>
+    <input type="button" value="Add" class="btn btn-success" (click)="fnAddCustomer()">&nbsp;
+    <input type="button" value="Update" class="btn btn-warning" (click)="fnUpdateCustomer()">&nbsp;
+    <input type="button" value="Delete" class="btn btn-danger" (click)="fnDeleteCustomer()">&nbsp;
+</form>
+<br>
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Id</th><th>Name</th><th>Phone</th><th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of customers">
+            <td>{{c.id}}</td>
+            <td>{{c.name}}</td>
+            <td>{{c.phone}}</td>
+            <td>{{c.email}}</td>
+        </tr>
+    </tbody>
+</table>
