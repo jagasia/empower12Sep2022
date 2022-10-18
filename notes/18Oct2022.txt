@@ -1,0 +1,89 @@
+ReactiveFormsModule
+
+Signup Form
+	Name
+	Email
+	Phone
+	Password
+	Confirm password
+	Gender
+	Date Of Birth
+
+
+how to create signup component?
+	
+A reactive form is an object representation of a html form
+
+1) in app.module.ts
+	we need to import "ReactiveFormsModule"
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule
+  ],
+
+2) signup.component.ts
+	declare an object for signupForm
+
+3) define the object using form builder
+
+
+
+
+<form [formGroup]="signupForm" (submit)="fnSubmit()">
+    Name <input type="text" name="" id="" class="form-control" formControlName="name">
+	Email <input type="email" name="" id="" class="form-control" formControlName="email">
+	Phone <input type="number" name="" id="" class="form-control" formControlName="phone">
+	Password <input type="password" name="" id="" class="form-control" formControlName="password">
+	Confirm password <input type="password" name="" id="" class="form-control" formControlName="cpassword">
+	Gender <input type="radio" name="gender" id="rdoFemale" formControlName="gender" value="Female"><label for="rdoFemale">Female</label> &nbsp;
+    <input type="radio" name="gender" id="rdoMale" formControlName="gender" value="Male"><label for="rdoMale">Male</label> &nbsp;
+    <input type="radio" name="gender" id="rdoOther" formControlName="gender" value="Other"><label for="rdoOther">Other</label><br>
+	Date Of Birth <input type="date" name="" id="" class="form-control" formControlName="dateOfBirth">
+    <br>
+    <input type="submit" value="Sign Up" class="btn btn-success">&nbsp;
+    <input type="reset" value="Reset" class="btn btn-warning">
+
+</form>
+<br>
+{{signupForm.value | json}}
+
+
+
+
+
+
+import { Component, OnInit } from '@angular/core';
+import {  FormBuilder} from '@angular/forms'
+
+@Component({
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
+})
+export class SignupComponent implements OnInit {
+  signupForm:any;
+
+  constructor(private fb:FormBuilder) { 
+    this.signupForm=this.fb.group({
+      name:[],
+      email:[],
+      phone:[],
+      password:[],
+      cpassword:[],
+      gender:['Female'],
+      dateOfBirth:[]
+    });
+  }
+
+  ngOnInit(): void {
+  }
+
+  fnSubmit()
+  {
+    console.log(this.signupForm.value);
+    
+  }
+}
+
+
