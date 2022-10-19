@@ -112,3 +112,86 @@ export class CustomerComponent implements OnInit {
 </table>
 
 
+
+
+Routing
+-----------
+we define routes
+	/		HomeComponent
+	customer		CustomerComponent
+	signup		SignupComponent
+
+
+http://localhost:4200/signup
+
+where will the component be displayed?????
+	<router-outlet></router-outlet>
+
+
+
+
+------------------------------------------------
+
+We already have rest api for customer
+	http://localhost:8081/customer
+
+
+Spring boot mvc project
+
+we need to transform that REST api into a autowired controller
+
+interface
+
+Feign client
+
+1) add open feign dependency
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-openfeign</artifactId>
+		</dependency>
+
+2) in application class/ in any configuration class
+	enable feign clients
+		@EnableFeignClients
+
+3) 	create an interface that contains only the declaration of rest controller methods
+
+
+public interface CustomerApi {
+
+	List<Customer> retrieveAllCustomers();
+
+	Customer findCustomerById(Integer id);
+
+	Customer addCustomer(Customer customer);
+
+	Customer updateCustomer(Customer customer);
+
+	Customer removeCustomer(Integer id);
+
+}
+
+
+
+
+MVC project steps:
+1) pom.xml
+	apache tomcat
+
+2) create the folders for JSP file
+
+3) application.properties
+	prefix
+	suffix
+	port
+4) Controller
+
+
+
+
+
+
+
+
+
+

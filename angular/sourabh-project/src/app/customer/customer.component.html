@@ -4,9 +4,11 @@
     Id: <input type="number" name="" id="" formControlName="id" class="form-control">
     Name: <input type="text" name="" id="" formControlName="name" class="form-control">
     Phone: 
-    <div [ngClass]="{'has-error':controls.phone.errors}">
-        <input type="text" name="" id="" formControlName="phone" class="form-control">
-        <span class="alert-danger" *ngIf="controls.phone.errors && controls.phone.errors.phoneLength">
+    <!-- <div [ngClass]="{'has-error':controls.phone.errors && controls.phone.touched}"> -->
+    <div>
+        <input type="text" name="" id="" formControlName="phone" class="form-control" 
+        [ngClass]="{'is-invalid':controls.phone.errors && controls.phone.touched}">
+        <span class="alert-danger" *ngIf="controls.phone.errors && controls.phone.errors.phoneLength && controls.phone.touched">
             Phone number must be exactly 10 digits only
         </span>
         <span class="alert-danger" *ngIf="controls.phone.errors.required && controls.phone.touched">

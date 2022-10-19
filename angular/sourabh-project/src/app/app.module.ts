@@ -8,13 +8,15 @@ import { SignupComponent } from './signup/signup.component';
 import { LengthPipe } from './length.pipe';
 import { CustomerComponent } from './customer/customer.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignupComponent,
     LengthPipe,
-    CustomerComponent
+    CustomerComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
