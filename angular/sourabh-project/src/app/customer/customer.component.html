@@ -1,4 +1,4 @@
-{{ customerForm.controls.phone.errors }}
+{{ customerForm.controls.phone.errors | json }}
 
 <form [formGroup]="customerForm">
     Id: <input type="number" name="" id="" formControlName="id" class="form-control">
@@ -6,7 +6,7 @@
     Phone: 
     <div [ngClass]="{'has-error':controls.phone.errors}">
         <input type="text" name="" id="" formControlName="phone" class="form-control">
-        <span class="alert-danger" *ngIf="controls.phone.errors.phoneLength">
+        <span class="alert-danger" *ngIf="controls.phone.errors && controls.phone.errors.phoneLength">
             Phone number must be exactly 10 digits only
         </span>
         <span class="alert-danger" *ngIf="controls.phone.errors.required && controls.phone.touched">

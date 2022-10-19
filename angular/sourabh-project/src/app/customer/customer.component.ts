@@ -30,7 +30,7 @@ export class CustomerComponent implements OnInit {
     if(control.value && control.value.length!=10)
       return {'phoneLength':true};
     else
-      return {'phoneLength':false};
+      return null;
   }
 
   ngOnInit(): void {
