@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {  FormBuilder, Validators} from '@angular/forms'
+import {  AbstractControl, FormBuilder, Validators} from '@angular/forms'
 import { CustomerService } from '../customer.service';
 
 @Component({
@@ -15,9 +15,22 @@ export class CustomerComponent implements OnInit {
     this.customerForm=this.fb.group({
       id:[],
       name:[],
-      phone:[],
+      phone:['',[Validators.required,this.phoneLength]],
       email:[]
     });
+  }
+
+  get controls()
+  {
+    return this.customerForm.controls;
+  }
+
+  phoneLength(control: AbstractControl):{[key: string]: any} | null
+  {
+    if(control.value && control.value.length!=10)
+      return {'phoneLength':true};
+    else
+      return {'phoneLength':false};
   }
 
   ngOnInit(): void {
