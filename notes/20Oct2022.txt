@@ -330,3 +330,120 @@ but
 
 
 
+------------------------------------------------------------
+React Js
+---------------
+how to create a react js project
+
+npx create-react-app first-demo
+npm init react-app first-demo
+
+to run react js app:
+	npm start
+
+
+A component in react can be either:
+	class based component
+	function based component
+
+
+JSX	
+	Javascript XML
+
+
+how to create a function based component?
+	create a "components" folder
+	create a .js file
+
+Login.js
+----------
+function Login() {
+    return (<div class="text-left">
+        <form>
+            User Name: <input type="text" name="" id="" class="form-control"  />
+            Password: <input type="password" name="" id="" class="form-control" /><br />
+            <input type="button" value="Login" class="btn btn-success" />&nbsp;
+            <input type="reset" value="Reset" class="btn btn-warning" /><br/>
+        </form>
+    </div>);
+}
+
+export default Login;
+
+
+
+in App.js:
+---------------
+
+import './App.css';
+import Login from './components/Login';
+
+function App() {
+  return (
+    <div className="App">
+      <div class="jumbotron text-center">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Column 1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+      <Login />
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 3</h3>        
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+  </div>
+</div>
+    </div>
+  );
+}
+
+export default App;
+
+
+
+-----------------------------------------
+
+
+Next we create a class based component:
+---------------------------------------------------------------
+
+a class that extends Component
+
+import { Component } from "react";
+
+export class Signup extends Component {
+    render() {
+        return (<div>
+            <form>
+                Name
+                <input type="text" name="" id="" class="form-control" formControlName="name" />
+                Email <input type="email" name="" id="" class="form-control" formControlName="email" />
+                Phone <input type="number" name="" id="" class="form-control" formControlName="phone" />
+                Password <input type="password" name="" id="" class="form-control" formControlName="password" />
+                Confirm password <input type="password" name="" id="" class="form-control" formControlName="cpassword" />
+                Gender <input type="radio" name="gender" id="rdoFemale" formControlName="gender" value="Female" /><label for="rdoFemale">Female</label> &nbsp;
+                <input type="radio" name="gender" id="rdoMale" formControlName="gender" value="Male" /><label for="rdoMale">Male</label> &nbsp;
+                <input type="radio" name="gender" id="rdoOther" formControlName="gender" value="Other" /><label for="rdoOther">Other</label><br />
+                Date Of Birth <input type="date" name="" id="" class="form-control" formControlName="dateOfBirth" />
+                <br />
+                <input type="submit" value="Sign Up" class="btn btn-success" />&nbsp;
+                <input type="reset" value="Reset" class="btn btn-warning" />
+
+            </form>
+        </div>);
+    }
+}
+
+
+
+--------------
