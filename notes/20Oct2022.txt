@@ -104,3 +104,7 @@ public class Customer {
 		return home();
 	}
 	
+TasK:
+
+Identify the validation annotations in Spring MVC forms (hibernate validator)
+@Size
