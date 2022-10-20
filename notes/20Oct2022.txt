@@ -1,0 +1,17 @@
+1) MVC forms validation
+2) Test
+3) ReactJs
+
+1) add dependency to the pom.xml
+	hibernate validator
+
+2) in entity class
+	@Size	
+	@NotNull
+	
+3) in controller
+	@Valid
+
+	(@ModelAttribute("customer") @Valid Customer customer, 			BindingResult br)
+
+-------------------------------------------------------

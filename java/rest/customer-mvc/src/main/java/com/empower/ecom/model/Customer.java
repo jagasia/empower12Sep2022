@@ -1,7 +1,10 @@
 package com.empower.ecom.model;
 
+import javax.validation.constraints.Size;
+
 public class Customer {
 	private Integer id;
+	@Size(min = 5, message = "Name must be atleast 5 character!")
 	private String name;
 	private String phone;
 	private String email;

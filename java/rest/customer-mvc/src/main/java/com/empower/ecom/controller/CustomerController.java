@@ -2,8 +2,11 @@ package com.empower.ecom.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +34,22 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="/customer", method = RequestMethod.POST, params = "add")
-	public ModelAndView addCustomer(@ModelAttribute("customer") Customer customer)
+	public ModelAndView addCustomer(@ModelAttribute("customer") @Valid Customer customer, BindingResult br)
 	{
-		ca.addCustomer(customer);
+		if(br.hasErrors())
+		{
+			//go back
+			System.out.println("There are errors");
+			List<Customer> customers = ca.retrieveAllCustomers();
+			ModelAndView mv=new ModelAndView();
+			mv.setViewName("customer");
+			mv.addObject("customers", customers);
+			mv.addObject("customer", customer);
+			return mv;
+		}else
+		{
+			ca.addCustomer(customer);
+		}
 		return home();
 	}
 	

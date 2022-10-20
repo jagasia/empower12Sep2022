@@ -29,6 +29,7 @@
      	<form:form method="POST" action="customer" modelAttribute="customer">
      		Id:<form:input path="id" type="number" name="id" class="form-control" />
      		Name:<form:input path="name" type="text" name="name" class="form-control" />
+     		<form:errors cssStyle="color:red" path="name" /><br/>
      		Phone:<form:input path="phone" type="number" name="phone" class="form-control" />
      		Email:<form:input path="email" type="email" name="email" class="form-control" />
      		<br/>
