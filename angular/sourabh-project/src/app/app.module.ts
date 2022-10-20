@@ -25,7 +25,9 @@ import { MenuComponent } from './menu/menu.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    HttpClientModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
