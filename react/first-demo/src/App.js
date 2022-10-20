@@ -3,6 +3,15 @@ import './App.css';
 import Login from './components/Login';
 import { Signup } from './components/Signup';
 
+function Aboutus()
+{
+  return (<p>THis is about us</p>);
+}
+
+const Contactus=()=>{
+  return (<p>Contact us: </p>);
+}
+
 function App() {
   return (
     <div className="App">
@@ -20,9 +29,8 @@ function App() {
       <Login />
     </div>
     <div class="col-sm-4">
-      <h3>Column 3</h3>        
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+      <Aboutus /><br/>
+      <Contactus />
     </div>
   </div>
 </div>
