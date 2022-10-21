@@ -23,10 +23,10 @@ function App() {
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
-      <Signup />
+      <Signup name="Rama" />
     </div>
     <div class="col-sm-4">
-      <Login />
+      <Login username="shashank" label="Registration  Form" />
     </div>
     <div class="col-sm-4">
       <Aboutus /><br/>

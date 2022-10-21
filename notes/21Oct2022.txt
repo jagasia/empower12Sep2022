@@ -1,3 +1,22 @@
+Props
+--------
+	is a method to give input to a component
+
+	<Signup lable="Signup form" />
+
+
+<img src="" alt="" />
+<table border="1" 
+
+
+props is read only
+is one way
+
+
+
+State
+--------
+
 import { Component } from "react";
 
 export class Signup extends Component {
@@ -42,3 +61,4 @@ export class Signup extends Component {
         </div>);
     }
 }
+
