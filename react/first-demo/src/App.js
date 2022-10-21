@@ -1,6 +1,7 @@
 
 import './App.css';
 import { Customer } from './components/customer';
+import { CustomerGrid } from './components/CustomerGrid';
 import Login from './components/Login';
 import { Signup } from './components/Signup';
 
@@ -34,6 +35,13 @@ function App() {
       <Contactus /><br/>
       <Customer />
     </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <CustomerGrid />
+    </div>
+    <div class="col-sm-2"></div>
   </div>
 </div>
     </div>
