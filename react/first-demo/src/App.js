@@ -1,5 +1,6 @@
 
 import './App.css';
+import { Customer } from './components/customer';
 import Login from './components/Login';
 import { Signup } from './components/Signup';
 
@@ -30,7 +31,8 @@ function App() {
     </div>
     <div class="col-sm-4">
       <Aboutus /><br/>
-      <Contactus />
+      <Contactus /><br/>
+      <Customer />
     </div>
   </div>
 </div>

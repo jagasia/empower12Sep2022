@@ -19,7 +19,7 @@ import com.empower.ecom.model.CustomerService;
 @RestController
 @RequestMapping("/customer")
 //cross origin
-@CrossOrigin(origins = {"http://localhost:4200"})
+@CrossOrigin(origins = {"http://localhost:4200","http://localhost:3000","*"})
 public class CustomerController {
 	@Autowired
 	private CustomerService cs;
