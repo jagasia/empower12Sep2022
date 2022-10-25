@@ -560,6 +560,93 @@ update wsl:
 
 Restart computer
 
+download and inform in chat
+install and inform in chat 
+
+Lets discuss.
+
+What is the need for docker?
+	Suppose, look at a scenario, where, your application that you developed runs absolutely fine in your computer.
+	But when you deploy the application in some other computer, there are some problems.
+
+
+when i developed this application in this computer, there are some supporting softwares or tools also i would have installed in this computer.
+
+But when i deploy the application, again those supporting s/ws to be installed.
+
+What happens, if my application is developed in a platform different from the deployment computer.
+
+In order to run our application, there are certain requirements 	system requirements
+
+OS
+system files
+libraries
+
+all these are required for our app to run
+
+
+Virtual PC
+VMWare
+
+ISO image of s/w cds or any cds so that we dont always need to mount the cd in cd drive.
+image of the disk
+
+Virtualization
+
+We will create a docker image of our application.
+Now, anybody can run our app, provided they have installed docker in their system.
+
+I have a computer, but i have not installed java.
+can i run java project?? in my computer?
+i have docker installed in my computer.
+Yes. You got a docker image of a java application,
+then you can run that docker image in your computer.
+
+
+How is it possible?
+	it is possible because, a docker container provides all that are required to run an application.
+
+
+What is the difference between docker image and a docker container
+	Ans:	If you run a docker image, then you get a docker container
+
+program -> process
+image -> container
+
+
+if i run a program, it becomes a process
+i run the same program, many times, i get many processes
+
+
+if i run a docker image, i get a container
+if i run it many times, i get many containers of the same process
+
+docker -v
+	shows the version of docker installed in your system
+
+we are going to run a docker image which is already present in hub.docker.com
+
+
+in28min/todo-rest-api-h2:1.0.0.RELEASE
+
+docker run 
+	is used to run a docker image.
+	if the image is not found locally, then it is looked on hub.docker.com and if it is found, it will be pulled
+
+You are able to run a docker image which is present in the hub.docker.com portal
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
