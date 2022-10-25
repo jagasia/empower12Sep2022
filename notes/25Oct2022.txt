@@ -1,0 +1,142 @@
+install node js
+	angular
+	reactjs
+install docker
+
+Java 11 for sonarqube
+--------------------------------
+Steps for installing node js:
+
+download node js from:
+	https://nodejs.org/en/download/
+
+install node js
+
+and inform in chat window.
+
+in case if you face any issues, unmute and inform me.
+
+in cmd, check
+	node -v
+Also ensure that you have Visual Studio code.
+
+once you check 
+	node -v
+
+start installing angular:
+1) to install angular
+	npm install -g @angular/cli
+
+	to check
+		ng -v version
+2) to install typescript
+	npm install -g typescript
+
+	to check 
+		tsc -v
+
+All of you ensure that you have
+	typescript
+	angular cli
+	visual studio code
+
+----------------------------------------------------------------------------------------------------------------------------
+ng version | ng v 
+
+Create angular project using angular CLI
+
+1) choose a folder/ directory where you want to create angular project
+
+	ng new oct25-demo1 	--style=css 		--routing
+
+
+2) once the project is created, go inside the folder
+	cd oct25-demo1
+
+3) code .
+	will open vs code in that location
+
+4) ng serve -o
+	to run the project and open in new browser tab
+
+
+
+
+<router-outlet></router-outlet>
+
+
+steps for bootstrap:	(instead of CDN)
+
+1) install bootstrap
+	npm install bootstrap
+2) import (in style.css)
+	@import url(https://unpkg.com/bootstrap@4.1.0/dist/css/bootstrap.min.css)
+
+-----------------------
+create the home page:
+
+<div class="jumbotron text-center">
+  <h1>My First Bootstrap Page</h1>
+  <p>Resize this responsive page to see the effect!</p> 
+</div>
+  
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>Column 1</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 2</h3>
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>Column 3</h3>        
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit...</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris...</p>
+    </div>
+  </div>
+</div>
+
+
+
+---------------------------------------------------------
+create components:
+	ng generate component login
+
+
+
+in vs code, running scripts is by default, disabled.
+
+	Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+
+
+create component and plug it in app component
+
+
+
+1) template driven components		[(ngModel)]	2-way data binding
+2) reactive forms components		we represent the form as an object
+
+in order to use reactive forms module,
+	import 
+
+go to app.module.ts
+	imports
+		FormsModule		*ngIf		*ngFor
+		ReactiveFormsModule		reactive forms	FormBuilder
+
+
+
+import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
+  ],
+
+
