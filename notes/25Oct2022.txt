@@ -139,4 +139,310 @@ import {  FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
   ],
 
+  loginForm:any;
+
+  constructor(private fb:FormBuilder) {
+    this.loginForm=this.fb.group({
+      username:[],
+      password:[]
+    });
+   }
+
+
+
+
+
+<form [formGroup]="loginForm" class="container text-left">
+    User Name: <input type="text" name="" id="" formControlName="username" class="form-control">
+    Password: <input type="password" name="" id="" formControlName="password" class="form-control"><br>
+    <input type="button" value="Login" class="btn btn-success">&nbsp;
+    <input type="reset" value="Reset" class="btn btn-warning">
+</form>
+
+{{ loginForm.value | json }}
+
+--------------------------------------------------------------------------------------
+How to connect with backend?
+Lets create a rest api in spring boot
+
+and connect that with angular front end
+
+Spring security using JWT
+-----------------
+JWT
+	JSON web token
+		{"token":" irfwjsiojs[fogijw[0gg9jwef09ewjfg09er-8ghmg89idgmhd8 gmhds9i gmo"}
+
+
+What is the need for JWT?
+	after login, after login is successful, the user is provided with a token.
+	the user uses that token in subsequent request they make to the rest api
+
+	in rest api, every conversation is independent.
+	there is no state management.
+
+	every method call is independent. 
+	Stateless
+
+when login is successful, you obtain a token
+	and the server will be able to verify the token
+
+	token is expired? or valid
+
+
+how to implement JWT?
+1)	dependency to be added in pom.xml
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+
+2) JWT utility class
+	methods to create token, validate token, token expiry policy, etc	
+
+package com.wipro.hrms.util;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Function;
+
+@Service
+public class JwtUtil {
+
+    private String secret = "javatechie";
+
+    public String extractUsername(String token) {
+        return extractClaim(token, Claims::getSubject);
+    }
+
+    public Date extractExpiration(String token) {
+        return extractClaim(token, Claims::getExpiration);
+    }
+
+    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
+        final Claims claims = extractAllClaims(token);
+        return claimsResolver.apply(claims);
+    }
+    private Claims extractAllClaims(String token) {
+        return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
+    }
+
+    private Boolean isTokenExpired(String token) {
+        return extractExpiration(token).before(new Date());
+    }
+
+    public String generateToken(String username) {
+        Map<String, Object> claims = new HashMap<>();
+        return createToken(claims, username);
+    }
+
+    private String createToken(Map<String, Object> claims, String subject) {
+
+        return Jwts.builder().setClaims(claims).setSubject(subject).setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+                .signWith(SignatureAlgorithm.HS256, secret).compact();
+    }
+
+    public Boolean validateToken(String token, UserDetails userDetails) {
+        final String username = extractUsername(token);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+}
+
+
+
+3) Jwt filter
+	intercept all the requests coming to our server
+
+	check if there is a header "Authorization"
+
+
+package com.wipro.hrms.filter;
+
+import java.io.IOException;
+
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.wipro.hrms.service.UserService;
+import com.wipro.hrms.util.JwtUtil;
+
+@Component
+public class JwtFilter extends OncePerRequestFilter {
+
+    @Autowired
+    private JwtUtil jwtUtil;
+    @Autowired
+    private UserService service;
+
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+
+        String authorizationHeader = httpServletRequest.getHeader("Authorization");
+
+        String token = null;
+        String userName = null;
+
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            token = authorizationHeader.substring(7);
+            userName = jwtUtil.extractUsername(token);
+        }
+
+        if (userName != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+
+            UserDetails userDetails = service.loadUserByUsername(userName);
+
+            if (jwtUtil.validateToken(token, userDetails)) {
+
+                UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                        new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                usernamePasswordAuthenticationToken
+                        .setDetails(new WebAuthenticationDetailsSource().buildDetails(httpServletRequest));
+                SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+            }
+        }
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
+    }
+}
+
+
+
+4) for database
+	spring data jpa dependency to be added to pom.xml
+
+	application.properties	(configure the datasource)
+		url
+		username
+		password
+		dialect
+
+Entity class?
+	User class
+	USER_MASTER table
+
+	username
+	password
+	firstName
+	lastName
+	email
+
+repository
+service
+rest controller
+1) create a spring boot app
+	spring web
+	spring security
+	spring data jpa
+	oracle driver
+
+	we will add jjwt dependency to pom.xml
+
+2) configuration class
+package com.empower.ecom.config;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.empower.ecom.service.MyUserDetailsService;
+
+@Configuration
+public class MyConfiguration extends WebSecurityConfigurerAdapter
+{
+	@Autowired
+	private MyUserDetailsService userDetailsService;
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userDetailsService);
+	}
+	
+	@Bean
+	public PasswordEncoder passwordEncoder()
+	{
+		return NoOpPasswordEncoder.getInstance();
+	}
+	
+}
+
+
+3) MyUserDetailsService 
+
+package com.empower.ecom.service;
+
+import java.util.ArrayList;
+
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class MyUserDetailsService implements UserDetailsService
+{
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		return new User("raja", "raja", new ArrayList<>());
+	}
+
+}
+
+
+
+
+in configuration, we are going to introduce exception to certain URLs
+	for example
+		validateLogin method can have url as /login
+		this /login should be allowed unconditionally		.permitAll
+		other urls must be authenticated			.authenticated
+
+
+
+{
+    "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJyYWphIiwiZXhwIjoxNjY2NzE5MTMyLCJpYXQiOjE2NjY2ODMxMzJ9.UfTVILIRAT6BXLTXwa-HWkSvqs2ZyxC4QU9tvWjXgZ8"
+}
+
+
+
+in angular, we need to access rest api:
+
+1) app.module.ts
+	import HttpClientModule
+
+
+
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYWciLCJleHAiOjE2NjY3MjAxMjgsImlhdCI6MTY2NjY4NDEyOH0.2Atjby9BLpAyGheIURAXNHYvSS_p7SIbquaSZqls6fE
+
 

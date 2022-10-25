@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { FormBuilder } from '@angular/forms';
 export class LoginComponent implements OnInit {
   loginForm:any;
 
-  constructor(private fb:FormBuilder) {
+  constructor(private fb:FormBuilder, private us:UserService) {
     this.loginForm=this.fb.group({
       username:[],
       password:[]
@@ -17,6 +18,21 @@ export class LoginComponent implements OnInit {
    }
 
   ngOnInit(): void {
+  }
+
+  fnLogin()
+  {
+    this.us.login(this.loginForm.value).subscribe((data)=>{
+      console.log(data);
+      if(data!=null)
+      {
+        //success
+        var token={"jwt":""};
+        token=<any>data;
+        localStorage.setItem("jwt",token.jwt);
+      }
+      
+    });
   }
 
 }
