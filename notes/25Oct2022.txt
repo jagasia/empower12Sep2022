@@ -540,4 +540,29 @@ The class of the components can be used for defining the angular lifecycle hooks
 https://www.upgrad.com/blog/life-cycle-of-angular-components/
 
 
+--------------------------------------------------------------------------
+Docker
+----------
+you can install docker in your personal computer.
+
+install docker for windows 
+	https://docs.docker.com/docker-for-windows/install/
+	after downloading 
+		Docker Desktop Installer.exe
+	execute the above downloaded file
+
+Restart computer
+
+update wsl:
+	Download the Linux kernel update package
+	https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi
+	execute it
+
+Restart computer
+
+
+
+
+
+
 
