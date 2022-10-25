@@ -646,10 +646,75 @@ Lets run an existing application in docker.
 http://localhost:5000/hello-world-bean
 
 
+How to see all the images present in our computer locally?
+	docker images
+	docker image ls
+
+How to see all docker containers running in our computer?
+	docker container ls
+	docker ps
+	docker ps -a
+
+docker rm
+	is used to remove a container. Sometime we need to force remove	-f
+
+docker rm 72e94288fedd -f
+
+
+docker rmi <<image id>>
+
+How to create our own docker image of our application?
+
+We have created a rest api now.
+How to build a docker image of this application?
+	
+1) using docker file
+2) without docker file		(spring cli/ maven)
+
+
+1) Right click project and create a File
+	name it as 
+		Dockerfile
+FROM java:8
+EXPOSE 5000
+ADD target/oct25-demo1-0.0.1-SNAPSHOT.jar oct25-demo1-0.0.1-SNAPSHOT.jar 
+ENTRYPOINT ["java","-jar","oct25-demo1-0.0.1-SNAPSHOT.jar"]
+
+
+2) for generating jar file, we right click project 
+	run as 
+		maven build
+			clean install
+
+3) replace the .jar file names in those 3 locations in docker file
+
+now go to cmd prompt where Dockerfile is present
+
+4) Do you  have an account in hub.docker.com?
+	if not, create one.
+
+5) in cmd prompt
+	docker login
+	i) go to project folder that contains Dockerfile
+	ii) docker login		(press enter)
+	iii) docker build -t jag-docker-demo-1 .
+
+	now check the docker desktop for images.
+	this jag-docker-demo-1 should be found in the image (created few mins ago)
+
+
+==============creating docker image without Dockerfile (for maven spring boot applications)
+mvn spring-boot:build-image
+
+	run this command in cmd prompt where pom.xml is present
+
+once the docker images is created locally,
+create a project in hub.docker.com
+	docker tag oct25-demo1:0.0.1-SNAPSHOT jagindia/oct25-demo1
 
 
 
-
+docker run -p 5000:5000 jagindia/oct25-demo1
 
 
 
