@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { UserService } from '../user.service';
 export class LoginComponent implements OnInit {
   loginForm:any;
 
-  constructor(private fb:FormBuilder, private us:UserService) {
+  constructor(private fb:FormBuilder, private us:UserService, private router:Router) {
     this.loginForm=this.fb.group({
       username:[],
       password:[]
@@ -30,6 +31,10 @@ export class LoginComponent implements OnInit {
         var token={"jwt":""};
         token=<any>data;
         localStorage.setItem("jwt",token.jwt);
+        localStorage.setItem("name",this.loginForm.controls.username.value);
+        this.us.publish();
+        //redirect to Products page!
+        this.router.navigate(['product']);
       }
       
     });
