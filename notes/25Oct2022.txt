@@ -636,6 +636,15 @@ docker run
 You are able to run a docker image which is present in the hub.docker.com portal
 
 
+Lets run an existing application in docker.
+1) open cmd / terminal
+2) 
+3) docker run -p 5000:5000 in28min/todo-rest-api-h2:1.0.0.RELEASE
+4) http://localhost:5000/hello-world
+	check this in a browser
+	(also)
+http://localhost:5000/hello-world-bean
+
 
 
 
