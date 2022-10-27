@@ -1,0 +1,12 @@
+Pro *C
+	is oracle library for C language to access database using SQL statements
+
+precomp
+
+proc file1.pc
+gcc file1.c
+./a.out		a.exe
+
+
+http://programmingexamples.wikidot.com/pro-c-tutorial
+
