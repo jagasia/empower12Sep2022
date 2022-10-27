@@ -29,4 +29,4 @@ class CustomerService
     }
 }
 
-export default new CustomerService;
+export default new CustomerService();
