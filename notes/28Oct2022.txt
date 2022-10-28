@@ -1,0 +1,72 @@
+AWS
+------
+	Amazon Web Services
+
+
+Cloud Computing:
+--------------------------
+	Storage
+	Processing / Computing
+	Server
+	Networking
+
+Cloud providers:
+	Microsoft		Azure
+	Google		GCP
+	Amazon		AWS
+
+	
+Storage cloud		S3
+Compute cloud		EC2		Elastic Compute Cloud	
+Network cloud		VPC		subnets	ipv4	ipv6
+
+3 types of services
+	SAAS
+	PAAS
+	IAAS
+
+Example for
+	SAAS
+		Office365
+		ZOHO apps
+
+	PAAS
+		
+	IAAS
+
+Elastic?
+	Scalability?
+
+	Elastic scalability
+
+Auto scaling
+
+How to deploy spring boot rest api in AWS?
+	i) if we have .jar file or .war file, we can deploy using
+		Elastic Beanstalk
+	2) ECS
+		if we want to deploy hub.docker.com docker images, then use ECS
+
+ECR or ECS?
+	Elastic Container Registry is just almost same as hub.docker.com
+	Elastic Container Service, allow us to run our docker image in aws server
+
+------------------------------------------------------
+Demo for deploying spring boot rest api in AWS Elastic beanstalk
+1) port number must be 5000
+2) create the rest api and build the application to generate .jar file
+	if it is a mvc project, then .war file
+	steps are different for .war	(remind me)
+3) https://aws.amazon.com/
+	login to AWS Management console
+
+	1) search for Elastic Beanstalk
+	2) create application
+		name:	aws-demo-1
+		platform:
+			java 8
+	
+
+
+
+http://awsdemo1-env-1.eba-yjqxrwpb.ap-south-1.elasticbeanstalk.com/

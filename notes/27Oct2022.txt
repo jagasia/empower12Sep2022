@@ -10,7 +10,7 @@ gcc file1.c
 
 http://programmingexamples.wikidot.com/pro-c-tutorial
 https://www.javatpoint.com/proc#Program
-
+	
 ----------------------------------------------
 
 ReactJs Routing
@@ -113,4 +113,12 @@ getPicture()
 
 getPicture1()
 	return Base64String
+
+
+
+Angular pending:
+-----------------------
+@Input
+@Output
+ng-content
 
