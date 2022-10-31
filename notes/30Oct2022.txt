@@ -87,3 +87,40 @@ http://43.204.37.125:5000
 Feedback link:
 https://tcheck.co/nts8V3
 
+============================
+Lets see demo on entity relationships
+	Candidate - Education
+	Product - Review
+
+
+1-many:
+	Employee - Department
+
+
+
+How to create an object of Employee in java?????
+	Employee emp=new Employee();
+	emp.setName("Dinesh");
+	Department d=ds.read(2);
+	emp.setDepartment(d);
+	es.create(emp);
+
+
+	Department d=ds.read(2);
+	d.getEmployeeList();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
