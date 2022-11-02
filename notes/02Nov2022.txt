@@ -1,0 +1,48 @@
+Customer
+Merchant
+Product
+Sales
+
+
+AuthRequest
+	email
+	password
+
+
+
+SHA
+	1-way encryption
+
+password:	rama
+after enc:	&*()
+
+rama
+	encrypt it and compare it with db
+
+
+
+
+=================================
+public String encryptSha1(String password)
+{
+	//String password = "123456";
+        MessageDigest md = MessageDigest.getInstance("SHA-256");
+        byte[] hashInBytes = md.digest(password.getBytes(StandardCharsets.UTF_8));
+		// bytes to hex
+        StringBuilder sb = new StringBuilder();
+        for (byte b : hashInBytes) {
+            sb.append(String.format("%02x", b));
+        }
+        //System.out.println(sb.toString());
+	return sb.toString();
+}
+==================================
+
+
+MVC Steps:
+1) create WEB-INF/views folder under webapp
+2) prefix and suffix in application.properties
+
+
+demo project link:
+https://github.com/jagasia/spring-rest-mvc-demo-project
