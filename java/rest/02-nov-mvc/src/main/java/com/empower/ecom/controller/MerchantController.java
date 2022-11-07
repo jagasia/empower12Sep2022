@@ -34,7 +34,7 @@ public class MerchantController {
 	}
 	
 	@PostMapping("/login")
-	@ResponseBody
+//	@ResponseBody
 	public String login(AuthRequest authRequest, HttpSession session)
 	{
 		String status="Login Failed.";

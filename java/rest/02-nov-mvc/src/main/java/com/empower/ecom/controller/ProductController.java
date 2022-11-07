@@ -2,13 +2,16 @@ package com.empower.ecom.controller;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -26,9 +29,22 @@ public class ProductController {
 	@Autowired
 	private ProductApi papi;
 
+//	@ModelAttribute("products")
+//	public List<Product> loadAllProducts()
+//	{
+//		return papi.getAllProducts();
+//	}
+	
 	@GetMapping
-	public String showProductPage()
+	public String showProductPage(HttpSession session, ModelMap model)
 	{
+		Merchant merchant=(Merchant) session.getAttribute("merchant");
+		if(merchant==null)
+		{
+			return "not-logged-in-as-merchant";
+		}
+		List<Product> products =papi.findProductsByMerchant(merchant); 	
+		model.addAttribute("products", products);
 		return "product";				
 	}
 	

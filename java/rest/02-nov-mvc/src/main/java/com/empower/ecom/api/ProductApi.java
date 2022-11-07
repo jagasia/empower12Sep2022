@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.empower.ecom.entity.Merchant;
 import com.empower.ecom.entity.Product;
 
 @FeignClient(value = "product-api",url = "http://localhost:5000/product")
@@ -28,4 +29,7 @@ public interface ProductApi {
 	
 	@DeleteMapping("/{id}")
 	public Product deleteProduct(@PathVariable("id") Integer id);
+	
+	@PostMapping("/merchant")
+	public List<Product> findProductsByMerchant(@RequestBody Merchant merchant);
 }

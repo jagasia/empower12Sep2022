@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,6 +42,33 @@
 				</form>
 			</div>
 			<jsp:include page="col-3.jsp" />
+		</div>
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<table class="text-center table table-bordered table-striped table-hover">
+					<thead>
+						<tr>
+							<th>Id</th><th>Name</th><th>Description</th><th>Price</th><th>Picture</th><th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="p" items="${products }">
+							<tr>
+								<td>${p.id }</td>
+								<td>${p.name }</td>
+								<td>${p.description }</td>
+								<td>${p.price}</td>
+								<td>
+									<img width="100" src="data:image/jpg;base64,${p.picture1 }" />
+								</td>
+								<td></td>
+							</tr>
+						</c:forEach>				
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-2"></div>
 		</div>
 	</div>
 </body>

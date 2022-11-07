@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.empower.ecom.entity.Merchant;
 import com.empower.ecom.entity.Product;
 import com.empower.ecom.repository.ProductRepository;
 
@@ -51,5 +52,9 @@ public class ProductService {
 		return product;
 	}
 
+	public List<Product> findProductsByMerchant(Merchant merchant)
+	{
+		return pr.findByMerchant(merchant);
+	}
 	
 }

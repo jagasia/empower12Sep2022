@@ -1,5 +1,7 @@
 package com.empower.ecom.entity;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 public class Product {
 	private Integer id;
 	private String name;
@@ -65,6 +67,11 @@ public class Product {
 
 	public byte[] getPicture() {
 		return picture;
+	}
+	
+	public String getPicture1()
+	{
+		return Base64.encodeBase64String(picture);
 	}
 
 	public void setPicture(byte[] picture) {

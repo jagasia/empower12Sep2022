@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.empower.ecom.entity.Merchant;
 import com.empower.ecom.entity.Product;
 import com.empower.ecom.service.ProductService;
 
@@ -45,4 +46,9 @@ public class ProductController {
 		return ps.delete(id);
 	}
 	
+	@PostMapping("/merchant")
+	public List<Product> findProductsByMerchant(@RequestBody Merchant merchant)
+	{
+		return ps.findProductsByMerchant(merchant);
+	}
 }
